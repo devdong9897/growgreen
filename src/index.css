@@ -14,8 +14,18 @@ body {
   letter-spacing: -0.6px;
   line-height: 1;
   overflow-x: hidden;
+  background: #f9f9f7;
 }
 a {
-  color: #000;
+  color: #253528;
   text-decoration: none;
+}
+
+/* 화면 가로폭 설정 */
+.wrap {
+  max-width: 560px;
+  background: #fff;
+  margin: 0 auto;
+  /* 임의의 높이값 지정 : 추후 삭제 필요 */
+  min-height: 100vh;
 }

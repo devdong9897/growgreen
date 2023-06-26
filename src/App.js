@@ -1,7 +1,8 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import Header from "./components/Header";
+import Layout from "./Layout";
+// import Intro from "./pages/Intro";
 import TodoMain from "./pages/TodoMain";
 import TodoList from "./pages/TodoList";
 import TodoWrite from "./pages/TodoWrite";
@@ -16,19 +17,21 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <>
-    <Header />
-    
       <Routes>
-        <Route path="/todomain" element={<TodoMain />} />
-        <Route path="/todolist" element={<TodoList />} />
-        <Route path="/todowrite" element={<TodoWrite />} />
-        <Route path="/myplantlist" element={<MyPlantList />} />
-        <Route path="/myplantwrite" element={<MyPlantWrite />} />
-        <Route path="/myplantdetail" element={<MyPlantDetail />} />
-        <Route path="/diarywrite" element={<DiaryWrite />} />
-        <Route path="/diarylist" element={<DiaryList />} />
-        <Route path="/diarydetail" element={<DiaryDetail />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="/" element={<Layout />}>
+          {/* intro는 마지막 작업 후 진행 */}
+          {/* <Route path="/intro" element={<Intro />} /> */}
+          <Route path="/todomain" element={<TodoMain />} />
+          <Route path="/todolist" element={<TodoList />} />
+          <Route path="/todowrite" element={<TodoWrite />} />
+          <Route path="/myplantlist" element={<MyPlantList />} />
+          <Route path="/myplantwrite" element={<MyPlantWrite />} />
+          <Route path="/myplantdetail" element={<MyPlantDetail />} />
+          <Route path="/diarywrite" element={<DiaryWrite />} />
+          <Route path="/diarylist" element={<DiaryList />} />
+          <Route path="/diarydetail" element={<DiaryDetail />} />
+          <Route path="/*" element={<NotFound />} />
+        </Route>
       </Routes>
     </>
   );
