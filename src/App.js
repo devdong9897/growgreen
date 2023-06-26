@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           {/* intro는 마지막 작업 후 진행 */}
           {/* <Route path="/intro" element={<Intro />} /> */}
-          <Route path="/todomain" element={<TodoMain />} />
+          <Route index element={<TodoMain />} />
           <Route path="/todolist" element={<TodoList />} />
           <Route path="/todowrite" element={<TodoWrite />} />
           <Route path="/myplantlist" element={<MyPlantList />} />
