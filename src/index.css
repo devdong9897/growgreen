@@ -11,6 +11,7 @@ html,
 body {
   min-width: 320px;
   font-family: "Noto Sans KR", sans-serif;
+  font-size: 10px;
   letter-spacing: -0.6px;
   line-height: 1;
   overflow-x: hidden;
@@ -20,9 +21,20 @@ a {
   color: #253528;
   text-decoration: none;
 }
+button {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  letter-spacing: -0.6px;
+  line-height: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
 
 /* 화면 가로폭 설정 */
 .wrap {
+  position: relative;
   max-width: 560px;
   background: #fff;
   margin: 0 auto;

@@ -1,11 +1,12 @@
 // 색상
 export const mainColor = {
   colorGreenLight: "#c0cfb2",
-  colorGreenRegular: "#526549",
-  colorGreenBold: "#8ba889",
+  colorGreenRegular: "#8ba889",
+  colorGreenBold: "#526549",
 };
 export const subColor = {
   colorBlack: "#253528",
+  colorWhite: "#fff",
   colorGray: "#f9f9f7",
   colorRed: "#fc4949",
   colorBlue: "#5e64ff",
@@ -13,4 +14,8 @@ export const subColor = {
 export const borderColor = {
   borderGray: "rgba(0,0,0,0.1)",
   borderGreen: "rgba(73,101,78,0.2)",
+};
+// 높이
+export const height = {
+  headerHeight: "6.5rem",
 };
