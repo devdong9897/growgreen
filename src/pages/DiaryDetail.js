@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { StyleTest } from "../style/DetailLayout";
 
 const DiaryDetail = () => {
   return (
-    <div>DiaryDetail</div>
-  )
-}
+    <>
+      <StyleTest>DiaryDetail</StyleTest>
+    </>
+  );
+};
 
-export default DiaryDetail
+export default DiaryDetail;
