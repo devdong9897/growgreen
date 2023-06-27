@@ -20,11 +20,11 @@ export const HeaderWrap = styled.header`
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 0.1rem;
+    height: 0.05rem;
     background: ${borderColor.borderGray};
   }
 `;
-export const HeaderInnerWrap = styled.header`
+export const HeaderInnerWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
