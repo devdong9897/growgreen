@@ -11,11 +11,11 @@ const Header = () => {
           <HeaderInnerWrap>
             <h1>
               <Link to="/">
-                <img src="https://via.placeholder.com/59x36" alt="로고" />
+                <img src="/images/logo.svg" alt="로고" />
               </Link>
             </h1>
             <button>
-              <img src="https://via.placeholder.com/32x32" alt="메뉴펼치기" />
+              <img src="/images/icon_navbtn.svg" alt="메뉴펼치기" />
             </button>
           </HeaderInnerWrap>
         </Inner>

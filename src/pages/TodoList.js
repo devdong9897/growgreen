@@ -1,7 +1,7 @@
 import React from "react";
-import TodoListItem from "../components/TodoListItem";
 import { Link } from "react-router-dom";
 import { WriteBtn } from "../style/ListLayout";
+import TodoListItem from "../components/TodoListItem";
 
 const TodoList = () => {
   return (

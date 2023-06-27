@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Switch } from "antd";
+import { Switch, ConfigProvider } from "antd";
 import { mainColor } from "../style/GlobalStyle";
 import {
   ListItem,
@@ -20,14 +20,15 @@ const TodoListItem = () => {
       <ListItem>
         <Link to="/" />
         <ItemLeft>
-          <Switch
-            defaultChecked
-            onChange={onChange}
-            size="small"
-            style={{
-              background: mainColor.colorGreenRegular,
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: mainColor.colorGreenRegular,
+              },
             }}
-          />
+          >
+            <Switch defaultChecked onChange={onChange} size="small" />
+          </ConfigProvider>
           <ItemTime>
             <span>06-21</span>
             12:00
