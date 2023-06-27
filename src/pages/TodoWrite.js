@@ -1,13 +1,25 @@
 import React from "react";
-import { Select } from "antd";
-import { TimePicker } from "antd";
-import dayjs from "dayjs";
-import { TodoWriteFir, TodoWriteTxt } from "../style/TodoWriteCss";
-import { Input } from "antd";
+import { Select, Input, Checkbox } from "antd";
+import {
+  TodoWriteFir,
+  TodoWriteTxt,
+  TodoWriteBtnR,
+  TodoWriteBtnL,
+} from "../style/WriteLayout";
+import { ConfigProvider } from "antd";
 
 const TodoWrite = () => {
-  const format = "HH:mm";
   const { TextArea } = Input;
+
+  const onChange = checkedValues => {
+    console.log("checked = ", checkedValues);
+  };
+  const plainOptions = ["없음"];
+
+  const onSearch = value => {
+    console.log("search:", value);
+  };
+
   return (
     <>
       {/* <div className="wrap">
@@ -29,7 +41,66 @@ const TodoWrite = () => {
 
       <div className="time">
         <TodoWriteTxt>시간 선택</TodoWriteTxt>
-        <TimePicker defaultValue={dayjs("00:00", format)} format={format}  />
+        <Select
+          showSearch
+          placeholder="00:00"
+          optionFilterProp="children"
+          onChange={onChange}
+          onSearch={onSearch}
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          options={[
+            {
+              value: "01:00",
+              label: "01:00",
+            },
+            {
+              value: "02:00",
+              label: "02:00",
+            },
+            {
+              value: "03:00",
+              label: "03:00",
+            },
+            {
+              value: "04:00",
+              label: "04:00",
+            },
+            {
+              value: "05:00",
+              label: "05:00",
+            },
+            {
+              value: "06:00",
+              label: "06:00",
+            },
+            {
+              value: "07:00",
+              label: "07:00",
+            },
+            {
+              value: "08:00",
+              label: "08:00",
+            },
+            {
+              value: "09:00",
+              label: "09:00",
+            },
+            {
+              value: "10:00",
+              label: "10:00",
+            },
+            {
+              value: "11:00",
+              label: "11:00",
+            },
+            {
+              value: "12:00",
+              label: "12:00",
+            },
+          ]}
+        />
       </div>
 
       <div className="todo">
@@ -38,8 +109,8 @@ const TodoWrite = () => {
           showCount
           maxLength={100}
           style={{
-            width: 390,
-            height: 210,
+            width: "100%",
+            height: "210px",
             resize: "none",
           }}
           placeholder="할 일을 입력해 주세요."
@@ -48,7 +119,59 @@ const TodoWrite = () => {
 
       <div className="repeat">
         <TodoWriteTxt>반복여부</TodoWriteTxt>
+        <ConfigProvider
+          theme={{
+            components: {
+              Checkbox: {
+                colorPrimary: "#c0cfb2",
+              },
+            },
+          }}
+        >
+          <Checkbox.Group
+            options={plainOptions}
+            defaultValue={["없음"]}
+            onChange={onChange}
+            style={{ marginTop: "13px", fontSize: "1.4rem", fontWeight: 700 }}
+          />
+        </ConfigProvider>
+        <br />
+
+        <ConfigProvider
+          theme={{
+            components: {
+              Checkbox: {
+                colorPrimary: "#c0cfb2",
+              },
+            },
+          }}
+        >
+          <Checkbox onChange={onChange} style={{ marginTop: "10px" }}>
+            월
+          </Checkbox>
+          <Checkbox onChange={onChange} style={{ margin: "10px 0 0 10px" }}>
+            화
+          </Checkbox>
+          <Checkbox onChange={onChange} style={{ margin: "10px 0 0 10px" }}>
+            수
+          </Checkbox>
+          <Checkbox onChange={onChange} style={{ margin: "10px 0 0 10px" }}>
+            목
+          </Checkbox>
+          <Checkbox onChange={onChange} style={{ margin: "10px 0 0 10px" }}>
+            금
+          </Checkbox>
+          <Checkbox onChange={onChange} style={{ margin: "10px 0 0 10px" }}>
+            토
+          </Checkbox>
+          <Checkbox onChange={onChange} style={{ margin: "0 0 0 5px" }}>
+            일
+          </Checkbox>
+        </ConfigProvider>
+        <br />
       </div>
+      <TodoWriteBtnR>확인</TodoWriteBtnR>
+      <TodoWriteBtnL>취소</TodoWriteBtnL>
     </>
   );
 };
