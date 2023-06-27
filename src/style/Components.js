@@ -10,6 +10,7 @@ export const HeaderWrap = styled.header`
   position: fixed;
   top: 0;
   left: 50%;
+  z-index: 9999;
   transform: translateX(-50%);
   background: ${subColor.colorWhite};
   width: 100%;

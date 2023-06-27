@@ -16,6 +16,7 @@ body {
   line-height: 1;
   overflow-x: hidden;
   background: #f9f9f7;
+  color: #253528;
 }
 a {
   color: #253528;
@@ -36,7 +37,7 @@ button {
 .wrap {
   position: relative;
   max-width: 560px;
-  background: #fff;
+  background: #f9f9f7;
   margin: 0 auto;
   /* 임의의 높이값 지정 : 추후 삭제 필요 */
   min-height: 100vh;
