@@ -72,7 +72,7 @@ export const ItemRight = styled.div`
   width: calc(100% - 150px);
 `;
 export const ItemTime = styled.div`
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-weight: 700;
   color: ${mainColor.colorGreenBold};
   margin-top: 5px;
@@ -82,19 +82,23 @@ export const ItemTime = styled.div`
   }
 `;
 export const ItemName = styled.div`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
+  line-height: 1.3;
   ${ellipsis.ellipsisOne}
   span {
     display: block;
-    font-size: 0.7em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    height: 1.7rem;
     opacity: 0.6;
-    margin-bottom: 2px;
     ${ellipsis.ellipsisOne}
   }
 `;
 export const ItemText = styled.div`
   font-size: 1.6rem;
+  line-height: 1.6;
+  height: 2.5rem;
   font-weight: 500;
   margin-top: 10px;
   ${ellipsis.ellipsisOne}
@@ -149,14 +153,16 @@ export const MyPlantLiItemRight = styled.div`
   width: calc(100% - 150px);
 `;
 export const MyPlantLiItemName = styled.div`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
+  line-height: 1.3;
   ${ellipsis.ellipsisOne}
   span {
     display: block;
-    font-size: 0.7em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    height: 1.7rem;
     opacity: 0.6;
-    margin-bottom: 2px;
     ${ellipsis.ellipsisOne}
   }
 `;
@@ -215,14 +221,16 @@ export const DiaryLiItemRight = styled.div`
   width: calc(100% - 150px);
 `;
 export const DiaryLiItemName = styled.div`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
+  line-height: 1.3;
   ${ellipsis.ellipsisOne}
   span {
     display: block;
-    font-size: 0.7em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    height: 1.7rem;
     color: ${mainColor.colorGreenBold};
-    margin-bottom: 5px;
     ${ellipsis.ellipsisOne}
   }
   i {
