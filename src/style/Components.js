@@ -10,6 +10,7 @@ export const HeaderWrap = styled.header`
   position: fixed;
   top: 0;
   left: 50%;
+  z-index: 9999;
   transform: translateX(-50%);
   background: ${subColor.colorWhite};
   width: 100%;
@@ -20,11 +21,11 @@ export const HeaderWrap = styled.header`
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 0.1rem;
+    height: 0.05rem;
     background: ${borderColor.borderGray};
   }
 `;
-export const HeaderInnerWrap = styled.header`
+export const HeaderInnerWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

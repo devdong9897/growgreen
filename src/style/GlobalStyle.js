@@ -19,3 +19,27 @@ export const borderColor = {
 export const height = {
   headerHeight: "6.5rem",
 };
+// 말줄임
+export const ellipsis = {
+  ellipsisOne: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+  ellipsisTwo: {
+    wordWrap: "break-word",
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+  },
+  ellipsisThree: {
+    wordWrap: "break-word",
+    display: "-webkit-box",
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: "vertical",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+  },
+};
