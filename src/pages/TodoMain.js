@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import TodoCalendar from "../components/TodoCalendar";
+import TodoMainList from "../components/TodoMainList";
 
 const TodoMain = () => {
   return (
-    <div>TodoMain</div>
-  )
-}
+    <div>
+      <TodoCalendar />
+      <TodoMainList />
+    </div>
+  );
+};
 
-export default TodoMain
+export default TodoMain;

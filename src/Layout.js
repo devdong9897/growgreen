@@ -25,7 +25,8 @@ const Layout = () => {
         {/* 컨텐츠 시작 */}
         <Contents
           style={
-            location.pathname === "/diarydetail"
+            location.pathname === "/diarydetail" ||
+            location.pathname === "/myplantdetail"
               ? { padding: "0 0 2.5rem 0" }
               : { padding: "2.5rem 0" }
           }
@@ -33,7 +34,8 @@ const Layout = () => {
           {/* pathname에 따라 Inner의 가로 padding값 동적으로 설정 */}
           <Inner
             style={
-              location.pathname === "/diarydetail"
+              location.pathname === "/diarydetail" ||
+              location.pathname === "/myplantdetail"
                 ? { padding: "0" }
                 : { padding: "0 2%" }
             }
