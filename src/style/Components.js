@@ -43,6 +43,26 @@ export const HeaderInnerWrap = styled.div`
     }
   }
 `;
+export const HeaderNavWrap = styled.div`
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 999999;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  max-width: 560px;
+  & > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: ${subColor.colorWhite};
+    width: 65%;
+    min-width: 200px;
+    height: 100%;
+  }
+`;
 // TodoMainHeader
 export const TodoMainHeaderInner = styled.div`
   padding-top: 15px;

@@ -2,10 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { Inner, HeaderWrap, HeaderInnerWrap } from "../style/Components";
+import HeaderNav from "./HeaderNav";
 
 const Header = () => {
   return (
     <>
+      {/* 버튼 클릭 시 나오는 메뉴 */}
+      <HeaderNav />
       <HeaderWrap>
         <Inner>
           <HeaderInnerWrap>
