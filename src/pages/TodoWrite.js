@@ -1,12 +1,8 @@
 import React from "react";
 import { Select, Input, Checkbox } from "antd";
-import {
-  TodoWriteFir,
-  TodoWriteTxt,
-  TodoWriteBtnR,
-  TodoWriteBtnL,
-} from "../style/WriteLayout";
+import { TodoWriteFir, TodoWriteTxt } from "../style/WriteLayout";
 import { ConfigProvider } from "antd";
+import { mainColor } from "../style/GlobalStyle";
 
 const TodoWrite = () => {
   const { TextArea } = Input;
@@ -39,7 +35,7 @@ const TodoWrite = () => {
         ></Select>
       </TodoWriteFir>
 
-      <div className="time">
+      <TodoWriteFir className="time">
         <TodoWriteTxt>시간 선택</TodoWriteTxt>
         <Select
           showSearch
@@ -101,9 +97,9 @@ const TodoWrite = () => {
             },
           ]}
         />
-      </div>
+      </TodoWriteFir>
 
-      <div className="todo">
+      <TodoWriteFir className="todo">
         <TodoWriteTxt>할 일</TodoWriteTxt>
         <TextArea
           showCount
@@ -115,15 +111,17 @@ const TodoWrite = () => {
           }}
           placeholder="할 일을 입력해 주세요."
         />
-      </div>
+      </TodoWriteFir>
 
-      <div className="repeat">
+      <TodoWriteFir className="repeat">
         <TodoWriteTxt>반복여부</TodoWriteTxt>
+        
+
         <ConfigProvider
           theme={{
             components: {
               Checkbox: {
-                colorPrimary: "#c0cfb2",
+                colorPrimary: mainColor.colorGreenLight,
               },
             },
           }}
@@ -134,18 +132,7 @@ const TodoWrite = () => {
             onChange={onChange}
             style={{ marginTop: "13px", fontSize: "1.4rem", fontWeight: 700 }}
           />
-        </ConfigProvider>
-        <br />
-
-        <ConfigProvider
-          theme={{
-            components: {
-              Checkbox: {
-                colorPrimary: "#c0cfb2",
-              },
-            },
-          }}
-        >
+          <br />
           <Checkbox onChange={onChange} style={{ marginTop: "10px" }}>
             월
           </Checkbox>
@@ -169,9 +156,7 @@ const TodoWrite = () => {
           </Checkbox>
         </ConfigProvider>
         <br />
-      </div>
-      <TodoWriteBtnR>확인</TodoWriteBtnR>
-      <TodoWriteBtnL>취소</TodoWriteBtnL>
+      </TodoWriteFir>
     </>
   );
 };

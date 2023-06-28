@@ -32,3 +32,12 @@ button {
   background: none;
   cursor: pointer;
 }
+
+.ant-upload {
+  /* width: 100% !important;
+  height: 95px !important; */
+}
+
+.custom-input Input.ant-input:focus {
+  border-color: red !important;
+}
