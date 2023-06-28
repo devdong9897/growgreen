@@ -4,7 +4,6 @@ import { mainColor, subColor, borderColor, height } from "./GlobalStyle";
 // 여백 설정
 export const Inner = styled.div`
   padding: 0 2%;
-  /* padding: ${({ theme }) => theme.padding}; */
 `;
 // 헤더
 export const HeaderWrap = styled.header`
@@ -44,6 +43,26 @@ export const HeaderInnerWrap = styled.div`
     }
   }
 `;
+// TodoMainHeader
+export const TodoMainHeaderInner = styled.div`
+  padding-top: 15px;
+  h1 {
+    text-align: center;
+  }
+  nav {
+    display: flex;
+    div {
+      width: 50%;
+      text-align: center;
+      a {
+        display: block;
+        width: 100%;
+        font-size: 1.6rem;
+        padding: 15px 0;
+      }
+    }
+  }
+`;
 // 컨텐츠
 export const Wrap = styled.div`
   position: relative;
@@ -54,10 +73,47 @@ export const Wrap = styled.div`
   /* 배경 색 동적으로 변경 */
   background: ${({ theme }) => theme.backgroundColor};
 `;
-export const Contents = styled.div`
-  /* background: ${subColor.colorGray}; */
-  margin-top: ${height.headerHeight};
-  padding: 2.5rem 0;
+export const Contents = styled.div``;
+// 퀵메뉴
+export const QuickMenuWrap = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 9999;
+  transform: translateX(-50%);
+  background: ${subColor.colorWhite};
+  width: 100%;
+  max-width: 560px;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0.05rem;
+    background: ${borderColor.borderGray};
+  }
+  li {
+    width: 100%;
+    text-align: center;
+    a {
+      display: block;
+      width: 100%;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      padding: 20px 10px;
+      box-sizing: border-box;
+      color: ${mainColor.colorGreenBold};
+      i {
+        display: block;
+        font-size: 1.8em;
+        margin-bottom: 5px;
+      }
+    }
+  }
 `;
 // 버튼
 export const PageBtnWrap = styled.ul`

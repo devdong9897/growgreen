@@ -5,6 +5,8 @@ import { subColor } from "./style/GlobalStyle";
 import { Wrap, Contents, Inner } from "./style/Components";
 
 import Header from "./components/Header";
+import TodoMainHeader from "./components/TodoMainHeader";
+import QuickMenu from "./components/QuickMenu";
 
 const Layout = () => {
   const location = useLocation();
@@ -17,33 +19,38 @@ const Layout = () => {
   } else {
     pageBgc = { backgroundColor: subColor.colorGray };
   }
+  /* pathname에 따라 Contents padding값 동적으로 설정 */
+  const ContentsPadding =
+    location.pathname === "/diarydetail" ||
+    location.pathname === "/myplantdetail"
+      ? { padding: "0 0 2.5rem 0" }
+      : { padding: "2.5rem 0" };
+  /* pathname에 따라 Contents margin-top값 동적으로 설정 */
+  const ContentsMarginTop =
+    location.pathname === "/"
+      ? { marginTop: "9.8rem" }
+      : { marginTop: "6.5rem" };
+  /* pathname에 따라 Inner 가로 padding값 동적으로 설정 */
+  const InnerPadding =
+    location.pathname === "/diarydetail" ||
+    location.pathname === "/myplantdetail"
+      ? { padding: "0" }
+      : { padding: "0 2%" };
+
   return (
     <ThemeProvider theme={pageBgc}>
       <Wrap>
         {/* 헤더 */}
-        <Header />
+        {location.pathname === "/" ? <TodoMainHeader /> : <Header />}
         {/* 컨텐츠 시작 */}
-        <Contents
-          style={
-            location.pathname === "/diarydetail" ||
-            location.pathname === "/myplantdetail"
-              ? { padding: "0 0 2.5rem 0" }
-              : { padding: "2.5rem 0" }
-          }
-        >
+        <Contents style={{ ...ContentsPadding, ...ContentsMarginTop }}>
           {/* pathname에 따라 Inner의 가로 padding값 동적으로 설정 */}
-          <Inner
-            style={
-              location.pathname === "/diarydetail" ||
-              location.pathname === "/myplantdetail"
-                ? { padding: "0" }
-                : { padding: "0 2%" }
-            }
-          >
+          <Inner style={InnerPadding}>
             <Outlet />
           </Inner>
         </Contents>
         {/* 컨텐츠 끝 */}
+        {location.pathname === "/" ? <QuickMenu /> : null}
       </Wrap>
     </ThemeProvider>
   );
