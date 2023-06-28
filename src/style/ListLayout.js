@@ -46,6 +46,8 @@ export const ListItem = styled.li`
   margin-bottom: 15px;
   overflow: hidden;
   isolation: isolate;
+  box-sizing: border-box;
+  height: 115px;
   &:last-child {
     margin-bottom: 0;
   }
@@ -137,10 +139,10 @@ export const MyPlantLiItem = styled.li`
   }
 `;
 export const MyPlantLiItemLeft = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 115px;
+  height: 115px;
   text-align: center;
-  margin-right: 30px;
+  margin-right: 15px;
   box-sizing: border-box;
   img {
     display: block;
@@ -167,9 +169,10 @@ export const MyPlantLiItemName = styled.div`
   }
 `;
 export const MyPlantLiItemDate = styled.div`
+  height: 1.5rem;
   font-size: 1.3rem;
   font-weight: 300;
-  margin-top: 15px;
+  margin-top: 20px;
   opacity: 0.6;
 `;
 
@@ -205,10 +208,10 @@ export const DiaryLiItem = styled.li`
   }
 `;
 export const DiaryLiItemLeft = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 115px;
+  height: 115px;
   text-align: center;
-  margin-right: 30px;
+  margin-right: 15px;
   box-sizing: border-box;
   img {
     display: block;
@@ -241,6 +244,6 @@ export const DiaryLiItemText = styled.div`
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.6;
-  margin-top: 5px;
+  margin-top: 10px;
   ${ellipsis.ellipsisOne}
 `;

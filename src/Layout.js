@@ -12,18 +12,34 @@ const Layout = () => {
   let pageBgc;
   if (location.pathname === "/diarylist") {
     pageBgc = { backgroundColor: subColor.colorWhite };
+  } else if (location.pathname === "/diarydetail") {
+    pageBgc = { backgroundColor: subColor.colorWhite };
   } else {
     pageBgc = { backgroundColor: subColor.colorGray };
   }
-
   return (
     <ThemeProvider theme={pageBgc}>
       <Wrap>
         {/* 헤더 */}
         <Header />
         {/* 컨텐츠 시작 */}
-        <Contents>
-          <Inner>
+        <Contents
+          style={
+            location.pathname === "/diarydetail" ||
+            location.pathname === "/myplantdetail"
+              ? { padding: "0 0 2.5rem 0" }
+              : { padding: "2.5rem 0" }
+          }
+        >
+          {/* pathname에 따라 Inner의 가로 padding값 동적으로 설정 */}
+          <Inner
+            style={
+              location.pathname === "/diarydetail" ||
+              location.pathname === "/myplantdetail"
+                ? { padding: "0" }
+                : { padding: "0 2%" }
+            }
+          >
             <Outlet />
           </Inner>
         </Contents>
