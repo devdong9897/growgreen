@@ -151,7 +151,7 @@
   background: #ffffa9;
 } */
 
-.react-calendar__tile--hasActive {
+/* .react-calendar__tile--hasActive {
   background: #76baff;
 }
 
@@ -172,7 +172,7 @@
 
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
-}
+} */
 
 /* css 추가 */
 .react-calendar__navigation .react-calendar__navigation__arrow {
