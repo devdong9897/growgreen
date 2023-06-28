@@ -30,10 +30,31 @@ export const HeaderInnerWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   height: ${height.headerHeight};
+  h1 {
+    img {
+      width: 53px;
+      height: auto;
+    }
+  }
+  button {
+    img {
+      width: 30px;
+      height: auto;
+    }
+  }
 `;
 // 컨텐츠
+export const Wrap = styled.div`
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto;
+  /* 임의의 높이값 지정 : 추후 삭제 필요 */
+  min-height: 100vh;
+  /* 배경 색 동적으로 변경 */
+  background: ${({ theme }) => theme.backgroundColor};
+`;
 export const Contents = styled.div`
-  background-color: ${subColor.colorGray};
+  /* background: ${subColor.colorGray}; */
   margin-top: ${height.headerHeight};
   padding: 2.5rem 0;
 `;

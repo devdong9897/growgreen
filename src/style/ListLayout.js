@@ -20,20 +20,22 @@ export const WriteBtn = styled.div`
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
     border-radius: 100%;
     float: right;
+    margin-right: 2%;
     &::after {
       content: "";
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      background: #fff;
+      background: url("/images/icon_write.svg") no-repeat center;
+      background-size: contain;
+      width: 22px;
+      height: 22px;
     }
   }
 `;
 
-// ListItem 스타일
+// TodoList 스타일
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
@@ -42,17 +44,19 @@ export const ListItem = styled.li`
   border-radius: 15px;
   padding: 20px 15px;
   margin-bottom: 15px;
+  overflow: hidden;
+  isolation: isolate;
   &:last-child {
     margin-bottom: 0;
   }
   & > a {
     position: absolute;
-    top: 20px;
+    top: 16px;
     right: 15px;
     z-index: 1;
     width: 9px;
     height: 20px;
-    background: url("https://via.placeholder.com/9x20") no-repeat center;
+    background: url("/images/icon_modify.svg") no-repeat center;
     background-size: contain;
   }
 `;
@@ -68,7 +72,7 @@ export const ItemRight = styled.div`
   width: calc(100% - 150px);
 `;
 export const ItemTime = styled.div`
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-weight: 700;
   color: ${mainColor.colorGreenBold};
   margin-top: 5px;
@@ -78,20 +82,165 @@ export const ItemTime = styled.div`
   }
 `;
 export const ItemName = styled.div`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
+  line-height: 1.3;
   ${ellipsis.ellipsisOne}
   span {
     display: block;
-    font-size: 0.7em;
+    font-size: 0.8em;
+    line-height: 1.2;
+    height: 1.7rem;
     opacity: 0.6;
-    margin-bottom: 2px;
     ${ellipsis.ellipsisOne}
   }
 `;
 export const ItemText = styled.div`
   font-size: 1.6rem;
+  line-height: 1.6;
+  height: 2.5rem;
   font-weight: 500;
   margin-top: 10px;
+  ${ellipsis.ellipsisOne}
+`;
+
+// MyPlantList 스타일
+
+export const MyPlantLiItem = styled.li`
+  position: relative;
+  margin-bottom: 15px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  & > a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: ${subColor.colorWhite};
+    border-radius: 15px;
+    overflow: hidden;
+    isolation: isolate;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    &:hover::after {
+      box-shadow: 0 0 0 2px ${borderColor.borderGreen} inset;
+    }
+  }
+`;
+export const MyPlantLiItemLeft = styled.div`
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin-right: 30px;
+  box-sizing: border-box;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+export const MyPlantLiItemRight = styled.div`
+  width: calc(100% - 150px);
+`;
+export const MyPlantLiItemName = styled.div`
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  ${ellipsis.ellipsisOne}
+  span {
+    display: block;
+    font-size: 0.8em;
+    line-height: 1.2;
+    height: 1.7rem;
+    opacity: 0.6;
+    ${ellipsis.ellipsisOne}
+  }
+`;
+export const MyPlantLiItemDate = styled.div`
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-top: 15px;
+  opacity: 0.6;
+`;
+
+// DiaryList 스타일
+export const DiaryLiItem = styled.li`
+  position: relative;
+  margin-bottom: 15px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  & > a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: ${subColor.colorGray};
+    border-radius: 15px;
+    overflow: hidden;
+    isolation: isolate;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    &:hover::after {
+      box-shadow: 0 0 0 2px ${borderColor.borderGreen} inset;
+    }
+  }
+`;
+export const DiaryLiItemLeft = styled.div`
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin-right: 30px;
+  box-sizing: border-box;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+export const DiaryLiItemRight = styled.div`
+  width: calc(100% - 150px);
+`;
+export const DiaryLiItemName = styled.div`
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  ${ellipsis.ellipsisOne}
+  span {
+    display: block;
+    font-size: 0.8em;
+    line-height: 1.2;
+    height: 1.7rem;
+    color: ${mainColor.colorGreenBold};
+    ${ellipsis.ellipsisOne}
+  }
+  i {
+    margin-right: 5px;
+  }
+`;
+export const DiaryLiItemText = styled.div`
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 5px;
   ${ellipsis.ellipsisOne}
 `;

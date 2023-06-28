@@ -32,13 +32,3 @@ button {
   background: none;
   cursor: pointer;
 }
-
-/* 화면 가로폭 설정 */
-.wrap {
-  position: relative;
-  max-width: 560px;
-  background: #f9f9f7;
-  margin: 0 auto;
-  /* 임의의 높이값 지정 : 추후 삭제 필요 */
-  min-height: 100vh;
-}

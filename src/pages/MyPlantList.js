@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import { WriteBtn } from "../style/ListLayout";
+import MyPlantListItem from "../components/MyPlantListItem";
 
 const MyPlantList = () => {
   return (
-    <div>MyPlantList</div>
-  )
-}
+    <>
+      <ul>
+        <MyPlantListItem />
+      </ul>
+      <WriteBtn>
+        <Link to="/myplantwrite"></Link>
+      </WriteBtn>
+    </>
+  );
+};
 
-export default MyPlantList
+export default MyPlantList;
