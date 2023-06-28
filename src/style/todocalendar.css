@@ -1,12 +1,7 @@
 .react-calendar {
   width: 100%;
   max-width: 100%;
-  background: #fff;
-  border-radius: 15px;
   line-height: 1.125em;
-  overflow: hidden;
-  isolation: isolate;
-  padding: 10px 10px 15px;
 }
 
 .react-calendar--doubleView {

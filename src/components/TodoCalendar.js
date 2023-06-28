@@ -1,7 +1,10 @@
 import React from "react";
 import moment from "moment/moment";
 import Calendar from "react-calendar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import "../style/todocalendar.css";
+import { TodoCalendarWrap, CalendarActiveBtn } from "../style/TodoCalendar";
 
 const TodoCalendar = () => {
   const WeekName = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -19,14 +22,19 @@ const TodoCalendar = () => {
     return null;
   };
   return (
-    <div>
+    <TodoCalendarWrap>
       <Calendar
         calendarType="US"
         formatShortWeekday={formatShortWeekday}
         tileClassName={tileClassName}
         formatDay={(locale, date) => moment(date).format("D")}
-      ></Calendar>
-    </div>
+      />
+      <CalendarActiveBtn>
+        <i>
+          <FontAwesomeIcon icon={faAngleUp} />
+        </i>
+      </CalendarActiveBtn>
+    </TodoCalendarWrap>
   );
 };
 

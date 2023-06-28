@@ -34,6 +34,10 @@ export const WriteBtn = styled.div`
     }
   }
 `;
+// TodoMainList 스타일
+export const TodoMainUl = styled.ul`
+  margin-top: 20px;
+`;
 
 // TodoList 스타일
 export const ListItem = styled.li`
