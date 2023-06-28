@@ -1,9 +1,10 @@
 import React from "react";
 import { TodoWriteTxt, TodoWriteFir, MyPlantWtP } from "../style/WriteLayout";
-import { Input, Form, DatePicker, Upload, Modal } from "antd";
+import { Input, Form, DatePicker, Upload, Modal, ConfigProvider } from "antd";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
+import { mainColor } from "../style/GlobalStyle";
 
 const MyPlantWrite = () => {
   const dateFormat = "YYYY/MM/DD";
@@ -51,6 +52,13 @@ const MyPlantWrite = () => {
 
   return (
     <>
+    <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: mainColor.colorGreenBold ,
+            },
+          }}
+          >
       <TodoWriteFir className="name">
         <TodoWriteTxt>식물 선택</TodoWriteTxt>
         <Form.Item label="">
@@ -122,6 +130,9 @@ const MyPlantWrite = () => {
         </Modal>
 
         <TodoWriteTxt>메모</TodoWriteTxt>
+        
+          
+          
         <TextArea
           value={value}
           onChange={e => setValue(e.target.value)}
@@ -132,6 +143,7 @@ const MyPlantWrite = () => {
           style={{ width: "100%", paddingBottom: "148px" }}
         />
       </TodoWriteFir>
+        </ConfigProvider>
     </>
   );
 };

@@ -1,10 +1,8 @@
 import React from "react";
 import { Select, Input, Checkbox } from "antd";
-import {
-  TodoWriteFir,
-  TodoWriteTxt,
-} from "../style/WriteLayout";
+import { TodoWriteFir, TodoWriteTxt } from "../style/WriteLayout";
 import { ConfigProvider } from "antd";
+import { mainColor } from "../style/GlobalStyle";
 
 const TodoWrite = () => {
   const { TextArea } = Input;
@@ -117,11 +115,13 @@ const TodoWrite = () => {
 
       <TodoWriteFir className="repeat">
         <TodoWriteTxt>반복여부</TodoWriteTxt>
+        
+
         <ConfigProvider
           theme={{
             components: {
               Checkbox: {
-                colorPrimary: "#c0cfb2",
+                colorPrimary: mainColor.colorGreenLight,
               },
             },
           }}
@@ -132,18 +132,7 @@ const TodoWrite = () => {
             onChange={onChange}
             style={{ marginTop: "13px", fontSize: "1.4rem", fontWeight: 700 }}
           />
-        </ConfigProvider>
-        <br />
-
-        <ConfigProvider
-          theme={{
-            components: {
-              Checkbox: {
-                colorPrimary: "#c0cfb2",
-              },
-            },
-          }}
-        >
+          <br />
           <Checkbox onChange={onChange} style={{ marginTop: "10px" }}>
             월
           </Checkbox>
