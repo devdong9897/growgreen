@@ -3,6 +3,8 @@ import { Select, Input, Checkbox } from "antd";
 import { TodoWriteFir, TodoWriteTxt } from "../style/WriteLayout";
 import { ConfigProvider } from "antd";
 import { mainColor } from "../style/GlobalStyle";
+import { PageBtnWrap } from "../style/Components";
+import { Link } from 'react-router-dom'
 
 const TodoWrite = () => {
   const { TextArea } = Input;
@@ -115,7 +117,6 @@ const TodoWrite = () => {
 
       <TodoWriteFir className="repeat">
         <TodoWriteTxt>반복여부</TodoWriteTxt>
-        
 
         <ConfigProvider
           theme={{
@@ -132,7 +133,6 @@ const TodoWrite = () => {
             onChange={onChange}
             style={{ marginTop: "13px", fontSize: "1.4rem", fontWeight: 700 }}
           />
-          <br />
           <Checkbox onChange={onChange} style={{ marginTop: "10px" }}>
             월
           </Checkbox>
@@ -157,6 +157,14 @@ const TodoWrite = () => {
         </ConfigProvider>
         <br />
       </TodoWriteFir>
+      <PageBtnWrap>
+          <li>
+            <Link to="/">확인</Link>
+          </li>
+          <li>
+            <button>삭제</button>
+          </li>
+        </PageBtnWrap>
     </>
   );
 };

@@ -5,6 +5,8 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { mainColor } from "../style/GlobalStyle";
+import { PageBtnWrap } from "../style/Components";
+import { Link } from 'react-router-dom'
 
 const MyPlantWrite = () => {
   const dateFormat = "YYYY/MM/DD";
@@ -144,6 +146,14 @@ const MyPlantWrite = () => {
         />
       </TodoWriteFir>
         </ConfigProvider>
+        <PageBtnWrap>
+            <li>
+              <Link to="/">확인</Link>
+            </li>
+            <li>
+              <button>삭제</button>
+            </li>
+          </PageBtnWrap>
     </>
   );
 };
