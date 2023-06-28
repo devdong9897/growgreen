@@ -14,7 +14,7 @@ const DiaryListItem = () => {
   return (
     <>
       <DiaryLiItem>
-        <Link to="/">
+        <Link to="/diarydetail">
           <DiaryLiItemLeft>
             <img src="https://via.placeholder.com/100" alt="" />
           </DiaryLiItemLeft>

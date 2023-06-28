@@ -14,7 +14,7 @@ const MyPlantListItem = () => {
   return (
     <>
       <MyPlantLiItem>
-        <Link to="/">
+        <Link to="/myplantdetail">
           <MyPlantLiItemLeft>
             <img src="https://via.placeholder.com/100" alt="" />
           </MyPlantLiItemLeft>
