@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { subColor, borderColor, height, mainColor } from "./GlobalStyle";
+import { mainColor, subColor } from "./GlobalStyle";
 
 export const TodoWriteFir = styled.div`
   margin: 15 0 0 22px;
@@ -11,23 +11,17 @@ export const TodoWriteTxt = styled.p`
   margin-top: 25px;
 `;
 
-export const TodoWriteBtnR = styled.button`
-  width: 150px;
-  height: 50px;
-  border-radius: 5px;
-  margin: 135px 10px 0 20px;
-  color: #fff;
-  background: ${mainColor.colorGreenBold};
-  font-size: 1.4rem;
-`;
+export const MyPlantWtP = styled.p `
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: ${subColor.colorRed};
 
-export const TodoWriteBtnL = styled.button`
-  width: 150px;
-  height: 50px;
-  border: 1px solid red;
-  border-radius: 5px; 
-  margin: 135px 20px 0 10px;
-  border: 1px solid ${mainColor.colorGreenRegular};
-  color: ${mainColor.colorGreenRegular};
-  font-size: 1.4rem;
-`;
+`
+
+// export const MyPlantWtD = styled.div`
+//   width: 100%;
+//   height: 95px;
+//   background: #fff;
+// `
+

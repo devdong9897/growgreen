@@ -3,8 +3,6 @@ import { Select, Input, Checkbox } from "antd";
 import {
   TodoWriteFir,
   TodoWriteTxt,
-  TodoWriteBtnR,
-  TodoWriteBtnL,
 } from "../style/WriteLayout";
 import { ConfigProvider } from "antd";
 
@@ -39,7 +37,7 @@ const TodoWrite = () => {
         ></Select>
       </TodoWriteFir>
 
-      <div className="time">
+      <TodoWriteFir className="time">
         <TodoWriteTxt>시간 선택</TodoWriteTxt>
         <Select
           showSearch
@@ -101,9 +99,9 @@ const TodoWrite = () => {
             },
           ]}
         />
-      </div>
+      </TodoWriteFir>
 
-      <div className="todo">
+      <TodoWriteFir className="todo">
         <TodoWriteTxt>할 일</TodoWriteTxt>
         <TextArea
           showCount
@@ -115,9 +113,9 @@ const TodoWrite = () => {
           }}
           placeholder="할 일을 입력해 주세요."
         />
-      </div>
+      </TodoWriteFir>
 
-      <div className="repeat">
+      <TodoWriteFir className="repeat">
         <TodoWriteTxt>반복여부</TodoWriteTxt>
         <ConfigProvider
           theme={{
@@ -169,9 +167,7 @@ const TodoWrite = () => {
           </Checkbox>
         </ConfigProvider>
         <br />
-      </div>
-      <TodoWriteBtnR>확인</TodoWriteBtnR>
-      <TodoWriteBtnL>취소</TodoWriteBtnL>
+      </TodoWriteFir>
     </>
   );
 };

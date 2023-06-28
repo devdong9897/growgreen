@@ -2,7 +2,9 @@ import React from 'react'
 
 const MyPlantDetail = () => {
   return (
-    <div>MyPlantDetail</div>
+    <div className='MpdWrap'>
+      <div className='img'></div>
+    </div>
   )
 }
 
