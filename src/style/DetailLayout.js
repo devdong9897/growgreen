@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mainColor, subColor } from "./GlobalStyle";
+import { mainColor, subColor, borderColor } from "./GlobalStyle";
 
 // 다이어리 swiper 슬라이드 설정
 export const SwDiary = styled.div`
@@ -22,6 +22,7 @@ export const SwDiary = styled.div`
   }
 `;
 export const DiaryDetailInner = styled.div``;
+
 export const DiaryDetailTitle = styled.div`
   position: relative;
   font-size: 1.8rem;
@@ -50,4 +51,49 @@ export const DiaryDetailContents = styled.div`
     font-size: 1.6rem;
     line-height: 1.8;
   }
+`;
+
+export const MyPlantDetailIgm = styled.img`
+  width: 260px;
+  height: 229px;
+  margin: 25px 127px 25px 127px;
+  background: gray;
+`;
+
+export const MyPlantDetailWrap = styled.div`
+  margin: 15 0 0 22px;
+`;
+
+export const MyPlantDetailName = styled.h1`
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  color: ${borderColor.borderGray};
+`;
+export const MyPlantDetailNickName = styled.h1`
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+`;
+
+export const MyPlantDetailSubName = styled.h1`
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+`;
+
+export const MyPlantDetailDate = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+`;
+
+export const MyPlantDetailMemo = styled.p`
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.8;
 `;
