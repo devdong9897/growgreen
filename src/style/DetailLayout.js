@@ -65,7 +65,7 @@ export const MyPlantDetailName = styled.h1`
   line-height: 1.2;
   margin-top: 25px;
   text-align: center;
-  color: ${borderColor.borderGray};
+  color: ${subColor.colorGrayBold};
 `;
 export const MyPlantDetailNickName = styled.h1`
   font-size: 2.2rem;
@@ -91,13 +91,14 @@ export const MyPlantDetailDate = styled.h1`
 export const MyPlantDetailMemo = styled.p`
   font-size: 1.6rem;
   font-weight: 700;
-  margin-right: 15px;
+  margin-top: 70px;
 `;
 
 export const MyPlantDetailContents = styled.div`
- margin-top: 70px;
+ margin-top: 14px;
   p {
     font-size: 1.6rem;
     line-height: 1.8;
   }
 `;
+

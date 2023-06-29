@@ -23,16 +23,6 @@ const DiaryWrite = () => {
   const [fileList, setFileList] = useState([]);
 
   const handleCancel = () => setPreviewOpen(false);
-  // const handlePreview = async file => {
-  //   if (!file.url && !file.preview) {
-  //     file.preview = await getBase64(file.originFileObj);
-  //   }
-  //   setPreviewImage(file.url || file.preview);
-  //   setPreviewOpen(true);
-  //   setPreviewTitle(
-  //     file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
-  //   );
-  // };
 
   const handleChange = ({ fileList }) => {
     if (fileList.length > 5) {
@@ -75,7 +65,7 @@ const DiaryWrite = () => {
           <TodoWriteTxt>일기 제목</TodoWriteTxt>
           <Form.Item>
             <Input
-              placeholder= "제목을 입력해 주세요."
+              placeholder="제목을 입력해 주세요."
               className="custom-input"
               style={{
                 fontSize: "1.3rem",
@@ -102,6 +92,7 @@ const DiaryWrite = () => {
             onRemove={handleRemove}
             onPreview={() => false} // 이미지 미리보기 비활성화
             style={{ background: "white" }}
+            showPreviewIcon={false}
           >
             {fileList.length < 5 && uploadButton}
           </Upload>
@@ -132,13 +123,13 @@ const DiaryWrite = () => {
           style={{ width: "100%", paddingBottom: "148px", paddingTop: "15px" }}
         />
         <PageBtnWrap>
-            <li>
-              <Link to="/">등록</Link>
-            </li>
-            <li>
-              <button>취소</button>
-            </li>
-          </PageBtnWrap>
+          <li>
+            <Link to="/">등록</Link>
+          </li>
+          <li>
+            <button>취소</button>
+          </li>
+        </PageBtnWrap>
       </ConfigProvider>
     </>
   );

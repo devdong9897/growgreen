@@ -37,6 +37,13 @@ button {
   background: #fff;
 }
 
-/* .custom-input Input.ant-input:focus {
-  border-color: red !important;
-} */
+.anticon-eye {
+  display: none;
+}
+.ant-select-selection-placeholder {
+  padding: 13px 0 13px 15px !important;
+}
+.ant-select-selector {
+  height: 49px !important;
+  border-radius: 10px !important;
+}

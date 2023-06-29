@@ -100,7 +100,7 @@ const MyPlantWrite = () => {
           <TodoWriteTxt>데려온 날짜</TodoWriteTxt>
           <DatePicker
             defaultValue={dayjs("2023-06-28", dateFormat)}
-            format={dateFormat}
+            // format={dateFormat}
             style={{ padding: "13px 15px 13px 15px", borderRadius: "10px" }}
           />
         </TodoWriteFir>

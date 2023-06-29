@@ -8,6 +8,7 @@ export const subColor = {
   colorBlack: "#253528",
   colorWhite: "#fff",
   colorGray: "#f9f9f7",
+  colorGrayBold: "#25352880",
   colorRed: "#fc4949",
   colorBlue: "#5e64ff",
 };

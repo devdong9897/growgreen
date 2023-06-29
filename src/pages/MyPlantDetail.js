@@ -12,7 +12,6 @@ import {
 import { PageBtnWrap } from "../style/Components";
 import { Link } from "react-router-dom";
 
-
 const MyPlantDetail = () => {
   return (
     <MyPlantDetailWrap className="MpdWrap">
@@ -26,16 +25,16 @@ const MyPlantDetail = () => {
       >
         <img
           className="img"
-          src="https://via.placeholder.com/560x700/123" 
+          src="https://via.placeholder.com/260x229/123" 
           alt="이미지 설명"
-          style={{ width: "260px", height: "229px", borderRadius: "15px" }}
+          style={{borderRadius: "15px" }}
         />
       </div>
 
       <MyPlantDetailName>식물 종류 이름</MyPlantDetailName>
       <MyPlantDetailNickName>식물 별명</MyPlantDetailNickName>
       <MyPlantDetailSubName>데려온 날짜</MyPlantDetailSubName>
-      <MyPlantDetailDate>2023.06.18</MyPlantDetailDate>
+      <MyPlantDetailDate>2023-06-18</MyPlantDetailDate>
 
       <MyPlantDetailMemo>메모</MyPlantDetailMemo>
       <MyPlantDetailContents>

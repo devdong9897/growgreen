@@ -23,7 +23,7 @@ const MyPlantListItem = () => {
               <span>식물 종류 이름</span>
               식물 별명
             </MyPlantLiItemName>
-            <MyPlantLiItemDate>23-06-22</MyPlantLiItemDate>
+            <MyPlantLiItemDate>2023-06-22</MyPlantLiItemDate>
           </MyPlantLiItemRight>
         </Link>
       </MyPlantLiItem>
