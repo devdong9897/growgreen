@@ -14,7 +14,7 @@ const DiaryDetail = () => {
       <DiarySwiper />
       <DiaryDetailInner>
         <DiaryDetailTitle>
-          <span>2023.06.18</span>
+          <span>2023-06-18</span>
           <p>Lorem ipsum dolor sit amet.</p>
         </DiaryDetailTitle>
         <DiaryDetailContents>

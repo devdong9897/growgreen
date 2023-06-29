@@ -10,7 +10,10 @@
 html,
 body {
   min-width: 320px;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 10px;
   letter-spacing: -0.6px;
   line-height: 1;
@@ -23,7 +26,10 @@ a {
   text-decoration: none;
 }
 button {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 1rem;
   letter-spacing: -0.6px;
   line-height: 1;
@@ -36,7 +42,3 @@ button {
 .ant-upload {
   background: #fff;
 }
-
-/* .custom-input Input.ant-input:focus {
-  border-color: red !important;
-} */
