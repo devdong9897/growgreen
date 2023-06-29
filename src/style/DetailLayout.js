@@ -53,12 +53,7 @@ export const DiaryDetailContents = styled.div`
   }
 `;
 
-export const MyPlantDetailIgm = styled.img`
-  width: 260px;
-  height: 229px;
-  margin: 25px 127px 25px 127px;
-  background: gray;
-`;
+
 
 export const MyPlantDetailWrap = styled.div`
   margin: 15 0 0 22px;
@@ -68,6 +63,7 @@ export const MyPlantDetailName = styled.h1`
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.2;
+  margin-top: 25px;
   text-align: center;
   color: ${borderColor.borderGray};
 `;
@@ -75,14 +71,14 @@ export const MyPlantDetailNickName = styled.h1`
   font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
-  line-height: 1.2;
+  line-height: 2.2;
 `;
 
 export const MyPlantDetailSubName = styled.h1`
   font-size: 1.4rem;
   font-weight: 700;
   text-align: center;
-  line-height: 1.2;
+  line-height: 2.2;
 `;
 
 export const MyPlantDetailDate = styled.h1`
@@ -95,5 +91,13 @@ export const MyPlantDetailDate = styled.h1`
 export const MyPlantDetailMemo = styled.p`
   font-size: 1.6rem;
   font-weight: 700;
-  line-height: 1.8;
+  margin-right: 15px;
+`;
+
+export const MyPlantDetailContents = styled.div`
+ margin-top: 70px;
+  p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+  }
 `;

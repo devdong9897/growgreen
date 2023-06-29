@@ -14,14 +14,7 @@ export const TodoWriteTxt = styled.p`
 export const MyPlantWtP = styled.p `
   font-size: 12px;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: ${subColor.colorRed};
 
 `
-
-// export const MyPlantWtD = styled.div`
-//   width: 100%;
-//   height: 95px;
-//   background: #fff;
-// `
-
