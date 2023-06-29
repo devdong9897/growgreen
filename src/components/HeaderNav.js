@@ -1,26 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { HeaderNavWrap } from "../style/Components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { HeaderNavWrap, NavButtonWrap, NavMenuWrap } from "../style/Components";
 
-const HeaderNav = () => {
+const HeaderNav = ({ navOpen, toggleNav }) => {
   return (
-    <HeaderNavWrap>
+    <HeaderNavWrap className={navOpen ? "open" : ""}>
       <div>
-        <button>x</button>
-        <ul>
+        <NavButtonWrap>
+          <button onClick={toggleNav}>
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </NavButtonWrap>
+        <NavMenuWrap>
           <li>
             <Link to="/">home</Link>
           </li>
           <li>
-            <Link to="/">my plant</Link>
+            <Link to="/myplantlist">my plant</Link>
           </li>
           <li>
-            <Link to="/">my todo</Link>
+            <Link to="/todolist">my todo</Link>
           </li>
           <li>
-            <Link to="/">diary</Link>
+            <Link to="/diarylist">diary</Link>
           </li>
-        </ul>
+        </NavMenuWrap>
       </div>
     </HeaderNavWrap>
   );
