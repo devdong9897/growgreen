@@ -34,10 +34,9 @@ button {
 }
 
 .ant-upload {
-  /* width: 100% !important;
-  height: 95px !important; */
+  background: #fff;
 }
 
-.custom-input Input.ant-input:focus {
+/* .custom-input Input.ant-input:focus {
   border-color: red !important;
-}
+} */

@@ -7,23 +7,38 @@ import {
   MyPlantDetailSubName,
   MyPlantDetailDate,
   MyPlantDetailMemo,
+  MyPlantDetailContents,
 } from "../style/DetailLayout";
 import { PageBtnWrap } from "../style/Components";
 import { Link } from "react-router-dom";
-import { DiaryDetailContents } from "../style/DetailLayout";
+
 
 const MyPlantDetail = () => {
   return (
     <MyPlantDetailWrap className="MpdWrap">
-      <MyPlantDetailIgm className="img"></MyPlantDetailIgm>
+      {/* 이미지 넣기 */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          className="img"
+          src="https://via.placeholder.com/560x700/123" 
+          alt="이미지 설명"
+          style={{ width: "260px", height: "229px", borderRadius: "15px" }}
+        />
+      </div>
 
       <MyPlantDetailName>식물 종류 이름</MyPlantDetailName>
       <MyPlantDetailNickName>식물 별명</MyPlantDetailNickName>
       <MyPlantDetailSubName>데려온 날짜</MyPlantDetailSubName>
-      <MyPlantDetailDate>2023.06.28</MyPlantDetailDate>
+      <MyPlantDetailDate>2023.06.18</MyPlantDetailDate>
 
       <MyPlantDetailMemo>메모</MyPlantDetailMemo>
-      <DiaryDetailContents>
+      <MyPlantDetailContents>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -41,7 +56,7 @@ const MyPlantDetail = () => {
             <button>삭제</button>
           </li>
         </PageBtnWrap>
-      </DiaryDetailContents>
+      </MyPlantDetailContents>
     </MyPlantDetailWrap>
   );
 };
