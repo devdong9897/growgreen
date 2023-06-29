@@ -7,6 +7,7 @@ import { Wrap, Contents, Inner } from "./style/Components";
 import Header from "./components/Header";
 import TodoMainHeader from "./components/TodoMainHeader";
 import QuickMenu from "./components/QuickMenu";
+import Footer from "./components/Footer";
 
 const Layout = () => {
   const location = useLocation();

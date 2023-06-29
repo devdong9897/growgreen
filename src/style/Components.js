@@ -53,14 +53,73 @@ export const HeaderNavWrap = styled.div`
   width: 100%;
   height: 100%;
   max-width: 560px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
   & > div {
     position: absolute;
     top: 0;
-    right: 0;
-    background-color: ${subColor.colorWhite};
+    right: -500px;
+    background: ${subColor.colorWhite};
+    border-left: 0.05rem solid ${borderColor.borderGray};
     width: 65%;
     min-width: 200px;
     height: 100%;
+    transition: right 0.3s ease-in-out;
+  }
+  &.open > div {
+    right: 0;
+  }
+`;
+export const NavButtonWrap = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: ${height.headerHeight};
+  padding-right: 3.3%;
+  button {
+    display: block;
+    width: 35px;
+    height: 35px;
+    font-size: 3rem;
+    color: ${mainColor.colorGreenBold};
+  }
+`;
+export const NavMenuWrap = styled.ul`
+  height: 90vh;
+  overflow-y: auto;
+  padding-top: 20px;
+  box-sizing: border-box;
+  li {
+    a {
+      display: block;
+      position: relative;
+      font-size: 2rem;
+      text-transform: uppercase;
+      padding: 20px 20px 20px 30px;
+      color: ${mainColor.colorGreenBold};
+      &::after {
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        background: ${mainColor.colorGreenBold};
+        opacity: 0;
+        transform: translate(5px, 5px);
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover::after {
+        transform: translate(5px, 0px);
+        opacity: 1;
+      }
+    }
   }
 `;
 // TodoMainHeader
@@ -76,6 +135,7 @@ export const TodoMainHeaderInner = styled.div`
       text-align: center;
       a {
         display: block;
+        position: relative;
         width: 100%;
         font-size: 1.6rem;
         padding: 15px 0;

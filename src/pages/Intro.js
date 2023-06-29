@@ -1,7 +1,28 @@
 import React from "react";
+import { Wrap } from "../style/Components";
+import { IntroWrap } from "../style/IntroLayout";
+import { SyncLoader } from "react-spinners";
+import { mainColor } from "../style/GlobalStyle";
 
 const Intro = () => {
-  return <div>Intro</div>;
+  return (
+    <Wrap>
+      <IntroWrap>
+        <div>
+          <img src="./images/intro_logo.png" alt="logo" />
+        </div>
+        <div>
+          <SyncLoader
+            color={mainColor.colorGreenRegular}
+            margin={4}
+            size={7}
+            speedMultiplier={0.5}
+          />
+          <p>Team. 너 E팀이야</p>
+        </div>
+      </IntroWrap>
+    </Wrap>
+  );
 };
 
 export default Intro;
