@@ -65,6 +65,30 @@ export const ListItem = styled.li`
     background: url("/images/icon_modify.svg") no-repeat center;
     background-size: contain;
   }
+  &.noTodayTodo {
+    display: block;
+    height: auto;
+    text-align: center;
+    padding: 35px 15px;
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 50px;
+      height: auto;
+    }
+    p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: ${mainColor.colorGreenRegular};
+      margin-top: 15px;
+      span {
+        display: block;
+        font-size: 0.85em;
+        margin-bottom: 3px;
+        opacity: 0.7;
+      }
+    }
+  }
 `;
 export const ItemLeft = styled.div`
   width: 100px;

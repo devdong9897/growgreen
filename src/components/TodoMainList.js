@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   TodoMainUl,
   ListItem,
@@ -9,24 +10,36 @@ import {
   ItemText,
 } from "../style/ListLayout";
 
-const TodoMainList = () => {
+const TodoMainList = ({ selectTodayList }) => {
   return (
     <TodoMainUl>
-      <ListItem>
-        <ItemLeft>
-          <ItemTime>
-            <span>06-21</span>
-            12:00
-          </ItemTime>
-        </ItemLeft>
-        <ItemRight>
-          <ItemName>
-            <span>식물 종류 이름</span>
-            식물 별명
-          </ItemName>
-          <ItemText>오늘의 할 일</ItemText>
-        </ItemRight>
-      </ListItem>
+      {selectTodayList.map((item, idx) => (
+        <ListItem key={idx}>
+          <ItemLeft>
+            <ItemTime>
+              <span>{item.time}</span>
+              {item.timeDetail}
+            </ItemTime>
+          </ItemLeft>
+          <ItemRight>
+            <ItemName>
+              <span>{item.plantName}</span>
+              {item.plantAlias}
+            </ItemName>
+            <ItemText>{item.task}</ItemText>
+          </ItemRight>
+        </ListItem>
+      ))}
+      {/* todayListData 없을 때 아래 코드 출력 */}
+      {selectTodayList.length === 0 && (
+        <ListItem className="noTodayTodo">
+          <img src="./images/logo.svg" alt="로고" />
+          <p>
+            <span>NO TODO</span>
+            오늘은 할 일이 없어요.
+          </p>
+        </ListItem>
+      )}
     </TodoMainUl>
   );
 };

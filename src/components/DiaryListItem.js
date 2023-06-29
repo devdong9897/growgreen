@@ -20,7 +20,7 @@ const DiaryListItem = () => {
           </DiaryLiItemLeft>
           <DiaryLiItemRight>
             <DiaryLiItemName>
-              <span>2023.06.27</span>
+              <span>2023-06-27</span>
               <i>
                 <FontAwesomeIcon icon={faBook} />
               </i>

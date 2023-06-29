@@ -104,6 +104,9 @@
 .react-calendar__month-view__days__day--neighboringMonth {
   color: rgba(0, 0, 0, 0.2) !important;
 }
+.react-calendar__month-view__days__day--neighboringMonth.highlight::before {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
 .react-calendar__month-view__days__day--neighboringMonth::after {
   display: none;
 }
@@ -122,6 +125,17 @@
   text-align: center;
   line-height: 16px;
 }
+.react-calendar__tile.highlight::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 51%;
+  width: 5px;
+  height: 5px;
+  background-color: #8ba889;
+  transform: translateX(-50%);
+  border-radius: 100%;
+}
 
 .react-calendar__tile:disabled {
   background-color: #f0f0f0;
@@ -138,8 +152,8 @@
 .react-calendar__tile--now::after {
   content: "";
   position: absolute;
-  width: 50%;
-  height: 55%;
+  width: 45%;
+  height: 50%;
   background-color: #8ba889;
   top: 50%;
   left: 50%;

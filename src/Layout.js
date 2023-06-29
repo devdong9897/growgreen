@@ -1,13 +1,12 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
-import { subColor } from "./style/GlobalStyle";
+import { subColor, height } from "./style/GlobalStyle";
 import { Wrap, Contents, Inner } from "./style/Components";
 
 import Header from "./components/Header";
 import TodoMainHeader from "./components/TodoMainHeader";
 import QuickMenu from "./components/QuickMenu";
-import Footer from "./components/Footer";
 
 const Layout = () => {
   const location = useLocation();
@@ -20,6 +19,12 @@ const Layout = () => {
   } else {
     pageBgc = { backgroundColor: subColor.colorGray };
   }
+  const WrapHeight =
+    location.pathname === "/"
+      ? {
+          minHeight: `calc(100vh - ${height.todoMainHeaderHeight})`,
+        }
+      : { minHeight: `calc(100vh - ${height.headerHeight})` };
   /* pathname에 따라 Contents padding값 동적으로 설정 */
   const ContentsPadding =
     location.pathname === "/diarydetail" ||
@@ -29,8 +34,8 @@ const Layout = () => {
   /* pathname에 따라 Contents margin-top값 동적으로 설정 */
   const ContentsMarginTop =
     location.pathname === "/"
-      ? { marginTop: "9.8rem" }
-      : { marginTop: "6.5rem" };
+      ? { marginTop: `${height.todoMainHeaderHeight}` }
+      : { marginTop: `${height.headerHeight}` };
   /* pathname에 따라 Inner 가로 padding값 동적으로 설정 */
   const InnerPadding =
     location.pathname === "/diarydetail" ||
@@ -40,7 +45,7 @@ const Layout = () => {
 
   return (
     <ThemeProvider theme={pageBgc}>
-      <Wrap>
+      <Wrap style={WrapHeight}>
         {/* 헤더 */}
         {location.pathname === "/" ? <TodoMainHeader /> : <Header />}
         {/* 컨텐츠 시작 */}

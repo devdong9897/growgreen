@@ -149,7 +149,7 @@ export const Wrap = styled.div`
   max-width: 560px;
   margin: 0 auto;
   /* 임의의 높이값 지정 : 추후 삭제 필요 */
-  min-height: 100vh;
+  /* min-height: 100vh; */
   /* 배경 색 동적으로 변경 */
   background: ${({ theme }) => theme.backgroundColor};
 `;
