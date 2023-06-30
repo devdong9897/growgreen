@@ -53,52 +53,76 @@ export const DiaryDetailContents = styled.div`
   }
 `;
 
-
-
-export const MyPlantDetailWrap = styled.div`
-  margin: 15 0 0 22px;
+export const MyPlantDetailWrap = styled.div``;
+export const MyPlantDetailTop = styled.div`
+  position: relative;
+  padding: 2.5rem 2% 0;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: url(/images/myplantdetail_bgi.png) no-repeat center;
+    background-size: cover;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+    background: ${subColor.colorGray};
+  }
 `;
-
-export const MyPlantDetailName = styled.h1`
-  font-size: 1.6rem;
+export const MyPlantDetailImage = styled.div`
+  img {
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    isolation: isolate;
+    border: 0.05rem solid ${borderColor.borderGray};
+  }
+`;
+export const MyPlantDetailTitle = styled.div`
+  font-size: 1.8rem;
   font-weight: 700;
   line-height: 1.2;
-  margin-top: 25px;
+  padding: 25px 0 35px;
   text-align: center;
-  color: ${subColor.colorGrayBold};
+  & > div:first-child {
+    font-size: 2.4rem;
+    span {
+      font-size: 0.7em;
+      opacity: 0.6;
+    }
+    p {
+    }
+  }
+  & > div:last-child {
+    margin-top: 20px;
+  }
+  span {
+    display: block;
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
 `;
-export const MyPlantDetailNickName = styled.h1`
-  font-size: 2.2rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 2.2;
-`;
-
-export const MyPlantDetailSubName = styled.h1`
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 2.2;
-`;
-
-export const MyPlantDetailDate = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.2;
-`;
-
-export const MyPlantDetailMemo = styled.p`
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-top: 70px;
-`;
-
 export const MyPlantDetailContents = styled.div`
- margin-top: 14px;
+  padding: 25px 2% 35px;
+  span {
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
   p {
     font-size: 1.6rem;
     line-height: 1.8;
   }
 `;
-

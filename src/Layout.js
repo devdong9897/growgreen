@@ -12,13 +12,11 @@ const Layout = () => {
   const location = useLocation();
   // pathname에 따라 Wrap의 배경 색상 동적으로 설정
   let pageBgc;
-  if (location.pathname === "/diarylist") {
-    pageBgc = { backgroundColor: subColor.colorWhite };
-  } else if (location.pathname === "/diarydetail") {
-    pageBgc = { backgroundColor: subColor.colorWhite };
-  } else {
-    pageBgc = { backgroundColor: subColor.colorGray };
-  }
+  location.pathname === "/myplantdetail" ||
+  location.pathname === "/diarylist" ||
+  location.pathname === "/diarydetail"
+    ? (pageBgc = { backgroundColor: subColor.colorWhite })
+    : (pageBgc = { backgroundColor: subColor.colorGray });
   const WrapHeight =
     location.pathname === "/"
       ? {
@@ -27,10 +25,10 @@ const Layout = () => {
       : { minHeight: `calc(100vh - ${height.headerHeight})` };
   /* pathname에 따라 Contents padding값 동적으로 설정 */
   const ContentsPadding =
-    location.pathname === "/diarydetail" ||
-    location.pathname === "/myplantdetail"
-      ? { padding: "0 0 2.5rem 0" }
-      : { padding: "2.5rem 0" };
+    location.pathname === "/myplantdetail" ||
+    location.pathname === "/diarydetail"
+      ? { padding: "0 0 10rem" }
+      : { padding: "2.5rem 0 10rem" };
   /* pathname에 따라 Contents margin-top값 동적으로 설정 */
   const ContentsMarginTop =
     location.pathname === "/"
