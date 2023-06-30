@@ -54,7 +54,8 @@ const Layout = () => {
           </Inner>
         </Contents>
         {/* 컨텐츠 끝 */}
-        {location.pathname === "/" ? <QuickMenu /> : null}
+        <QuickMenu />
+        {/* {location.pathname === "/" ? <QuickMenu /> : null} */}
       </Wrap>
     </ThemeProvider>
   );

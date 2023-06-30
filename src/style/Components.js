@@ -10,7 +10,7 @@ export const HeaderWrap = styled.header`
   position: fixed;
   top: 0;
   left: 50%;
-  z-index: 9999;
+  z-index: 999;
   transform: translateX(-50%);
   background: ${subColor.colorWhite};
   width: 100%;
@@ -162,7 +162,7 @@ export const QuickMenuWrap = styled.ul`
   position: fixed;
   left: 50%;
   bottom: 0;
-  z-index: 9999;
+  z-index: 999;
   transform: translateX(-50%);
   background: ${subColor.colorWhite};
   width: 100%;
@@ -187,6 +187,13 @@ export const QuickMenuWrap = styled.ul`
       padding: 20px 10px;
       box-sizing: border-box;
       color: ${mainColor.colorGreenBold};
+      transition: color 0.2s ease-in-out;
+      &:hover {
+        color: ${subColor.colorBlack};
+      }
+      &.active {
+        color: ${subColor.colorBlack};
+      }
       i {
         display: block;
         font-size: 1.8em;

@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { ConfigProvider, Modal } from "antd";
+import "../style/modalstyle.css";
+import { mainColor } from "../style/GlobalStyle";
+import { PageBtnWrap } from "../style/Components";
 import {
   MyPlantDetailWrap,
   MyPlantDetailTop,
@@ -6,10 +11,18 @@ import {
   MyPlantDetailContents,
   MyPlantDetailImage,
 } from "../style/DetailLayout";
-import { PageBtnWrap } from "../style/Components";
-import { Link } from "react-router-dom";
 
 const MyPlantDetail = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <MyPlantDetailWrap>
@@ -44,11 +57,34 @@ const MyPlantDetail = () => {
               <Link to="/">수정</Link>
             </li>
             <li>
-              <button>삭제</button>
+              <button onClick={showModal}>삭제</button>
             </li>
           </PageBtnWrap>
         </MyPlantDetailContents>
       </MyPlantDetailWrap>
+      {/* 삭제 버튼 클릭 시 모달창 오픈 */}
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily:
+              '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif',
+            colorPrimary: mainColor.colorGreenRegular,
+          },
+        }}
+      >
+        <Modal
+          title="삭제하시겠습니까?"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          okText="삭제"
+          cancelText="취소"
+          wrapClassName="modal_wrap"
+          closable={false}
+        >
+          <p>삭제된 게시물은 복구가 불가능 하니 신중하게 선택해주세요.</p>
+        </Modal>
+      </ConfigProvider>
     </>
   );
 };

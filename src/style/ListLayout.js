@@ -5,7 +5,7 @@ import { mainColor, subColor, borderColor, ellipsis } from "./GlobalStyle";
 export const WriteBtn = styled.div`
   position: fixed;
   left: 50%;
-  bottom: 90px;
+  bottom: 165px;
   z-index: 99;
   transform: translateX(-50%);
   width: 100%;
@@ -17,7 +17,7 @@ export const WriteBtn = styled.div`
     width: 60px;
     height: 60px;
     background: ${mainColor.colorGreenBold};
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     border-radius: 100%;
     float: right;
     margin-right: 2%;
@@ -100,6 +100,9 @@ export const ItemLeft = styled.div`
 `;
 export const ItemRight = styled.div`
   width: calc(100% - 150px);
+  &.close {
+    color: #9d9d9d;
+  }
 `;
 export const ItemTime = styled.div`
   font-size: 2.3rem;
@@ -109,6 +112,9 @@ export const ItemTime = styled.div`
   span {
     display: block;
     font-size: 0.7em;
+  }
+  &.close {
+    color: #9d9d9d;
   }
 `;
 export const ItemName = styled.div`

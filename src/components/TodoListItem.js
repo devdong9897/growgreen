@@ -11,8 +11,9 @@ import {
   ItemText,
 } from "../style/ListLayout";
 
-const TodoListItem = () => {
+const TodoListItem = ({ todoSwitch, todoToggle }) => {
   const onChange = checked => {
+    todoToggle();
     console.log(`switch to ${checked}`);
   };
   return (
@@ -29,12 +30,12 @@ const TodoListItem = () => {
           >
             <Switch defaultChecked onChange={onChange} size="small" />
           </ConfigProvider>
-          <ItemTime>
+          <ItemTime className={todoSwitch ? "close" : ""}>
             <span>06-21</span>
             12:00
           </ItemTime>
         </ItemLeft>
-        <ItemRight>
+        <ItemRight className={todoSwitch ? "close" : ""}>
           <ItemName>
             <span>식물 종류 이름</span>
             식물 별명
