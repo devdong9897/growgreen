@@ -11,38 +11,48 @@ import {
   ItemText,
 } from "../style/ListLayout";
 
-const TodoListItem = ({ todoSwitch, todoToggle }) => {
-  const onChange = checked => {
-    todoToggle();
-    console.log(`switch to ${checked}`);
-  };
+const TodoListItem = ({ todoListData, toggleItem }) => {
+  // switch 토글 이벤트
+  // const onChange = (checked, id) => {
+  //   // todoToggle();
+  //   // setSelectSwitch(id);
+  //   console.log(`switch to ${checked}`);
+  // };
   return (
     <>
-      <ListItem>
-        <Link to="/" />
-        <ItemLeft>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorPrimary: mainColor.colorGreenRegular,
-              },
-            }}
-          >
-            <Switch defaultChecked onChange={onChange} size="small" />
-          </ConfigProvider>
-          <ItemTime className={todoSwitch ? "close" : ""}>
-            <span>06-21</span>
-            12:00
-          </ItemTime>
-        </ItemLeft>
-        <ItemRight className={todoSwitch ? "close" : ""}>
-          <ItemName>
-            <span>식물 종류 이름</span>
-            식물 별명
-          </ItemName>
-          <ItemText>오늘의 할 일</ItemText>
-        </ItemRight>
-      </ListItem>
+      {todoListData.map((item, idx) => (
+        <ListItem key={item.id}>
+          {/* Todo 수정 버튼 */}
+          <Link to="/" />
+          <ItemLeft>
+            {/* switch */}
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: mainColor.colorGreenRegular,
+                },
+              }}
+            >
+              <Switch
+                defaultChecked={item.isOpen}
+                onChange={checked => toggleItem(item.id)}
+                size="small"
+              />
+            </ConfigProvider>
+            <ItemTime className={item.isOpen ? "" : "close"}>
+              <span>{item.time}</span>
+              {item.timeDetail}
+            </ItemTime>
+          </ItemLeft>
+          <ItemRight className={item.isOpen ? "" : "close"}>
+            <ItemName>
+              <span>{item.plantName}</span>
+              {item.plantAlias}
+            </ItemName>
+            <ItemText>{item.task}</ItemText>
+          </ItemRight>
+        </ListItem>
+      ))}
     </>
   );
 };

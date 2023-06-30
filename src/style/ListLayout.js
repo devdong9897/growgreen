@@ -21,6 +21,10 @@ export const WriteBtn = styled.div`
     border-radius: 100%;
     float: right;
     margin-right: 2%;
+    transition: background 0.3s ease-in-out;
+    &:hover {
+      background: ${subColor.colorBlack};
+    }
     &::after {
       content: "";
       position: absolute;
