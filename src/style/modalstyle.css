@@ -1,0 +1,28 @@
+.modal_wrap .ant-modal {
+  top: 30%;
+  max-width: 360px;
+  width: 100% !important;
+}
+.modal_wrap .ant-modal-header .ant-modal-title {
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: 700;
+  color: #253528;
+}
+.modal_wrap .ant-modal-body p {
+  text-align: center;
+  color: #253528;
+}
+.modal_wrap .ant-modal-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 0 10px;
+  margin-top: 60px;
+}
+.modal_wrap .ant-modal-footer .ant-btn {
+  width: 100%;
+  height: 40px;
+  margin: 0 !important;
+  box-shadow: none;
+}

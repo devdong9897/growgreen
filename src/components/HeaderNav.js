@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { HeaderNavWrap, NavButtonWrap, NavMenuWrap } from "../style/Components";
 
-const HeaderNav = ({ navOpen, toggleNav }) => {
+const HeaderNav = ({ navOpen, toggleNav, closeNav }) => {
   return (
     <HeaderNavWrap className={navOpen ? "open" : ""}>
       <div>
@@ -15,16 +15,44 @@ const HeaderNav = ({ navOpen, toggleNav }) => {
         </NavButtonWrap>
         <NavMenuWrap>
           <li>
-            <Link to="/">home</Link>
+            <Link
+              to="/"
+              onClick={() => {
+                closeNav("/");
+              }}
+            >
+              home
+            </Link>
           </li>
           <li>
-            <Link to="/myplantlist">my plant</Link>
+            <Link
+              to="/myplantlist"
+              onClick={() => {
+                closeNav("/myplantlist");
+              }}
+            >
+              my plant
+            </Link>
           </li>
           <li>
-            <Link to="/todolist">my todo</Link>
+            <Link
+              to="/todolist"
+              onClick={() => {
+                closeNav("/todolist");
+              }}
+            >
+              my todo
+            </Link>
           </li>
           <li>
-            <Link to="/diarylist">diary</Link>
+            <Link
+              to="/diarylist"
+              onClick={() => {
+                closeNav("/diarylist");
+              }}
+            >
+              diary
+            </Link>
           </li>
         </NavMenuWrap>
       </div>

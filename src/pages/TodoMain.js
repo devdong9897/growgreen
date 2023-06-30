@@ -14,10 +14,10 @@ const TodoMain = () => {
     "2023-06-15": [
       {
         time: "06-15",
-        timeDetail: "13:00",
-        plantName: "식물 종류 이름1",
-        plantAlias: "식물 별명1",
-        task: "오늘의 할 일1",
+        timeDetail: "15:00",
+        plantName: "식물 종류 이름0",
+        plantAlias: "식물 별명0",
+        task: "오늘의 할 일0",
       },
     ],
     "2023-06-28": [
@@ -43,6 +43,57 @@ const TodoMain = () => {
         plantName: "식물 종류 이름2",
         plantAlias: "식물 별명2",
         task: "오늘의 할 일2",
+      },
+    ],
+    "2023-06-30": [
+      {
+        time: "06-30",
+        timeDetail: "18:00",
+        plantName: "식물 종류 이름3",
+        plantAlias: "식물 별명3",
+        task: "오늘의 할 일3",
+      },
+      {
+        time: "06-30",
+        timeDetail: "18:00",
+        plantName: "식물 종류 이름3",
+        plantAlias: "식물 별명3",
+        task: "오늘의 할 일3",
+      },
+      {
+        time: "06-30",
+        timeDetail: "18:00",
+        plantName: "식물 종류 이름3",
+        plantAlias: "식물 별명3",
+        task: "오늘의 할 일3",
+      },
+      {
+        time: "06-30",
+        timeDetail: "18:00",
+        plantName: "식물 종류 이름3",
+        plantAlias: "식물 별명3",
+        task: "오늘의 할 일3",
+      },
+      {
+        time: "06-30",
+        timeDetail: "18:00",
+        plantName: "식물 종류 이름3",
+        plantAlias: "식물 별명3",
+        task: "오늘의 할 일3",
+      },
+      {
+        time: "06-30",
+        timeDetail: "18:00",
+        plantName: "식물 종류 이름3",
+        plantAlias: "식물 별명3",
+        task: "오늘의 할 일3",
+      },
+      {
+        time: "06-30",
+        timeDetail: "18:00",
+        plantName: "식물 종류 이름3",
+        plantAlias: "식물 별명3",
+        task: "오늘의 할 일3",
       },
     ],
   };

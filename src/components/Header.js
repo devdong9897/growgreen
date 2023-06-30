@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Inner, HeaderWrap, HeaderInnerWrap } from "../style/Components";
 import HeaderNav from "./HeaderNav";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [navOpen, setNavOpen] = useState(false);
   const toggleNav = () => {
     setNavOpen(!navOpen);
   };
+  const closeNav = path => {
+    setNavOpen(false);
+    navigate(path);
+  };
   return (
     <>
       {/* 네비게이션 메뉴 */}
-      <HeaderNav navOpen={navOpen} toggleNav={toggleNav} />
+      <HeaderNav navOpen={navOpen} toggleNav={toggleNav} closeNav={closeNav} />
       {/* 헤더 */}
       <HeaderWrap>
         <Inner>

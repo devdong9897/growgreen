@@ -5,7 +5,7 @@ export const NotFoundWrap = styled.div`
   position: relative;
   background: ${subColor.colorWhite};
   border-radius: 15px;
-  height: 85vh;
+  height: 82vh;
   & > div {
     position: absolute;
     top: 40%;
