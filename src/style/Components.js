@@ -210,7 +210,7 @@ export const PageBtnWrap = styled.ul`
   li {
     width: 100%;
     margin-right: 10px;
-    &:last-child {
+    &:last-of-type {
       margin-right: 0;
       a,
       button {

@@ -10,14 +10,14 @@ export const IntroWrap = styled.div`
     left: 50%;
     transform: translateX(-50%);
   }
-  & div:first-child {
+  & div:first-of-type {
     top: 32%;
     & > img {
       display: block;
       width: 100%;
     }
   }
-  & div:last-child {
+  & div:last-of-type {
     bottom: 10%;
     p {
       font-size: 2rem;

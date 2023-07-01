@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { WriteBtn } from "../style/ListLayout";
 import TodoListItem from "../components/TodoListItem";
 
 const TodoList = () => {
-  // switch 클릭 시 글자 색상 변경되는 클래스 관리하는 state
-  // const [todoSwitch, setTodoSwitch] = useState(true);
-  // // 투두 리스트 state
-  // const todoToggle = () => {
-  //   setTodoSwitch(!todoSwitch);
-  // };
   // 투두리스트 더미데이터
   const [todoListData, setTodoListData] = useState([
     {
@@ -60,12 +54,7 @@ const TodoList = () => {
   return (
     <>
       <ul>
-        <TodoListItem
-          // todoSwitch={todoSwitch}
-          // todoToggle={todoToggle}
-          todoListData={todoListData}
-          toggleItem={toggleItem}
-        />
+        <TodoListItem todoListData={todoListData} toggleItem={toggleItem} />
       </ul>
       <WriteBtn>
         <Link to="/todowrite"></Link>

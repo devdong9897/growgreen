@@ -12,18 +12,12 @@ import {
 } from "../style/ListLayout";
 
 const TodoListItem = ({ todoListData, toggleItem }) => {
-  // switch 토글 이벤트
-  // const onChange = (checked, id) => {
-  //   // todoToggle();
-  //   // setSelectSwitch(id);
-  //   console.log(`switch to ${checked}`);
-  // };
   return (
     <>
       {todoListData.map((item, idx) => (
         <ListItem key={item.id}>
           {/* Todo 수정 버튼 */}
-          <Link to="/" />
+          <Link to="/todoedit" />
           <ItemLeft>
             {/* switch */}
             <ConfigProvider
