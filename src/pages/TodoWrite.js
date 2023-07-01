@@ -1,10 +1,9 @@
 import React from "react";
-import { Select, Input, Checkbox, Form } from "antd";
+import { Select, Input, Checkbox, ConfigProvider, Space } from "antd";
 import { TodoWriteFir, TodoWriteTxt } from "../style/WriteLayout";
-import { ConfigProvider } from "antd";
-import { height, mainColor } from "../style/GlobalStyle";
+import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -78,43 +77,9 @@ const TodoWrite = () => {
     navigate("/myplantlist");
   };
 
-  // 시간선택 form
-
-  const { Option } = Select;
-  const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  };
-  const tailLayout = {
-    wrapperCol: {
-      offset: 8,
-      span: 16,
-    },
-  };
-  const [form] = Form.useForm();
-  const onGenderChange = value => {
-    switch (value) {
-      case "male":
-        form.setFieldsValue({
-          note: "Hi, man!",
-        });
-        break;
-      case "female":
-        form.setFieldsValue({
-          note: "Hi, lady!",
-        });
-        break;
-      case "other":
-        form.setFieldsValue({
-          note: "Hi there!",
-        });
-        break;
-      default:
-    }
+  // 시간선택 select
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
   };
 
   return (
@@ -137,16 +102,6 @@ const TodoWrite = () => {
 
         <TodoWriteFir className="time">
           <TodoWriteTxt>시간 선택</TodoWriteTxt>
-          <Select
-            placeholder="00:00"
-            onChange={onGenderChange}
-            allowClear
-            style={{width: "30%"}}
-          >
-            <Option value="male">male</Option>
-            <Option value="female">female</Option>
-            <Option value="other">other</Option>
-          </Select>
         </TodoWriteFir>
 
         <TodoWriteFir className="todo">
