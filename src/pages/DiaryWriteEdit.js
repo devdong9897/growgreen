@@ -6,7 +6,7 @@ import { PageBtnWrap } from "../style/Components";
 import { Link } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
 
-const DiaryWrite = () => {
+const DiaryWriteEdit = () => {
   // 이미지 첨부
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -45,6 +45,7 @@ const DiaryWrite = () => {
   // 메모
   const [value, setValue] = useState("");
   const { TextArea } = Input;
+  
   return (
     <>
       <ConfigProvider
@@ -55,10 +56,10 @@ const DiaryWrite = () => {
         }}
       >
         <TodoWriteFir className="name">
-          <TodoWriteTxt>일기 제목</TodoWriteTxt>
+          <TodoWriteTxt>일기 제목 수정</TodoWriteTxt>
           <Form.Item>
             <Input
-              placeholder="제목을 입력해 주세요."
+              placeholder="제목을 수정해 주세요."
               className="custom-input"
               style={{
                 fontSize: "1.3rem",
@@ -101,14 +102,16 @@ const DiaryWrite = () => {
             />
           </Modal>
         </TodoWriteFir>
-        <TodoWriteTxt>일기 작성</TodoWriteTxt>
+        
+        <TodoWriteTxt>일기 작성 수정</TodoWriteTxt>
         <TextArea
-          placeholder="일기 내용을 작성해 주세요."
+          placeholder="일기 내용을 수정해 주세요."
           value={value}
           onChange={(e) => setValue(e.target.value)}
           autoSize={{ minRows: 3, maxRows: 5 }}
           style={{ width: "100%", paddingBottom: "148px", paddingTop: "15px" }}
         />
+        
         <PageBtnWrap>
           <li>
             <Link to="/">확인</Link>
@@ -122,4 +125,4 @@ const DiaryWrite = () => {
   );
 };
 
-export default DiaryWrite;
+export default DiaryWriteEdit;

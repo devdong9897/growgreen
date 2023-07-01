@@ -9,7 +9,9 @@ import TodoWrite from "./pages/TodoWrite";
 import MyPlantList from "./pages/MyPlantList";
 import MyPlantWrite from "./pages/MyPlantWrite";
 import MyPlantDetail from "./pages/MyPlantDetail";
+import MyPlantDetailEdit from "./pages/MyPlantDetailEdit";
 import DiaryWrite from "./pages/DiaryWrite";
+import DiaryWriteEdit from "./pages/DiaryWriteEdit";
 import DiaryList from "./pages/DiaryList";
 import DiaryDetail from "./pages/DiaryDetail";
 import NotFound from "./pages/NotFound";
@@ -26,7 +28,9 @@ function App() {
           <Route path="/myplantlist" element={<MyPlantList />} />
           <Route path="/myplantwrite" element={<MyPlantWrite />} />
           <Route path="/myplantdetail" element={<MyPlantDetail />} />
+          <Route path="/myplantdetailedit" element={<MyPlantDetailEdit />} />
           <Route path="/diarywrite" element={<DiaryWrite />} />
+          <Route path="/diarywriteedit" element={<DiaryWriteEdit />} />
           <Route path="/diarylist" element={<DiaryList />} />
           <Route path="/diarydetail" element={<DiaryDetail />} />
           <Route path="/*" element={<NotFound />} />

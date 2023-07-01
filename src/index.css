@@ -41,6 +41,7 @@ button {
 
 .ant-upload {
   background: #fff;
+  overflow: hidden;
 }
 
 .anticon-eye {
@@ -52,4 +53,8 @@ button {
 .ant-select-selector {
   height: 49px !important;
   border-radius: 10px !important;
+}
+
+.ant-picker-now > a {
+  display: none;
 }
