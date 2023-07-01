@@ -95,7 +95,7 @@ export const MyPlantDetailTitle = styled.div`
   line-height: 1.2;
   padding: 25px 0 35px;
   text-align: center;
-  & > div:first-child {
+  & > div:first-of-type {
     font-size: 2.4rem;
     span {
       font-size: 0.7em;
@@ -104,7 +104,7 @@ export const MyPlantDetailTitle = styled.div`
     p {
     }
   }
-  & > div:last-child {
+  & > div:last-of-type {
     margin-top: 20px;
   }
   span {

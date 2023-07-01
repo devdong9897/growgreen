@@ -104,7 +104,8 @@
 .react-calendar__month-view__days__day--neighboringMonth {
   color: rgba(0, 0, 0, 0.2) !important;
 }
-.react-calendar__month-view__days__day--neighboringMonth.highlight::before {
+.react-calendar__month-view__days__day--neighboringMonth.highlight
+  abbr::before {
   background: rgba(0, 0, 0, 0.2) !important;
 }
 .react-calendar__month-view__days__day--neighboringMonth::after {
@@ -216,6 +217,12 @@
 .sun_color {
   color: #fc4949;
 }
+.react-calendar__tile--now.sun_color {
+  color: #fff;
+}
 .sat_color {
   color: #5e64ff;
+}
+.react-calendar__tile--now.sat_color {
+  color: #fff;
 }

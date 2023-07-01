@@ -42,7 +42,7 @@ const DiaryDetail = () => {
           </p>
           <PageBtnWrap>
             <li>
-              <Link to="/">수정</Link>
+              <Link to="/diaryedit">수정</Link>
             </li>
             <li>
               <button onClick={showModal}>삭제</button>

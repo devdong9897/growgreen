@@ -56,7 +56,7 @@ export const ListItem = styled.li`
   isolation: isolate;
   box-sizing: border-box;
   height: 115px;
-  &:last-child {
+  &:last-of-type {
     margin-bottom: 0;
   }
   & > a {
@@ -149,7 +149,7 @@ export const ItemText = styled.div`
 export const MyPlantLiItem = styled.li`
   position: relative;
   margin-bottom: 15px;
-  &:last-child {
+  &:last-of-type {
     margin-bottom: 0;
   }
   & > a {
@@ -218,7 +218,7 @@ export const MyPlantLiItemDate = styled.div`
 export const DiaryLiItem = styled.li`
   position: relative;
   margin-bottom: 15px;
-  &:last-child {
+  &:last-of-type {
     margin-bottom: 0;
   }
   & > a {

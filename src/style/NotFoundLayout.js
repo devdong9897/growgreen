@@ -26,9 +26,7 @@ export const NotFoundWrap = styled.div`
         font-weight: 900;
         font-size: 2em;
       }
-      span:first-child {
-      }
-      span:last-child {
+      span:last-of-type {
         margin-bottom: 20px;
       }
     }
