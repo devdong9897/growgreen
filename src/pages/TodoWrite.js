@@ -68,20 +68,20 @@ const TodoWrite = () => {
         />
       </TodoWriteFir>
 
+      <TodoWriteTxt>날짜 선택</TodoWriteTxt>
       <div className="plant-dete">
         <div>
           {/* 날짜 선택 */}
           <div>
             <TodoWriteFir className="date">
-              <TodoWriteTxt>날짜 선택</TodoWriteTxt>
               <DatePicker
                 defaultValue={dayjs("2023-06-28", dateFormat)}
-                style={{ padding: "13px 15px 13px 15px", borderRadius: "10px" }}
+                style={{padding: "13px 15px", borderRadius: "10px" }}
               />
             </TodoWriteFir>
           </div>
           {/* 시간 선택 */}
-          <div>
+          <div className="time-choise">
             <TodoWriteFir className="time">
               <Select
                 className="plant-time"
@@ -95,7 +95,6 @@ const TodoWrite = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  padding: "13px 15px 13px 15px",
                   borderRadius: "10px",
                 }}
                 onChange={handleChange}

@@ -9,11 +9,18 @@
     margin-right: 25px 
 }
 
-.plant-time .ant-select-selector {
-    padding: 13px 15px 13px 15px;
-}
 
-
-.plant-date > div {
+.plant-dete > div {
   display: flex;
+}
+.ant-select-selector {
+  height: 49px !important;
+  margin-left: 5px !important;
+  padding: 0 39px !important;
+}
+.ant-select-selection-item {
+  padding-top: 8px !important;
+}
+.ant-select-selection-placeholder {
+  margin: 9px !important;
 }
