@@ -99,7 +99,6 @@ const TodoMain = () => {
   };
   const formatDate = moment(selectDate).format("YYYY-MM-DD");
   const selectTodayList = todayListData[formatDate] || [];
-
   return (
     <div>
       <TodoCalendar
