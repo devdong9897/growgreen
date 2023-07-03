@@ -25,7 +25,7 @@ const DiaryWriteEdit = () => {
 
   const handleChange = ({ fileList }) => {
     if (fileList.length > 5) {
-      fileList = fileList.slice(0, 5); // 최대 5개의 파일만 유지
+      fileList = fileList.slice(0, 5);
     }
     setFileList(fileList);
   };

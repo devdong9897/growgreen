@@ -106,7 +106,6 @@ const DiaryWrite = () => {
           placeholder="일기 내용을 작성해 주세요."
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          autoSize={{ minRows: 3, maxRows: 5 }}
           style={{ width: "100%", paddingBottom: "148px", paddingTop: "15px" }}
         />
         <PageBtnWrap>

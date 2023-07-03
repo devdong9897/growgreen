@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Select,
-  Input,
-  Checkbox,
-  ConfigProvider,
-  Button,
-  DatePicker,
-  Row,
-  Col,
-} from "antd";
+import { Select, Input, Checkbox, ConfigProvider, DatePicker } from "antd";
 import { TodoWriteFir, TodoWriteTxt } from "../style/WriteLayout";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
@@ -37,7 +28,7 @@ const TodoWrite = () => {
   };
 
   const handleConfirm = () => {
-    navigate("/myplantlist");
+    navigate("/todolist");
   };
 
   const handleCheckboxChange = checkedValues => {
@@ -76,7 +67,7 @@ const TodoWrite = () => {
             <TodoWriteFir className="date">
               <DatePicker
                 defaultValue={dayjs("2023-06-28", dateFormat)}
-                style={{padding: "13px 15px", borderRadius: "10px" }}
+                style={{ padding: "13px 15px", borderRadius: "10px" }}
               />
             </TodoWriteFir>
           </div>
@@ -158,10 +149,6 @@ const TodoWrite = () => {
         <TextArea
           value={value}
           onChange={e => setValue(e.target.value)}
-          autoSize={{
-            minRows: 3,
-            maxRows: 5,
-          }}
           style={{ width: "100%", paddingBottom: "148px" }}
         />
       </TodoWriteFir>
@@ -201,7 +188,7 @@ const TodoWrite = () => {
           <button onClick={handleConfirm}>확인</button>
         </li>
         <li>
-          <button onClick={handleConfirm}>취소</button>
+          <button onClick={() => navigate("/todolist")}>취소</button>
         </li>
       </PageBtnWrap>
     </ConfigProvider>

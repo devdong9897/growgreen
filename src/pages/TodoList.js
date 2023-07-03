@@ -44,13 +44,13 @@ const TodoList = () => {
       isOpen: true,
     },
   ]);
-  const toggleItem = id => {
-    setTodoListData(prevData =>
-      prevData.map(item =>
-        item.id === id ? { ...item, isOpen: !item.isOpen } : item,
-      ),
-    );
-  };
+    const toggleItem = id => {
+      setTodoListData(prevData =>
+        prevData.map(item =>
+          item.id === id ? { ...item, isOpen: !item.isOpen } : item,
+        ),
+      );
+    };
   return (
     <>
       <ul>

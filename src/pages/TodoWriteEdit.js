@@ -75,7 +75,7 @@ const TodoWrite = () => {
 
   // 페이지 이동
   const handleConfirm = () => {
-    navigate("/myplantlist");
+    navigate("/todolist");
   };
 
   // 시간선택 form
@@ -127,7 +127,7 @@ const TodoWrite = () => {
         }}
       >
         <TodoWriteFir className="choise">
-          <TodoWriteTxt>식물 선택</TodoWriteTxt>
+          <TodoWriteTxt>식물 선택 수정</TodoWriteTxt>
           <Select
             placeholder="원하는 반려 식물을 선택해 주세요."
             allowClear
@@ -136,7 +136,7 @@ const TodoWrite = () => {
         </TodoWriteFir>
 
         <TodoWriteFir className="time">
-          <TodoWriteTxt>시간 선택</TodoWriteTxt>
+          <TodoWriteTxt>시간 선택 수정</TodoWriteTxt>
           <Select
             placeholder="00:00"
             onChange={onGenderChange}
@@ -150,7 +150,7 @@ const TodoWrite = () => {
         </TodoWriteFir>
 
         <TodoWriteFir className="todo">
-          <TodoWriteTxt>할 일</TodoWriteTxt>
+          <TodoWriteTxt>할 일 수정</TodoWriteTxt>
           <TextArea
             value={value}
             onChange={e => setValue(e.target.value)}
