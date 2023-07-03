@@ -55,7 +55,7 @@ export const ListItem = styled.li`
   overflow: hidden;
   isolation: isolate;
   box-sizing: border-box;
-  height: 115px;
+  min-height: 115px;
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -137,11 +137,9 @@ export const ItemName = styled.div`
 `;
 export const ItemText = styled.div`
   font-size: 1.6rem;
-  line-height: 1.6;
-  height: 2.5rem;
+  line-height: 1.3;
   font-weight: 500;
   margin-top: 10px;
-  ${ellipsis.ellipsisOne}
 `;
 
 // MyPlantList 스타일
