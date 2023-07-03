@@ -3,6 +3,7 @@
 @import url("./style/reset.css");
 @import url("./style/font.css");
 
+
 /* CSS 기본 설정 */
 * {
   outline: none;
@@ -47,14 +48,7 @@ button {
 .anticon-eye {
   display: none;
 }
-.ant-select-selection-placeholder {
-  padding: 13px 0 13px 15px !important;
-}
-.ant-select-selector {
-  height: 49px !important;
-  border-radius: 10px !important;
-}
 
-.ant-picker-now > a {
-  display: none;
+.ant-select-arrow {
+  margin: 0 0 20px 0;
 }
