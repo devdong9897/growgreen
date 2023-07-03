@@ -20,6 +20,7 @@ export const borderColor = {
 export const height = {
   headerHeight: "6.5rem",
   todoMainHeaderHeight: "9.4rem",
+  inputHeight: "4.5rem",
 };
 // 말줄임
 export const ellipsis = {
