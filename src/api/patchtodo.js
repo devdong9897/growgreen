@@ -1,13 +1,9 @@
 import axios from "axios";
 
-const instance = axios.create({
-  timeout: 1000,
-});
-
 // todo 전체 리스트 데이터 GET
 export const getTodoTotalList = async () => {
   try {
-    const res = await instance.get("/api/todo");
+    const res = await axios.get("/api/todo");
     const data = res.data;
     console.log(data);
     return data;
@@ -17,7 +13,7 @@ export const getTodoTotalList = async () => {
     return [
       {
         ctnt: "에러발생 내용 01",
-        deadlineDate: "01-01",
+        deadlineDate: "07-04",
         deadlineTime: "01:01",
         nickNm: "에러발생 닉네임 01",
         nm: "에러발생 이름 01",
@@ -25,7 +21,7 @@ export const getTodoTotalList = async () => {
       },
       {
         ctnt: "에러발생 내용 02",
-        deadlineDate: "02-02",
+        deadlineDate: "07-05",
         deadlineTime: "02:02",
         nickNm: "에러발생 닉네임 02",
         nm: "에러발생 이름 02",
@@ -37,7 +33,7 @@ export const getTodoTotalList = async () => {
 // 특정 날짜 todo GET
 export const getSelectTodoList = async deadline => {
   try {
-    const res = await instance.get(`/api/todo/${deadline}`);
+    const res = await axios.get(`/api/todo/${deadline}`);
     const data = res.data;
     // console.log(data);
     return data;
@@ -62,5 +58,15 @@ export const getSelectTodoList = async deadline => {
         finishYn: 1,
       },
     ];
+  }
+};
+// todo POST
+export const postTodo = async () => {
+  try {
+    const res = await axios.post("/api/todo");
+    const data = res.data;
+    console.log("투두 post", data);
+  } catch (err) {
+    console.log(err);
   }
 };
