@@ -8,12 +8,12 @@ import { PlusOutlined } from "@ant-design/icons";
 
 const DiaryWrite = () => {
   // 이미지 첨부
-  const getBase64 = (file) =>
+  const getBase64 = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
+      reader.onerror = error => reject(error);
     });
 
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -30,8 +30,8 @@ const DiaryWrite = () => {
     setFileList(fileList);
   };
 
-  const handleRemove = (file) => {
-    const newFileList = fileList.filter((item) => item.uid !== file.uid);
+  const handleRemove = file => {
+    const newFileList = fileList.filter(item => item.uid !== file.uid);
     setFileList(newFileList);
   };
 
@@ -73,7 +73,8 @@ const DiaryWrite = () => {
         <TodoWriteFir className="img">
           <TodoWriteTxt>사진 첨부</TodoWriteTxt>
           <MyPlantWtP>
-            * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드 가능합니다.
+            * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드
+            가능합니다.
           </MyPlantWtP>
           <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -94,22 +95,19 @@ const DiaryWrite = () => {
             footer={null}
             onCancel={handleCancel}
           >
-            <img
-              alt="example"
-              style={{ width: "100%" }}
-              src={previewImage}
-            />
+            <img alt="example" style={{ width: "100%" }} src={previewImage} />
           </Modal>
         </TodoWriteFir>
         <TodoWriteTxt>일기 작성</TodoWriteTxt>
         <TextArea
           placeholder="일기 내용을 작성해 주세요."
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={e => setValue(e.target.value)}
           style={{ width: "100%", paddingBottom: "148px", paddingTop: "15px" }}
         />
         <PageBtnWrap>
           <li>
+            {/* 버튼 클릭 시 해당 detail 페이지로 이동 필요 */}
             <Link to="/">확인</Link>
           </li>
           <li>

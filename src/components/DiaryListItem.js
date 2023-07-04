@@ -19,7 +19,7 @@ const DiaryListItem = ({ item }) => {
   return (
     <>
       <DiaryLiItem>
-        <Link to="/diarydetail">
+        <Link to="../detail">
           <DiaryLiItemLeft>
             <img src={item.pic} alt={item.title} onError={onImgError} />
           </DiaryLiItemLeft>

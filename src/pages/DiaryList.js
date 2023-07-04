@@ -28,7 +28,7 @@ const DiaryList = () => {
         ))}
       </ul>
       <WriteBtn>
-        <Link to="/diarywrite"></Link>
+        <Link to="../write"></Link>
       </WriteBtn>
     </>
   );

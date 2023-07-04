@@ -46,9 +46,9 @@ const HeaderNav = ({ navOpen, toggleNav, closeNav }) => {
           </li>
           <li>
             <Link
-              to="/diarylist"
+              to="/diary"
               onClick={() => {
-                closeNav("/diarylist");
+                closeNav("/diary");
               }}
             >
               diary

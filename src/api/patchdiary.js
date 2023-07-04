@@ -25,3 +25,16 @@ export const getDiary = async () => {
     ];
   }
 };
+// diary detail 데이터 GET
+export const getDiaryDetail = async idiary => {
+  try {
+    const res = await axios.get(`/api/diary/${idiary}`);
+    const data = res.data;
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.log(err);
+    // err 발생 시 샘플 코드 반환
+    return {};
+  }
+};

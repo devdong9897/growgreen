@@ -37,7 +37,7 @@ const QuickMenu = () => {
         </Link>
       </li>
       <li>
-        <Link to="/diarylist">
+        <Link to="/diary">
           <i>
             <FontAwesomeIcon icon={faBook} />
           </i>
