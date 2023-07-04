@@ -4,11 +4,7 @@ import dayjs from "dayjs";
 import { PlusOutlined } from "@ant-design/icons";
 import moment from "moment/moment";
 import { ConfigProvider, Form, Input, DatePicker, Upload, Modal } from "antd";
-import {
-  MyPlantWriteFir,
-  MyPlantWriteTxt,
-  TodoWriteTxt,
-} from "../style/WriteLayout";
+import { MyPlantWriteFir, MyPlantWriteTxt } from "../style/WriteLayout";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
 

@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getTodo } from "../api/patchtodo";
+import { getTodoTotalList } from "../api/patchtodo";
 
 import { WriteBtn } from "../style/ListLayout";
 import TodoListItem from "../components/TodoListItem";
 
 const TodoList = () => {
-  const [todoListData, setTodoListData] = useState([]);
+  // 전체 투두 리스트 정보를 stat로 관리
+  const [todoList, setTodoList] = useState([]);
   const getTodoList = async () => {
     try {
-      const data = await getTodo();
-      // console.log(data);
-      setTodoListData(data);
+      const data = await getTodoTotalList();
+      setTodoList(data);
     } catch (err) {
-      console.log(err);
+      console.log("전체 투두리스트 에러 : ", err);
     }
   };
   useEffect(() => {
     getTodoList();
   }, []);
-
   // 투두리스트 스위치 클릭 이벤트
   const toggleItem = id => {
-    setTodoListData(prevData =>
+    setTodoList(prevData =>
       prevData.map(item =>
         item.id === id
           ? { ...item, finishYn: item.finishYn === 0 ? 1 : 0 }
@@ -33,7 +32,7 @@ const TodoList = () => {
   return (
     <>
       <ul>
-        {todoListData.map((item, index) => (
+        {todoList.map((item, index) => (
           <TodoListItem key={index} item={item} toggleItem={toggleItem} />
         ))}
       </ul>

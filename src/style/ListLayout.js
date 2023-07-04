@@ -55,6 +55,7 @@ export const ListItem = styled.li`
   overflow: hidden;
   isolation: isolate;
   box-sizing: border-box;
+  border: 0.05rem solid ${subColor.colorGray};
   min-height: 115px;
   &:last-of-type {
     margin-bottom: 0;
@@ -158,6 +159,7 @@ export const MyPlantLiItem = styled.li`
     border-radius: 15px;
     overflow: hidden;
     isolation: isolate;
+    border: 0.05rem solid ${subColor.colorGray};
     &::after {
       content: "";
       position: absolute;
@@ -227,6 +229,7 @@ export const DiaryLiItem = styled.li`
     border-radius: 15px;
     overflow: hidden;
     isolation: isolate;
+    border: 0.05rem solid ${subColor.colorGray};
     &::after {
       content: "";
       position: absolute;

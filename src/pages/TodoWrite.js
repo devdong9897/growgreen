@@ -33,7 +33,8 @@ const TodoWrite = () => {
   };
 
   const handleConfirm = () => {
-    navigate("/todolist");
+    // navigate("/todolist");
+    console.log("확인버튼클릭");
   };
 
   const handleCheckboxChange = checkedValues => {
@@ -161,10 +162,14 @@ const TodoWrite = () => {
       {/* 확인, 취소 버튼 section */}
       <PageBtnWrap>
         <li>
-          <button onClick={handleConfirm}>확인</button>
+          <button type="submit" onClick={handleConfirm}>
+            확인
+          </button>
         </li>
         <li>
-          <button onClick={() => navigate("/todolist")}>취소</button>
+          <button type="submit" onClick={() => navigate("/todolist")}>
+            취소
+          </button>
         </li>
       </PageBtnWrap>
     </ConfigProvider>
