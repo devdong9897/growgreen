@@ -23,8 +23,9 @@ const DiaryList = () => {
   return (
     <>
       <ul>
-        {diaryList.map((item, index) => (
-          <DiaryListItem key={index} item={item} />
+        {/* index 추후 pk값으로 변경 필요 */}
+        {diaryList.map(item => (
+          <DiaryListItem key={item.idiary} item={item} />
         ))}
       </ul>
       <WriteBtn>

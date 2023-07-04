@@ -13,25 +13,27 @@ const TodoCalendar = ({ todayListData, handleDateChange, selectDate }) => {
     const idx = date.getDay();
     return WeekName[idx];
   };
+  // 캘린더 날짜에 className 동적으로 부여
   const tileClassName = ({ date, view }) => {
     const formattedDate = moment(date).format("YYYY-MM-DD");
+    console.log(formattedDate);
     let classNames = "";
 
     if (view === "month") {
+      // 일요일에 글자 색상 추가
       if (date.getDay() === 0) {
         classNames += "sun_color ";
+        // 토요일에 글자 색상 추가
       } else if (date.getDay() === 6) {
         classNames += "sat_color ";
       }
-
+      // 리스트 내용 있는 경우 클래스 추가
       if (todayListData[formattedDate]) {
         classNames += "highlight";
       }
     }
-
     return classNames.trim();
   };
-
   // CalendarActiveBtn 클릭 이벤트 설정
   const [calendarActive, setCalendarActive] = useState(false);
   const toggleClick = () => {
@@ -46,8 +48,10 @@ const TodoCalendar = ({ todayListData, handleDateChange, selectDate }) => {
         formatDay={(locale, date) => moment(date).format("D")}
         onChange={handleDateChange}
         value={selectDate}
+        // 버튼 클릭 시 active 클래스 동적으로 부여되면서 높이값 변화함
         className={calendarActive ? "active" : ""}
       />
+      {/* 버튼 클릭 시 캘린더 접힘 */}
       <CalendarActiveBtn
         onClick={toggleClick}
         className={calendarActive ? "active" : ""}

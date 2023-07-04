@@ -18,7 +18,6 @@ import DiaryWrite from "./pages/DiaryWrite";
 import DiaryDetail from "./pages/DiaryDetail";
 import DiaryWriteEdit from "./pages/DiaryWriteEdit";
 
-
 function App() {
   return (
     <>
@@ -26,7 +25,7 @@ function App() {
         <Route path="/intro" element={<Intro />} />
         <Route path="/" element={<Layout />}>
           {/* 투두메인 */}
-          <Route index element={<TodoMain />} />
+          <Route index path=":deadline" element={<TodoMain />} />
           {/* 투두 */}
           <Route path="/todolist" element={<TodoList />} />
           <Route path="/todowrite" element={<TodoWrite />} />
@@ -40,7 +39,7 @@ function App() {
           <Route path="/diary" element={<Navigate to="/diarylist" replace />} />
           <Route path="/diarylist" element={<DiaryList />} />
           <Route path="/diarywrite" element={<DiaryWrite />} />
-          <Route path="/diarydetail" element={<DiaryDetail />} />
+          <Route path="/diarydetail/:idiary" element={<DiaryDetail />} />
           <Route path="/diaryedit" element={<DiaryWriteEdit />} />
           {/* 잘못된 경로 페이지 처리 */}
           <Route path="/*" element={<NotFound />} />

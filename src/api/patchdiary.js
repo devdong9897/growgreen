@@ -4,7 +4,7 @@ export const getDiary = async () => {
   try {
     const res = await axios.get("/api/diary");
     const data = res.data;
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -37,12 +37,13 @@ export const getDiaryDetail = async idiary => {
     // err 발생 시 샘플 코드 반환
     return {
       data: {
+        idiary: 0,
         title: "에러발생 타이틀",
         ctnt: "에러발생 내용",
         createdAt: "0000-00-00",
         pic: "에러발생 사진.jpg",
       },
-      pics: ["에러발생 사진1.jpg", "에러발생 사진2.jpg"],
+      pics: ["에러발생 사진1.jpg"],
     };
   }
 };
