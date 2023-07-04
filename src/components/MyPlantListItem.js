@@ -10,20 +10,20 @@ import {
   ItemText,
 } from "../style/ListLayout";
 
-const MyPlantListItem = () => {
+const MyPlantListItem = ({item}) => {
   return (
     <>
       <MyPlantLiItem>
-        <Link to="/myplantdetail">
+        <Link to={`/myplantdetail/${item.iplant}`}>
           <MyPlantLiItemLeft>
-            <img src="https://via.placeholder.com/100" alt="" />
+            <img src={item.plantPic} alt="" />
           </MyPlantLiItemLeft>
           <MyPlantLiItemRight>
             <MyPlantLiItemName>
-              <span>식물 종류 이름</span>
-              식물 별명
+              <span>{item.nm}</span>
+              {item.nickNm}
             </MyPlantLiItemName>
-            <MyPlantLiItemDate>2023-06-22</MyPlantLiItemDate>
+            <MyPlantLiItemDate>{item.onDate}</MyPlantLiItemDate>
           </MyPlantLiItemRight>
         </Link>
       </MyPlantLiItem>

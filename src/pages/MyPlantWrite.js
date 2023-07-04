@@ -9,6 +9,8 @@ import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
 
 const MyPlantWrite = () => {
+  
+
   // 날짜 선택에 오늘 날짜 표시
   const [nowDate, setNowDate] = useState(new Date());
   const nowFormatDate = moment(nowDate).format("YYYY-MM-DD");

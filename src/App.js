@@ -34,7 +34,7 @@ function App() {
           {/* 마이플랜트 */}
           <Route path="/myplantlist" element={<MyPlantList />} />
           <Route path="/myplantwrite" element={<MyPlantWrite />} />
-          <Route path="/myplantdetail" element={<MyPlantDetail />} />
+          <Route path="/myplantdetail/:iplant" element={<MyPlantDetail />} />
           <Route path="/myplantedit" element={<MyPlantDetailEdit />} />
           {/* 다이어리 */}
           <Route path="/diary" element={<Navigate to="/diarylist" replace />} />

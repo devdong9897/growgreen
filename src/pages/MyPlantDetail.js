@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ConfigProvider, Modal } from "antd";
 import "../style/modalstyle.css";
 import { mainColor } from "../style/GlobalStyle";
@@ -11,8 +11,10 @@ import {
   MyPlantDetailContents,
   MyPlantDetailImage,
 } from "../style/DetailLayout";
+import { getDetail } from "../api/patchmyplant";
 
 const MyPlantDetail = () => {
+  let { iplant } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -23,6 +25,23 @@ const MyPlantDetail = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  // Detail리스트 state관리
+  const [detailInfo, setDetailInfo] = useState({});
+  const getDetailData = async () => {
+    try {
+      const data = await getDetail(iplant);
+      console.log(data);
+      setDetailInfo(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getDetailData();
+  }, []);
+
   return (
     <>
       <MyPlantDetailWrap>
@@ -32,7 +51,7 @@ const MyPlantDetail = () => {
           </MyPlantDetailImage>
           <MyPlantDetailTitle>
             <div>
-              <span>식물 종류 이름</span>
+              <span>식물 종류 이름{detailInfo && detailInfo.nm}</span>
               <p>식물 별명</p>
             </div>
             <div>
