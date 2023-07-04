@@ -3,17 +3,25 @@ import { TodoWriteTxt, TodoWriteFir, MyPlantWtP } from "../style/WriteLayout";
 import { Input, Form, ConfigProvider, Upload, Modal } from "antd";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
 
 const DiaryWriteEdit = () => {
+  // 화면이동
+  const navigate = useNavigate();
+
+  const handleConfirm = () => {
+    navigate("/diarylist");
+  };
+  
+
   // 이미지 첨부
-  const getBase64 = (file) =>
+  const getBase64 = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
+      reader.onerror = error => reject(error);
     });
 
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -30,8 +38,8 @@ const DiaryWriteEdit = () => {
     setFileList(fileList);
   };
 
-  const handleRemove = (file) => {
-    const newFileList = fileList.filter((item) => item.uid !== file.uid);
+  const handleRemove = file => {
+    const newFileList = fileList.filter(item => item.uid !== file.uid);
     setFileList(newFileList);
   };
 
@@ -45,7 +53,7 @@ const DiaryWriteEdit = () => {
   // 메모
   const [value, setValue] = useState("");
   const { TextArea } = Input;
-  
+
   return (
     <>
       <ConfigProvider
@@ -74,7 +82,8 @@ const DiaryWriteEdit = () => {
         <TodoWriteFir className="img">
           <TodoWriteTxt>사진 첨부</TodoWriteTxt>
           <MyPlantWtP>
-            * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드 가능합니다.
+            * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드
+            가능합니다.
           </MyPlantWtP>
           <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -95,29 +104,25 @@ const DiaryWriteEdit = () => {
             footer={null}
             onCancel={handleCancel}
           >
-            <img
-              alt="example"
-              style={{ width: "100%" }}
-              src={previewImage}
-            />
+            <img alt="example" style={{ width: "100%" }} src={previewImage} />
           </Modal>
         </TodoWriteFir>
-        
+
         <TodoWriteTxt>일기 작성 수정</TodoWriteTxt>
         <TextArea
           placeholder="일기 내용을 수정해 주세요."
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={e => setValue(e.target.value)}
           autoSize={{ minRows: 3, maxRows: 5 }}
           style={{ width: "100%", paddingBottom: "148px", paddingTop: "15px" }}
         />
-        
+
         <PageBtnWrap>
           <li>
-            <Link to="/">확인</Link>
+            <button onClick={handleConfirm}>확인</button>
           </li>
           <li>
-            <button>취소</button>
+            <button onClick={() => navigate("/diarydetail")}>취소</button>
           </li>
         </PageBtnWrap>
       </ConfigProvider>

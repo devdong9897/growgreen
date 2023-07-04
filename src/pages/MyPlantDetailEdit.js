@@ -50,7 +50,7 @@ const MyPlantDetailEdit = () => {
   const { TextArea } = Input;
 
   const handleConfirm = () => {
-    navigate("/diarydetail");
+    navigate("/myplantlist");
   };
 
   return (
@@ -143,7 +143,7 @@ const MyPlantDetailEdit = () => {
           <button onClick={handleConfirm}>확인</button>
         </li>
         <li>
-          <button onClick={() => navigate("/diarydetail")}>취소</button>
+          <button onClick={() => navigate("/myplantdetail")}>취소</button>
         </li>
       </PageBtnWrap>
     </>
