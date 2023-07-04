@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import { subColor, height } from "./style/GlobalStyle";
 import { Wrap, Contents, Inner } from "./style/Components";
@@ -10,11 +10,12 @@ import QuickMenu from "./components/QuickMenu";
 
 const Layout = () => {
   const location = useLocation();
+  const paramIdiary = useParams().idiary;
   // pathname에 따라 Wrap의 배경 색상 동적으로 설정
   let pageBgc;
   location.pathname === "/myplantdetail" ||
   location.pathname === "/diarylist" ||
-  location.pathname === "/diarydetail"
+  location.pathname === `/diarydetail/${paramIdiary}`
     ? (pageBgc = { backgroundColor: subColor.colorWhite })
     : (pageBgc = { backgroundColor: subColor.colorGray });
   const WrapHeight =
@@ -26,7 +27,7 @@ const Layout = () => {
   /* pathname에 따라 Contents padding값 동적으로 설정 */
   const ContentsPadding =
     location.pathname === "/myplantdetail" ||
-    location.pathname === "/diarydetail"
+    location.pathname === `/diarydetail/${paramIdiary}`
       ? { padding: "0 0 10rem" }
       : { padding: "2.5rem 0 10rem" };
   /* pathname에 따라 Contents margin-top값 동적으로 설정 */
@@ -36,8 +37,8 @@ const Layout = () => {
       : { marginTop: `${height.headerHeight}` };
   /* pathname에 따라 Inner 가로 padding값 동적으로 설정 */
   const InnerPadding =
-    location.pathname === "/diarydetail" ||
-    location.pathname === "/myplantdetail"
+    location.pathname === "/myplantdetail" ||
+    location.pathname === `/diarydetail/${paramIdiary}`
       ? { padding: "0" }
       : { padding: "0 2%" };
 

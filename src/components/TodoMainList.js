@@ -13,20 +13,20 @@ import {
 const TodoMainList = ({ selectTodayList }) => {
   return (
     <TodoMainUl>
-      {selectTodayList.map((item, idx) => (
-        <ListItem key={idx}>
+      {selectTodayList.map((item, index) => (
+        <ListItem key={index}>
           <ItemLeft>
             <ItemTime>
-              <span>{item.time}</span>
-              {item.timeDetail}
+              <span>{item.deadlineDate}</span>
+              {item.deadlineTime}
             </ItemTime>
           </ItemLeft>
           <ItemRight>
             <ItemName>
-              <span>{item.plantName}</span>
-              {item.plantAlias}
+              <span>{item.nickNm}</span>
+              {item.nm}
             </ItemName>
-            <ItemText>{item.task}</ItemText>
+            <ItemText>{item.ctnt}</ItemText>
           </ItemRight>
         </ListItem>
       ))}

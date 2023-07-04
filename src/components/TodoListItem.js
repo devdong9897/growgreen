@@ -39,8 +39,8 @@ const TodoListItem = ({ item, toggleItem }) => {
             />
           </ConfigProvider>
           <ItemTime className={isClose ? "close" : ""}>
-            <span>{item.month}</span>
-            {item.time}
+            <span>{item.deadlineDate}</span>
+            {item.deadlineTime}
           </ItemTime>
         </ItemLeft>
         <ItemRight className={isClose ? "close" : ""}>

@@ -7,25 +7,17 @@ import { SwDiary } from "../style/DetailLayout";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const DiarySwiper = () => {
+const DiarySwiper = ({ diaryDetailData }) => {
   return (
     <SwDiary>
+      {/* map 출력 안됨, data.pic과 pics 확인 필요 */}
       <Swiper pagination={true} modules={[Pagination]}>
-        <SwiperSlide>
-          <img src="https://via.placeholder.com/560x700/123" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://via.placeholder.com/560x500/bfff00" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://via.placeholder.com/560x400/edacb1" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://via.placeholder.com/560x200/008080" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://via.placeholder.com/560x600/ffd700" alt="" />
-        </SwiperSlide>
+        {diaryDetailData &&
+          diaryDetailData.map((item, index) => (
+            <SwiperSlide key={index}>
+              <img src={`${item.pic}`} alt={item.title} />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </SwDiary>
   );

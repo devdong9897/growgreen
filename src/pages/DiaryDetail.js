@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DiarySwiper from "../components/DiarySwiper";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { getDiaryDetail } from "../api/patchdiary";
+
 import "../style/modalstyle.css";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
@@ -12,6 +14,30 @@ import {
 import { ConfigProvider, Modal } from "antd";
 
 const DiaryDetail = () => {
+  // 다이어리 디테일 페이지 state 관리
+  const [diaryDetailData, setDiaryDetailData] = useState(null);
+  // idiary params 관리
+  const paramIdiary = useParams().idiary;
+  const getDiaryDetailData = async idiary => {
+    try {
+      const data = await getDiaryDetail(idiary);
+      setDiaryDetailData(data);
+      console.log("다이어리 디테일 데이터", data);
+    } catch (err) {
+      console.log("다이어리 디테일 에러 : ", err);
+    }
+  };
+  // useEffect(() => {
+  //   getDiaryDetailData(paramIdiary);
+  //   console.log(diaryDetailData);
+  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      await getDiaryDetailData(paramIdiary);
+    };
+    fetchData();
+  }, [paramIdiary]);
+  // 모달창 이벤트
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -27,19 +53,11 @@ const DiaryDetail = () => {
       <DiarySwiper />
       <DiaryDetailInner>
         <DiaryDetailTitle>
-          <span>2023-06-18</span>
-          <p>Lorem ipsum dolor sit amet.</p>
+          {diaryDetailData && <span>{diaryDetailData.data.createdAt}</span>}
+          {diaryDetailData && <p>{diaryDetailData.data.title}</p>}
         </DiaryDetailTitle>
         <DiaryDetailContents>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          {diaryDetailData && <p>{diaryDetailData.data.ctnt}</p>}
           <PageBtnWrap>
             <li>
               <Link to="/diaryedit">수정</Link>
