@@ -55,7 +55,8 @@ export const ListItem = styled.li`
   overflow: hidden;
   isolation: isolate;
   box-sizing: border-box;
-  height: 115px;
+  border: 0.05rem solid ${subColor.colorGray};
+  min-height: 115px;
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -137,11 +138,9 @@ export const ItemName = styled.div`
 `;
 export const ItemText = styled.div`
   font-size: 1.6rem;
-  line-height: 1.6;
-  height: 2.5rem;
+  line-height: 1.3;
   font-weight: 500;
   margin-top: 10px;
-  ${ellipsis.ellipsisOne}
 `;
 
 // MyPlantList 스타일
@@ -160,6 +159,7 @@ export const MyPlantLiItem = styled.li`
     border-radius: 15px;
     overflow: hidden;
     isolation: isolate;
+    border: 0.05rem solid ${subColor.colorGray};
     &::after {
       content: "";
       position: absolute;
@@ -229,6 +229,7 @@ export const DiaryLiItem = styled.li`
     border-radius: 15px;
     overflow: hidden;
     isolation: isolate;
+    border: 0.05rem solid ${subColor.colorGray};
     &::after {
       content: "";
       position: absolute;

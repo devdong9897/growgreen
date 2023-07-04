@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Switch, ConfigProvider } from "antd";
 import { mainColor } from "../style/GlobalStyle";
@@ -11,42 +11,46 @@ import {
   ItemText,
 } from "../style/ListLayout";
 
-const TodoListItem = ({ todoListData, toggleItem }) => {
+const TodoListItem = ({ item, toggleItem }) => {
+  // finishYn의 값이 0인 경우 close 클래스 적용
+  const [isClose, setIsClose] = useState(item.finishYn === 0);
+  const handleToggle = () => {
+    setIsClose(!isClose);
+    toggleItem(item.id);
+  };
   return (
     <>
-      {todoListData.map((item, idx) => (
-        <ListItem key={item.id}>
-          {/* Todo 수정 버튼 */}
-          <Link to="/todoedit" />
-          <ItemLeft>
-            {/* switch */}
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorPrimary: mainColor.colorGreenRegular,
-                },
-              }}
-            >
-              <Switch
-                defaultChecked={item.isOpen}
-                onChange={checked => toggleItem(item.id)}
-                size="small"
-              />
-            </ConfigProvider>
-            <ItemTime className={item.isOpen ? "" : "close"}>
-              <span>{item.time}</span>
-              {item.timeDetail}
-            </ItemTime>
-          </ItemLeft>
-          <ItemRight className={item.isOpen ? "" : "close"}>
-            <ItemName>
-              <span>{item.plantName}</span>
-              {item.plantAlias}
-            </ItemName>
-            <ItemText>{item.task}</ItemText>
-          </ItemRight>
-        </ListItem>
-      ))}
+      <ListItem>
+        {/* Todo 수정 버튼 */}
+        <Link to="/todoedit" />
+        <ItemLeft>
+          {/* switch */}
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: mainColor.colorGreenRegular,
+              },
+            }}
+          >
+            <Switch
+              defaultChecked={!isClose}
+              onChange={handleToggle}
+              size="small"
+            />
+          </ConfigProvider>
+          <ItemTime className={isClose ? "close" : ""}>
+            <span>{item.month}</span>
+            {item.time}
+          </ItemTime>
+        </ItemLeft>
+        <ItemRight className={isClose ? "close" : ""}>
+          <ItemName>
+            <span>{item.nm}</span>
+            {item.nickNm}
+          </ItemName>
+          <ItemText>{item.ctnt}</ItemText>
+        </ItemRight>
+      </ListItem>
     </>
   );
 };

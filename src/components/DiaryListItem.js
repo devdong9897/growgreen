@@ -10,26 +10,30 @@ import {
   DiaryLiItemText,
 } from "../style/ListLayout";
 
-const DiaryListItem = () => {
+const DiaryListItem = ({ item }) => {
   return (
     <>
       <DiaryLiItem>
-        <Link to="/diarydetail">
+        <Link to="../diarydetail">
           <DiaryLiItemLeft>
-            <img src="https://via.placeholder.com/100" alt="" />
+            <img
+              src={
+                item.pic
+                  ? item.pic
+                  : `${process.env.PUBLIC_URL}/images/noimage.jpg`
+              }
+              alt={item.title}
+            />
           </DiaryLiItemLeft>
           <DiaryLiItemRight>
             <DiaryLiItemName>
-              <span>2023-06-27</span>
+              <span>{item.createdAt}</span>
               <i>
                 <FontAwesomeIcon icon={faBook} />
               </i>
-              일기 제목
+              {item.title}
             </DiaryLiItemName>
-            <DiaryLiItemText>
-              Lorem ipsum dolor sit amet.Lorem ipsumLorem ipsum dolor sit
-              amet.Lorem ipsumLorem ipsum dolor sit amet.Lorem ipsum
-            </DiaryLiItemText>
+            <DiaryLiItemText>{item.ctnt}</DiaryLiItemText>
           </DiaryLiItemRight>
         </Link>
       </DiaryLiItem>
