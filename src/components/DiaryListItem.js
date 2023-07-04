@@ -9,19 +9,21 @@ import {
   DiaryLiItemName,
   DiaryLiItemText,
 } from "../style/ListLayout";
-import NoImage from "../noimage.jpg";
 
 const DiaryListItem = ({ item }) => {
-  // 이미지 없을 때 error처리
-  const onImgError = e => {
-    e.target.src = NoImage;
-  };
   return (
     <>
       <DiaryLiItem>
-        <Link to="../detail">
+        <Link to="../diarydetail">
           <DiaryLiItemLeft>
-            <img src={item.pic} alt={item.title} onError={onImgError} />
+            <img
+              src={
+                item.pic
+                  ? item.pic
+                  : `${process.env.PUBLIC_URL}/images/noimage.jpg`
+              }
+              alt={item.title}
+            />
           </DiaryLiItemLeft>
           <DiaryLiItemRight>
             <DiaryLiItemName>

@@ -35,6 +35,14 @@ export const getDiaryDetail = async idiary => {
   } catch (err) {
     console.log(err);
     // err 발생 시 샘플 코드 반환
-    return {};
+    return {
+      data: {
+        title: "에러발생 타이틀",
+        ctnt: "에러발생 내용",
+        createdAt: "0000-00-00",
+        pic: "에러발생 사진.jpg",
+      },
+      pics: ["에러발생 사진1.jpg", "에러발생 사진2.jpg"],
+    };
   }
 };

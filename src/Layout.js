@@ -13,8 +13,8 @@ const Layout = () => {
   // pathname에 따라 Wrap의 배경 색상 동적으로 설정
   let pageBgc;
   location.pathname === "/myplantdetail" ||
-  location.pathname === "/diary/list" ||
-  location.pathname === "/diary/detail"
+  location.pathname === "/diarylist" ||
+  location.pathname === "/diarydetail"
     ? (pageBgc = { backgroundColor: subColor.colorWhite })
     : (pageBgc = { backgroundColor: subColor.colorGray });
   const WrapHeight =
@@ -26,7 +26,7 @@ const Layout = () => {
   /* pathname에 따라 Contents padding값 동적으로 설정 */
   const ContentsPadding =
     location.pathname === "/myplantdetail" ||
-    location.pathname === "/diary/detail"
+    location.pathname === "/diarydetail"
       ? { padding: "0 0 10rem" }
       : { padding: "2.5rem 0 10rem" };
   /* pathname에 따라 Contents margin-top값 동적으로 설정 */
@@ -36,7 +36,7 @@ const Layout = () => {
       : { marginTop: `${height.headerHeight}` };
   /* pathname에 따라 Inner 가로 padding값 동적으로 설정 */
   const InnerPadding =
-    location.pathname === "/diary/detail" ||
+    location.pathname === "/diarydetail" ||
     location.pathname === "/myplantdetail"
       ? { padding: "0" }
       : { padding: "0 2%" };
