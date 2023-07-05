@@ -6,11 +6,10 @@ import { getPlants } from "../api/patchmyplant";
 
 const MyPlantList = () => {
   const [list, setList] = useState([]);
-  
+
   const getList = async () => {
     try {
       const data = await getPlants();
-      console.log(data);
       setList(data);
     } catch (err) {
       console.log(err);

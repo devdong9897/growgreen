@@ -51,7 +51,7 @@ const MyPlantDetail = () => {
           </MyPlantDetailImage>
           <MyPlantDetailTitle>
             <div>
-              <span>식물 종류 이름{detailInfo && detailInfo.nm}</span>
+              <span>식물 종류 이름</span>
               <p>식물 별명</p>
             </div>
             <div>

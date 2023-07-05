@@ -6,6 +6,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
 import { Link, useNavigate } from "react-router-dom";
+import { putPlants } from "../api/patchmyplant";
 
 const MyPlantDetailEdit = () => {
   const dateFormat = "YYYY/MM/DD";
@@ -49,7 +50,20 @@ const MyPlantDetailEdit = () => {
   const [value, setValue] = useState("");
   const { TextArea } = Input;
 
+  const editForm = {
+    iplant: 0,
+    nm: "string",
+    nickNm: "string",
+    ctnt: "string",
+    onDate: "string",
+  };
+
+  // 수정정보 state
+  const [editData, setEditData] = useState(editForm);
+
   const handleConfirm = () => {
+    console.log("확인");
+    putPlants(editData);
     navigate("/myplantlist");
   };
 
