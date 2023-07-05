@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// plant 데이터 가져오기
+// 모든 식물 리스트 가져오기
 export const getPlants = async () => {
   try {
     const res = await axios.get("/api/plant");
@@ -69,9 +69,22 @@ export const getPlants = async () => {
   }
 };
 
+// 특정 식물 가져오기
 export const getDetail = async () => {
   try {
-    const res = await axios.get(`/api/plant`);
+    const res = await axios.get("/api/plant");
+    const data = res.data;
+    return data;
+  } catch (err) {
+    console.log(err);
+    return {};
+  }
+};
+
+// 식물등록
+export const postPlants = async () => {
+  try {
+    const res = await axios.post("/api/plant");
     const data = res.data;
     console.log(data);
     return data;
@@ -80,3 +93,18 @@ export const getDetail = async () => {
     return {};
   }
 };
+
+// 식물수정
+export const putPlants = async () => {
+  try {
+    const res = await axios.put("/api/plant");
+    const data = res.data;
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.log(err);
+    return {};
+  }
+};
+
+// 식물삭제

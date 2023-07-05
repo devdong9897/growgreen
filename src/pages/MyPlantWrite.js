@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { PlusOutlined } from "@ant-design/icons";
@@ -7,10 +7,9 @@ import { ConfigProvider, Form, Input, DatePicker, Upload, Modal } from "antd";
 import { MyPlantWriteFir, MyPlantWriteTxt } from "../style/WriteLayout";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
+import { postPlants } from "../api/patchmyplant";
 
 const MyPlantWrite = () => {
-  
-
   // 날짜 선택에 오늘 날짜 표시
   const [nowDate, setNowDate] = useState(new Date());
   const nowFormatDate = moment(nowDate).format("YYYY-MM-DD");
@@ -19,7 +18,7 @@ const MyPlantWrite = () => {
 
   const navigate = useNavigate();
 
-  // 사진 업로드
+  // 이미지 업로드
   const getBase64 = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -56,7 +55,19 @@ const MyPlantWrite = () => {
   const [value, setValue] = useState("");
   const { TextArea } = Input;
 
+  const WritePut = {
+    nm: "string",
+    nickNm: "string",
+    onDate: "string",
+    ctnt: "string",
+  };
+
+  // plant state
+  const [writeData, setWriteData] = useState(WritePut);
+
   const handleConfirm = () => {
+    console.log("확인");
+    postPlants(writeData);
     navigate("/myplantlist");
   };
 
@@ -130,10 +141,10 @@ const MyPlantWrite = () => {
           {/* 확인, 취소 버튼 section */}
           <PageBtnWrap>
             <li>
-              <button onClick={handleConfirm}>확인</button>
+              <button onClick={() => handleConfirm()}>확인</button>
             </li>
             <li>
-              <button onClick={handleConfirm}>취소</button>
+              <button onClick={() => navigate("/myplantlist")}>취소</button>
             </li>
           </PageBtnWrap>
         </Form>
