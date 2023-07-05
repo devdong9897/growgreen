@@ -9,11 +9,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { QuickMenuWrap } from "../style/Components";
 
-const QuickMenu = () => {
+const QuickMenu = ({ paramToday }) => {
   return (
     <QuickMenuWrap>
       <li>
-        <Link to="/">
+        <Link to={`/${paramToday}`}>
           <i>
             <FontAwesomeIcon icon={faHouseChimney} />
           </i>

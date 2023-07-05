@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment/moment";
 import Calendar from "react-calendar";
+import { getTotalTodoList } from "../api/patchtodo";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import "../style/todocalendar.css";
 import { TodoCalendarWrap, CalendarActiveBtn } from "../style/TodoCalendar";
 
 const TodoCalendar = ({ todayListData, handleDateChange, selectDate }) => {
+  // todo 캘린더 데이터 state
+  const [todoTotalList, setTodoTotalList] = useState([]);
+  const getTotalTodoData = async () => {
+    try {
+      const data = await getTotalTodoList();
+      setTodoTotalList(data);
+    } catch (err) {
+      console.log("todo 캘린더 데이터", err);
+    }
+  };
   // Calendar 스타일 설정
   const WeekName = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
   const formatShortWeekday = (locale, date) => {
@@ -16,7 +28,7 @@ const TodoCalendar = ({ todayListData, handleDateChange, selectDate }) => {
   // 캘린더 날짜에 className 동적으로 부여
   const tileClassName = ({ date, view }) => {
     const formattedDate = moment(date).format("YYYY-MM-DD");
-    console.log(formattedDate);
+    // console.log(formattedDate);
     let classNames = "";
 
     if (view === "month") {
@@ -39,6 +51,11 @@ const TodoCalendar = ({ todayListData, handleDateChange, selectDate }) => {
   const toggleClick = () => {
     setCalendarActive(!calendarActive);
   };
+  // useEffect
+  useEffect(() => {
+    getTotalTodoData();
+  }, []);
+  console.log(todoTotalList);
   return (
     <TodoCalendarWrap>
       <Calendar

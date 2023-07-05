@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Inner, HeaderWrap, TodoMainHeaderInner } from "../style/Components";
 
-const TodoMainHeader = () => {
+const TodoMainHeader = ({ paramToday }) => {
   return (
     <HeaderWrap>
       <Inner>
         <TodoMainHeaderInner>
           <h1>
-            <Link to="/">
+            <Link to={`/${paramToday}`}>
               <img src="/images/logo.svg" alt="로고" />
             </Link>
           </h1>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { HeaderNavWrap, NavButtonWrap, NavMenuWrap } from "../style/Components";
 
-const HeaderNav = ({ navOpen, toggleNav, closeNav }) => {
+const HeaderNav = ({ navOpen, toggleNav, closeNav, paramToday }) => {
   return (
     <HeaderNavWrap className={navOpen ? "open" : ""}>
       <div>
@@ -16,7 +16,7 @@ const HeaderNav = ({ navOpen, toggleNav, closeNav }) => {
         <NavMenuWrap>
           <li>
             <Link
-              to="/"
+              to={`/${paramToday}`}
               onClick={() => {
                 closeNav("/");
               }}
