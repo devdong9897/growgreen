@@ -99,6 +99,18 @@ export const TodoWriteFir = styled.div`
         height: ${height.inputHeight};
         padding: 0 15px;
         border-radius: 10px;
+        .ant-picker-input input {
+          font-family: "Pretendard Variable", Pretendard, -apple-system,
+            BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+            "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+          &::placeholder {
+            color: #25352880;
+          }
+        }
+      }
+      .ant-select-selector .ant-select-selection-item {
+        color: #25352880;
       }
     }
   }
@@ -127,4 +139,10 @@ export const TodoWriteTxt = styled.div`
   margin-bottom: 10px;
   font-weight: 700;
   font-size: 1.6rem;
+  p {
+    font-size: 1.3rem;
+    color: ${subColor.colorRed};
+    font-weight: 500;
+    line-height: 1;
+  }
 `;

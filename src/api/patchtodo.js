@@ -61,11 +61,13 @@ export const getSelectTodoList = async deadline => {
   }
 };
 // todo POST
-export const postTodo = async () => {
+export const postTodo = async data => {
   try {
-    const res = await axios.post("/api/todo");
-    const data = res.data;
-    console.log("투두 post", data);
+    // URL 변경 필요
+    const res = await axios.post("http://localhost:3000/todo", data);
+    // const res = await axios.post("/api/todo", data);
+    const result = res.data;
+    console.log("투두 post", result);
   } catch (err) {
     console.log(err);
   }
