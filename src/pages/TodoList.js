@@ -24,7 +24,7 @@ const TodoList = () => {
     setTodoList(prevData =>
       prevData.map(item =>
         item.id === id
-          ? { ...item, finishYn: item.finishYn === 0 ? 1 : 0 }
+          ? { ...item, finishYn: item.finishYn === 0 ? 0 : 1 }
           : item,
       ),
     );

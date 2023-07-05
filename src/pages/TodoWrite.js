@@ -230,6 +230,7 @@ const TodoWrite = () => {
     }
     // console.log("updatedPostTodoData", updatedPostTodoData);
     postTodo(updatedPostTodoData);
+    navigate("/todolist");
   };
   return (
     <ConfigProvider
@@ -258,7 +259,7 @@ const TodoWrite = () => {
           {/* 날짜 선택 section */}
           <TodoWriteFir>
             <TodoWriteTxt>
-              날짜 선택
+              날짜 및 시간 선택
               {/* 날짜, 시간 미입력 시 에러메세지 출력 */}
               {dateError && <p>{dateError}</p>}
             </TodoWriteTxt>
