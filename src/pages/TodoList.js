@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getTodoTotalList } from "../api/patchtodo";
+import { getTodayTodoList } from "../api/patchtodo";
 
 import { WriteBtn } from "../style/ListLayout";
 import TodoListItem from "../components/TodoListItem";
@@ -10,7 +10,7 @@ const TodoList = () => {
   const [todoList, setTodoList] = useState([]);
   const getTodoList = async () => {
     try {
-      const data = await getTodoTotalList();
+      const data = await getTodayTodoList();
       setTodoList(data);
     } catch (err) {
       console.log("전체 투두리스트 에러 : ", err);

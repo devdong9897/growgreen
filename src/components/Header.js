@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Inner, HeaderWrap, HeaderInnerWrap } from "../style/Components";
 import HeaderNav from "./HeaderNav";
 
-const Header = () => {
+const Header = ({ paramToday }) => {
+  // 네비게이션 메뉴 페이지 열고 닫히는 이벤트 설정
   const navigate = useNavigate();
   const [navOpen, setNavOpen] = useState(false);
   const toggleNav = () => {
@@ -14,16 +15,22 @@ const Header = () => {
     setNavOpen(false);
     navigate(path);
   };
+
   return (
     <>
       {/* 네비게이션 메뉴 */}
-      <HeaderNav navOpen={navOpen} toggleNav={toggleNav} closeNav={closeNav} />
+      <HeaderNav
+        navOpen={navOpen}
+        toggleNav={toggleNav}
+        closeNav={closeNav}
+        paramToday={paramToday}
+      />
       {/* 헤더 */}
       <HeaderWrap>
         <Inner>
           <HeaderInnerWrap>
             <h1>
-              <Link to="/">
+              <Link to={`/${paramToday}`}>
                 <img src="/images/logo.svg" alt="로고" />
               </Link>
             </h1>

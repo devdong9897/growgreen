@@ -10,10 +10,10 @@ import {
   ItemText,
 } from "../style/ListLayout";
 
-const TodoMainList = ({ selectTodayList }) => {
+const TodoMainList = ({ selectTodoData }) => {
   return (
     <TodoMainUl>
-      {selectTodayList.map((item, index) => (
+      {selectTodoData.map((item, index) => (
         <ListItem key={index}>
           <ItemLeft>
             <ItemTime>
@@ -31,7 +31,7 @@ const TodoMainList = ({ selectTodayList }) => {
         </ListItem>
       ))}
       {/* todayListData 없을 때 아래 코드 출력 */}
-      {selectTodayList.length === 0 && (
+      {selectTodoData.length === 0 && (
         <ListItem className="noTodayTodo">
           <img src="./images/logo.svg" alt="로고" />
           <p>
