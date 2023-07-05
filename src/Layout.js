@@ -25,7 +25,7 @@ const Layout = () => {
     ? (pageBgc = { backgroundColor: subColor.colorWhite })
     : (pageBgc = { backgroundColor: subColor.colorGray });
   const WrapHeight =
-    location.pathname === `/${paramToday}`
+    location.pathname === "/"
       ? {
           minHeight: `calc(100vh - ${height.todoMainHeaderHeight})`,
         }
@@ -38,7 +38,7 @@ const Layout = () => {
       : { padding: "2.5rem 0 10rem" };
   /* pathname에 따라 Contents margin-top값 동적으로 설정 */
   const ContentsMarginTop =
-    location.pathname === `/${paramToday}`
+    location.pathname === "/"
       ? { marginTop: `${height.todoMainHeaderHeight}` }
       : { marginTop: `${height.headerHeight}` };
   /* pathname에 따라 Inner 가로 padding값 동적으로 설정 */
@@ -51,7 +51,7 @@ const Layout = () => {
     <ThemeProvider theme={pageBgc}>
       <Wrap style={WrapHeight}>
         {/* 헤더 */}
-        {location.pathname === `/${paramToday}` ? (
+        {location.pathname === "/" ? (
           <TodoMainHeader paramToday={paramToday} />
         ) : (
           <Header paramToday={paramToday} />

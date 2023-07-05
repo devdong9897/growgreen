@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postTodo } from "../api/patchtodo";
 import dayjs from "dayjs";
@@ -12,6 +12,8 @@ import {
   ConfigProvider,
   DatePicker,
 } from "antd";
+import { getPlants } from "../api/patchmyplant";
+
 import { TodoWriteFir, TodoWriteTxt } from "../style/WriteLayout";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
@@ -22,11 +24,40 @@ const TodoWrite = () => {
   const { TextArea } = Input;
   // 화면이동
   const navigate = useNavigate();
-  // 날짜 선택에 오늘 날짜 표시
-  // const [nowDate, setNowDate] = useState(new Date());
-  // 오늘 날짜를 YYYY-MM-DD로 변환
-  // const nowFormatDate = moment(nowDate).format("YYYY-MM-DD");
-
+  // myPlantList를 저장할 state
+  const [myPlantList, setMyPlantList] = useState([]);
+  // 식물 선택 option에 들어갈 값 state
+  const [selectMyPlant, getSelectMyPlant] = useState([]);
+  // iplant(PK값) 보관할 state
+  const [iplant, setIplant] = useState(0);
+  // myPlant GET
+  const getMyPlantList = async () => {
+    try {
+      // myPlantList의 데이터를 data에 보관(배열)
+      const data = await getPlants();
+      setMyPlantList(data);
+      // data를 map을 사용해 각각의 객체로 분리
+      const getPlantArr = data.map(item => {
+        const arrData = {
+          iplant: item.iplant,
+          value: item.iplant,
+          label: item.nickNm,
+        };
+        return arrData;
+      });
+      getSelectMyPlant(getPlantArr);
+    } catch (err) {
+      console.log("myplant get err", err);
+    }
+  };
+  useEffect(() => {
+    getMyPlantList();
+  }, []);
+  // 식물 선택 onChange 이벤트
+  const handleMyPlantChange = (value, e) => {
+    const myPlant = selectMyPlant.find(item => item.value === value);
+    setIplant(myPlant.iplant);
+  };
   // 투두 전송데이터 기본값
   const todoForm = {
     iplant: 0,
@@ -40,118 +71,111 @@ const TodoWrite = () => {
   const [postTodoData, setPostTodoData] = useState(todoForm);
   // 현재 postTodoData를 새로운 객체로 생성
   const updatedPostTodoData = { ...postTodoData };
-  // 식물 선택 state
-  const plantList = [
-    { value: "테스트1value", label: "테스트1label" },
-    { value: "테스트2value", label: "테스트2label" },
-    { value: "테스트3value", label: "테스트3label" },
-  ];
-  const [selectPlant, setSelectPlant] = useState(plantList);
   // 날짜 선택 state
   // 날짜 선택(날짜 포맷을 dateFormat 형식으로 변환)
   const handleDateChange = (value, dateString) => {
     // console.log("Formatted Selected Time: ", dateString);
-    const selectedDate = moment(dateString).format("MM-DD");
+    const selectedDate = moment(dateString).format("YYYY-MM-DD");
     const updateDate = { ...updatedPostTodoData, deadlineDate: selectedDate };
     setPostTodoData(updateDate);
   };
   // 시간 선택 state
   const deadlineTimeList = [
     {
-      value: "00:00:00",
-      label: "00:00:00",
+      value: "00:00",
+      label: "00:00",
     },
     {
-      value: "01:00:00",
-      label: "01:00:00",
+      value: "01:00",
+      label: "01:00",
     },
     {
-      value: "02:00:00",
-      label: "02:00:00",
+      value: "02:00",
+      label: "02:00",
     },
     {
-      value: "03:00:00",
-      label: "03:00:00",
+      value: "03:00",
+      label: "03:00",
     },
     {
-      value: "04:00:00",
-      label: "04:00:00",
+      value: "04:00",
+      label: "04:00",
     },
     {
-      value: "05:00:00",
-      label: "05:00:00",
+      value: "05:00",
+      label: "05:00",
     },
     {
-      value: "06:00:00",
-      label: "06:00:00",
+      value: "06:00",
+      label: "06:00",
     },
     {
-      value: "07:00:00",
-      label: "07:00:00",
+      value: "07:00",
+      label: "07:00",
     },
     {
-      value: "08:00:00",
-      label: "08:00:00",
+      value: "08:00",
+      label: "08:00",
     },
     {
-      value: "09:00:00",
-      label: "09:00:00",
+      value: "09:00",
+      label: "09:00",
     },
     {
-      value: "10:00:00",
-      label: "10:00:00",
+      value: "10:00",
+      label: "10:00",
     },
     {
-      value: "11:00:00",
-      label: "11:00:00",
+      value: "11:00",
+      label: "11:00",
     },
     {
-      value: "12:00:00",
-      label: "12:00:00",
+      value: "12:00",
+      label: "12:00",
     },
     {
-      value: "13:00:00",
-      label: "13:00:00",
+      value: "13:00",
+      label: "13:00",
     },
     {
-      value: "14:00:00",
-      label: "14:00:00",
+      value: "14:00",
+      label: "14:00",
     },
     {
-      value: "15:00:00",
-      label: "15:00:00",
+      value: "15:00",
+      label: "15:00",
     },
     {
-      value: "16:00:00",
-      label: "16:00:00",
+      value: "16:00",
+      label: "16:00",
     },
     {
-      value: "17:00:00",
-      label: "17:00:00",
+      value: "17:00",
+      label: "17:00",
     },
     {
-      value: "18:00:00",
-      label: "18:00:00",
+      value: "18:00",
+      label: "18:00",
     },
     {
-      value: "19:00:00",
-      label: "19:00:00",
+      value: "19:00",
+      label: "19:00",
     },
     {
-      value: "20:00:00",
-      label: "20:00:00",
+      value: "20:00",
+      label: "20:00",
     },
     {
-      value: "21:00:00",
-      label: "21:00:00",
+      value: "21:00",
+      label: "21:00",
     },
     {
-      value: "22:00:00",
-      label: "22:00:00",
+      value: "22:00",
+      label: "22:00",
     },
     {
-      value: "23:00:00",
-      label: "23:00:00",
+      value: "23:00",
+      label: "23:00",
     },
   ];
   const [postDeadlineTime, setPostDeadlineTime] = useState(deadlineTimeList);
@@ -181,17 +205,18 @@ const TodoWrite = () => {
   // 없음에 체크되어 있을 때 반복 여부 0, 반복 날짜 null
   if (isNoneChecked) {
     updatedPostTodoData.repeatYn = 0;
-    updatedPostTodoData.repeatDay = null;
+    updatedPostTodoData.repeatDay = [];
   } else {
     // 아니면 반복 여부 1, 선택된 체크박스 value값 전달
     updatedPostTodoData.repeatYn = 1;
-    updatedPostTodoData.repeatDay = checkedValues.map(Number);
+    updatedPostTodoData.repeatDay = checkedValues.map(Number).sort();
   }
   // 내용 미입력시 출력되는 문장 state
   const [dateError, setDateError] = useState("");
   const [ctntError, setCtntError] = useState("");
   // 글 작성 후 확인 버튼 클릭(todo POST)
   const handleConfirm = () => {
+    updatedPostTodoData.iplant = iplant;
     if (
       !updatedPostTodoData.deadlineDate ||
       !updatedPostTodoData.deadlineTime
@@ -203,8 +228,8 @@ const TodoWrite = () => {
       setCtntError("* 할일을 입력해주세요.");
       return;
     }
-    console.log("updatedPostTodoData", updatedPostTodoData);
-    // postTodo(updatedPostTodoData);
+    // console.log("updatedPostTodoData", updatedPostTodoData);
+    postTodo(updatedPostTodoData);
   };
   return (
     <ConfigProvider
@@ -224,7 +249,8 @@ const TodoWrite = () => {
             <Select
               placeholder="원하는 반려 식물을 선택해 주세요."
               allowClear
-              options={selectPlant}
+              options={selectMyPlant}
+              onChange={handleMyPlantChange}
             />
           </TodoWriteFir>
         </Form.Item>
