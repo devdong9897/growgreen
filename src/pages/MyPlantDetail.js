@@ -51,8 +51,10 @@ const MyPlantDetail = () => {
           </MyPlantDetailImage>
           <MyPlantDetailTitle>
             <div>
-              <span>식물 종류 이름</span>
-              <p>식물 별명</p>
+              <span>식물 종류 이름{detailInfo.nm}</span>
+
+
+              <p>식물 별명{detailInfo.nickNm}</p>
             </div>
             <div>
               <span>데려온 날짜</span>

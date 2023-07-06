@@ -5,12 +5,10 @@ import dayjs from "dayjs";
 import { PlusOutlined } from "@ant-design/icons";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
-import { Link, useNavigate } from "react-router-dom";
-import { putPlants } from "../api/patchmyplant";
+import { useNavigate } from "react-router-dom";
 
 const MyPlantDetailEdit = () => {
   const dateFormat = "YYYY/MM/DD";
-
   const navigate = useNavigate();
 
   // 사진 업로드
@@ -50,27 +48,10 @@ const MyPlantDetailEdit = () => {
   const [value, setValue] = useState("");
   const { TextArea } = Input;
 
-  const editForm = {
-    iplant: 0,
-    nm: "string",
-    nickNm: "string",
-    ctnt: "string",
-    onDate: "string",
-  };
-
-  // 수정정보 state
-  const [editData, setEditData] = useState(editForm);
-
-  const handleConfirm = () => {
-    console.log("확인");
-    putPlants(editData);
-    navigate("/myplantlist");
-  };
-
   return (
     <>
       <ConfigProvider
-        theme={{
+        theme={{  
           token: {
             colorPrimary: mainColor.colorGreenRegular,
           },
@@ -154,10 +135,10 @@ const MyPlantDetailEdit = () => {
 
       <PageBtnWrap>
         <li>
-          <button onClick={handleConfirm}>확인</button>
+          <button onClick={() => navigate("/myplantlist")}>확인</button>
         </li>
         <li>
-          <button onClick={() => navigate("/myplantdetail")}>취소</button>
+          <button onClick={()  => navigate("/myplantdetail")}>취소</button>
         </li>
       </PageBtnWrap>
     </>

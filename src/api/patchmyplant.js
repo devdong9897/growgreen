@@ -84,15 +84,17 @@ export const getDetail = async () => {
 // 식물등록
 export const postPlants = async () => {
   try {
-    const res = await axios.post("/api/plant");
+    // const res = await axios.post("/api/plant");
+    const res = await axios.post("http://localhost:3000/todos");
     const data = res.data;
     console.log(data);
-    return data;
+    return data; 
   } catch (err) {
     console.log(err);
     return {};
   }
 };
+
 
 // 식물수정
 export const putPlants = async () => {
@@ -100,11 +102,8 @@ export const putPlants = async () => {
     const res = await axios.put("/api/plant");
     const data = res.data;
     console.log(data);
-    return data;
-  } catch (err) {
+  } catch (err) { 
     console.log(err);
     return {};
   }
 };
-
-// 식물삭제

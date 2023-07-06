@@ -71,6 +71,9 @@ const MyPlantWrite = () => {
     navigate("/myplantlist");
   };
 
+  
+  
+
   return (
     <>
       <ConfigProvider

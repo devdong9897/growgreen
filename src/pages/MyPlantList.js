@@ -24,7 +24,10 @@ const MyPlantList = () => {
     <>
       <ul>
         {list.map((item, index) => (
-          <MyPlantListItem key={index} item={item} />
+          <React.Fragment key={index}>
+            <MyPlantListItem item={item} />
+            <Link to={`/myplantedit/${item.id}`}>수정</Link>
+          </React.Fragment>
         ))}
       </ul>
       <WriteBtn>

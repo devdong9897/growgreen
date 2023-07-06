@@ -22,7 +22,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/intro" element={<Intro />} />
         <Route path="/" element={<Layout />}>
           {/* 투두메인 */}
           {/* <Route index path=":deadline" element={<TodoMain />} /> */}
