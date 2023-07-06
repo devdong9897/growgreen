@@ -4,7 +4,7 @@ export const getDiary = async () => {
   try {
     const res = await axios.get("/api/diary");
     const data = res.data;
-    // console.log(data);
+    // console.log("다이어리 전체 리스트 데이터", data);
     return data;
   } catch (err) {
     console.log(err);
@@ -30,7 +30,7 @@ export const getDiaryDetail = async idiary => {
   try {
     const res = await axios.get(`/api/diary/${idiary}`);
     const data = res.data;
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -47,3 +47,22 @@ export const getDiaryDetail = async idiary => {
     };
   }
 };
+// diary POST
+export const postDiary = async (_pic, _title, _ctnt) => {
+  const data = {
+    pic: _pic,
+    dto: {
+      title: _title,
+      ctnt: _ctnt,
+    },
+  };
+  try {
+    // const res = await axios.post("/api/diary", data);
+    const res = await axios.post("http://localhost:3000/todo", data);
+    const result = res.data;
+    console.log("다이어리 post", result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+// diary 다중 이미지 POST

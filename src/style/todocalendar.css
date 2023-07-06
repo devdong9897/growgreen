@@ -129,17 +129,6 @@
 .react-calendar__tile abbr {
   position: relative;
 }
-.react-calendar__tile.highlight abbr::before {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: 51%;
-  width: 6px;
-  height: 6px;
-  background-color: #8ba889;
-  transform: translateX(-50%);
-  border-radius: 100%;
-}
 
 .react-calendar__tile:hover::before {
   content: "";
@@ -225,4 +214,26 @@
 }
 .react-calendar__tile--now.sat_color {
   color: #fff;
+}
+.highlight {
+  position: absolute;
+  top: 6px;
+  left: 51%;
+  transform: translateX(-50%);
+  border-radius: 100%;
+  background: #8ba889;
+  width: 6px;
+  height: 6px;
+}
+.sat_color .highlight {
+  background: #5e64ff;
+}
+.sun_color .highlight {
+  background: #fc4949;
+}
+.react-calendar__month-view__days__day--neighboringMonth .highlight {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+.react-calendar__navigation .react-calendar__navigation__label {
+  pointer-events: none;
 }

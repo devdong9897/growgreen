@@ -9,7 +9,7 @@ import {
   DiaryLiItemName,
   DiaryLiItemText,
 } from "../style/ListLayout";
-import NoImage from "../noimage.jpg";
+import NoImage from "../assets/noimage.jpg";
 
 const DiaryListItem = ({ item }) => {
   // 이미지 없을 때 error처리
@@ -19,10 +19,14 @@ const DiaryListItem = ({ item }) => {
   return (
     <>
       <DiaryLiItem>
-        {/* index 추후 pk값으로 변경 필요 */}
         <Link to={`../diarydetail/${item.idiary}`}>
           <DiaryLiItemLeft>
-            <img src={item.pic} alt={item.title} onError={onImgError} />
+            {/* 이미지 경로 확인 필요 */}
+            <img
+              src={`http://192.168.0.144:5005/imgs/diaryPics/${item.idiary}/${item.pic}`}
+              alt={item.title}
+              onError={onImgError}
+            />
           </DiaryLiItemLeft>
           <DiaryLiItemRight>
             <DiaryLiItemName>

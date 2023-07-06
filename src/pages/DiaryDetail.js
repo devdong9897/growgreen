@@ -16,21 +16,27 @@ import { ConfigProvider, Modal } from "antd";
 const DiaryDetail = () => {
   // 다이어리 디테일 페이지 state 관리
   const [diaryDetailData, setDiaryDetailData] = useState(null);
+  // 다이어리 사진 state 관리
+  const [diaryPhotoData, setDiaryPhotoData] = useState(null);
   // idiary params 관리
   const paramIdiary = useParams().idiary;
+  // 다이어리 디테일 데이터 GET
   const getDiaryDetailData = async idiary => {
     try {
-      const data = await getDiaryDetail(idiary);
-      setDiaryDetailData(data);
-      console.log("다이어리 디테일 데이터", data);
+      // 다이어리 디테일 원본 데이터 전송
+      const idiaryData = await getDiaryDetail(idiary);
+      // 사진 데이터 (-> 전달되는 값 {}로 묶었을 때 undefinded 발생하는 이유 확인)
+      let dataParse = idiaryData.pics.map(item => item);
+      dataParse.unshift(idiaryData.data.pic);
+      setDiaryPhotoData(dataParse);
+      // 다이어리 디테일 원본 데이터
+      setDiaryDetailData(idiaryData);
+      console.log("다이어리 디테일 데이터", idiaryData);
+      console.log("다이어리 사진 데이터", dataParse);
     } catch (err) {
       console.log("다이어리 디테일 에러 : ", err);
     }
   };
-  // useEffect(() => {
-  //   getDiaryDetailData(paramIdiary);
-  //   console.log(diaryDetailData);
-  // }, []);
   useEffect(() => {
     const fetchData = async () => {
       await getDiaryDetailData(paramIdiary);
@@ -50,7 +56,8 @@ const DiaryDetail = () => {
   };
   return (
     <>
-      <DiarySwiper />
+      {/* swiper 슬라이드 */}
+      <DiarySwiper diaryPhotoData={diaryPhotoData} paramIdiary={paramIdiary} />
       <DiaryDetailInner>
         <DiaryDetailTitle>
           {diaryDetailData && <span>{diaryDetailData.data.createdAt}</span>}
