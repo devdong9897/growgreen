@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { WriteBtn } from "../style/ListLayout";
 import MyPlantListItem from "../components/MyPlantListItem";
-import { getPlants } from "../api/patchmyplant";
+import { getPlants, postPlants } from "../api/patchmyplant";
 
 const MyPlantList = () => {
   const [list, setList] = useState([]);

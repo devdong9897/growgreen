@@ -91,7 +91,12 @@ export const postPlants = async () => {
     return data;
   } catch (err) {
     console.log(err);
-    return {};
+    return {
+      nm: "",
+      nickNm: "",
+      onDate: "",
+      ctnt: "",
+    };
   }
 };
 
