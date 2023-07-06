@@ -25,7 +25,8 @@ function App() {
         <Route path="/intro" element={<Intro />} />
         <Route path="/" element={<Layout />}>
           {/* 투두메인 */}
-          <Route index path=":deadline" element={<TodoMain />} />
+          {/* <Route index path=":deadline" element={<TodoMain />} /> */}
+          <Route index element={<TodoMain />} />
           {/* 투두 */}
           <Route path="/todolist" element={<TodoList />} />
           <Route path="/todowrite" element={<TodoWrite />} />

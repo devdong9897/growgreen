@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 import TodoCalendar from "../components/TodoCalendar";
 import TodoMainList from "../components/TodoMainList";
@@ -7,77 +7,46 @@ import { getSelectTodoList } from "../api/patchtodo";
 
 const TodoMain = () => {
   const navigate = useNavigate();
-  const { deadline } = useParams();
-
+  // deadline state에 오늘 날짜를 YYYY-MM-DD 형식으로 보관
+  const [deadline, setDeadline] = useState(
+    moment(Date.now()).format("YYYY-MM-DD"),
+  );
   // Calendar 날짜 클릭 시 날짜별 내용 출력
   const [selectDate, setSelectDate] = useState(new Date());
-  const handleDateChange = date => {
-    setSelectDate(date);
-  };
-  // 오늘의 투두 더미데이터
-  /*
-	
-	*/
-  const todayListData = {
-    "2023-06-15": [
-      {
-        time: "06-15",
-        timeDetail: "15:00",
-        plantName: "식물 종류 이름0",
-        plantAlias: "식물 별명0",
-        task: "오늘의 할 일0",
-      },
-    ],
-    "2023-06-28": [
-      {
-        time: "06-28",
-        timeDetail: "12:00",
-        plantName: "식물 종류 이름1",
-        plantAlias: "식물 별명1",
-        task: "오늘의 할 일1",
-      },
-    ],
-    "2023-06-29": [
-      {
-        time: "06-29",
-        timeDetail: "13:00",
-        plantName: "식물 종류 이름2",
-        plantAlias: "식물 별명2",
-        task: "오늘의 할 일2",
-      },
-    ],
-  };
-  // 선택한 날짜 데이터 형식을 YYYY-MM-DD로 변환
-  const formatDate = moment(selectDate).format("YYYY-MM-DD");
-  // 데이터 형식을 배열로 담는다
-  const selectTodayList = todayListData[formatDate] || [];
-
   // 특정 날짜 todo state
   const [selectTodoData, setSelectTodoData] = useState([]);
-  const paramDeadline = useParams().deadline;
-  const getSelectTodoData = async deadline => {
+
+  // handle 이벤트
+  const handleDateChange = date => {
+    const nowDate = moment(date).format("YYYY-MM-DD");
+    getSelectTodoData(nowDate);
+    setSelectDate(date);
+  };
+  // todomain 특정 날짜 todo GET
+  const getSelectTodoData = async _deadline => {
     try {
-      const data = await getSelectTodoList(deadline);
+      const data = await getSelectTodoList(_deadline);
+      // 특정 날짜의 pk값을 deadline state에 담는다.
+      setDeadline(_deadline);
+      // date를 selectTodoData state에 담는다.
       setSelectTodoData(data);
-      // console.log(data);
     } catch (err) {
       console.log("특정 날짜 todo 에러 : ", err);
     }
   };
+  // useEffect
   useEffect(() => {
-    getSelectTodoData(paramDeadline);
+    getSelectTodoData(deadline);
   }, []);
-  console.log(selectTodoData);
   return (
     <div>
       {/* 투두 캘린더 */}
       <TodoCalendar
         handleDateChange={handleDateChange}
         selectDate={selectDate}
-        todayListData={todayListData}
+        selectTodoData={selectTodoData}
       />
       {/* 오늘의 투두 리스트 */}
-      {/* <TodoMainList selectTodayList={selectTodayList} /> */}
       <TodoMainList selectTodoData={selectTodoData} />
     </div>
   );

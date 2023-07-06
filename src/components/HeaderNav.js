@@ -16,7 +16,7 @@ const HeaderNav = ({ navOpen, toggleNav, closeNav, paramToday }) => {
         <NavMenuWrap>
           <li>
             <Link
-              to={`/${paramToday}`}
+              to="/"
               onClick={() => {
                 closeNav("/");
               }}

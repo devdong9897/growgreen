@@ -33,17 +33,17 @@ const TodoListItem = ({ item, toggleItem }) => {
             }}
           >
             <Switch
-              defaultChecked={!isClose}
+              defaultChecked={isClose}
               onChange={handleToggle}
               size="small"
             />
           </ConfigProvider>
-          <ItemTime className={isClose ? "close" : ""}>
+          <ItemTime className={isClose ? "" : "close"}>
             <span>{item.deadlineDate}</span>
             {item.deadlineTime}
           </ItemTime>
         </ItemLeft>
-        <ItemRight className={isClose ? "close" : ""}>
+        <ItemRight className={isClose ? "" : "close"}>
           <ItemName>
             <span>{item.nm}</span>
             {item.nickNm}

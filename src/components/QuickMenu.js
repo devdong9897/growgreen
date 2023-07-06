@@ -13,7 +13,7 @@ const QuickMenu = ({ paramToday }) => {
   return (
     <QuickMenuWrap>
       <li>
-        <Link to={`/${paramToday}`}>
+        <Link to="/">
           <i>
             <FontAwesomeIcon icon={faHouseChimney} />
           </i>

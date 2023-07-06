@@ -66,7 +66,7 @@ export const getTotalTodoList = async () => {
     // const res = axios.get("/api/todo/list");
     const res = axios.get("");
     const data = (await res).data;
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -117,9 +117,7 @@ export const getTotalTodoList = async () => {
 // todo POST
 export const postTodo = async data => {
   try {
-    // URL 변경 필요
-    const res = await axios.post("http://localhost:3000/todo", data);
-    // const res = await axios.post("/api/todo", data);
+    const res = await axios.post("/api/todo", data);
     const result = res.data;
     console.log("투두 post", result);
   } catch (err) {

@@ -30,7 +30,7 @@ const Header = ({ paramToday }) => {
         <Inner>
           <HeaderInnerWrap>
             <h1>
-              <Link to={`/${paramToday}`}>
+              <Link to="/">
                 <img src="/images/logo.svg" alt="로고" />
               </Link>
             </h1>
