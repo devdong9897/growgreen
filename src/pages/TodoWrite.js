@@ -215,7 +215,8 @@ const TodoWrite = () => {
   const [dateError, setDateError] = useState("");
   const [ctntError, setCtntError] = useState("");
   // 글 작성 후 확인 버튼 클릭(todo POST)
-  const handleConfirm = () => {
+  const handleConfirm = e => {
+    e.preventDefault();
     updatedPostTodoData.iplant = iplant;
     if (
       !updatedPostTodoData.deadlineDate ||
@@ -324,12 +325,18 @@ const TodoWrite = () => {
         {/* 확인, 취소 버튼 section */}
         <PageBtnWrap>
           <li>
-            <button type="submit" onClick={() => handleConfirm()}>
+            <button type="submit" onClick={e => handleConfirm(e)}>
               확인
             </button>
           </li>
           <li>
-            <button type="submit" onClick={() => navigate("/todolist")}>
+            <button
+              type="submit"
+              onClick={e => {
+                e.preventDefault();
+                navigate("/todolist");
+              }}
+            >
               취소
             </button>
           </li>

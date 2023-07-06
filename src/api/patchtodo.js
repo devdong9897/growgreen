@@ -63,8 +63,8 @@ export const getTodayTodoList = async () => {
 // todo 캘린더 데이터 GET (전체 Todo리스트 보기)
 export const getTotalTodoList = async () => {
   try {
-    const res = axios.get("/api/todo/list");
-    const data = (await res).data;
+    const res = await axios.get("/api/todo/list");
+    const data = res.data;
     // console.log("전체 투두리스트 보기", data);
     return data;
   } catch (err) {
@@ -111,6 +111,17 @@ export const getTotalTodoList = async () => {
         finishYn: 0,
       },
     ];
+  }
+};
+// todo 수정 데이터 GET
+export const getTodoEdit = async (itodo, repeatYn) => {
+  try {
+    const res = await axios.get(`/api/todo/upd/${itodo}?repeatYn=${repeatYn}`);
+    const data = res.data;
+    console.log("투두 수정데이터", data);
+    return data;
+  } catch (err) {
+    console.log(err);
   }
 };
 // todo POST

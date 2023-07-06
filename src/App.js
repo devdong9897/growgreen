@@ -22,9 +22,10 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/intro" element={<Intro />} />
         <Route path="/" element={<Layout />}>
+          {/* 인트로 화면 */}
           {/* 투두메인 */}
-          {/* <Route index path=":deadline" element={<TodoMain />} /> */}
           <Route index element={<TodoMain />} />
           {/* 투두 */}
           <Route path="/todolist" element={<TodoList />} />

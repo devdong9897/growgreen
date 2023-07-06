@@ -1,27 +1,25 @@
 import React from "react";
-import { Wrap } from "../style/Components";
+// import { Wrap } from "../style/Components";
 import { IntroWrap } from "../style/IntroLayout";
 import { SyncLoader } from "react-spinners";
 import { mainColor } from "../style/GlobalStyle";
 
-const Intro = () => {
+const Intro = ({ loding }) => {
   return (
-    <Wrap>
-      <IntroWrap>
-        <div>
-          <img src="./images/intro_logo.png" alt="logo" />
-        </div>
-        <div>
-          <SyncLoader
-            color={mainColor.colorGreenRegular}
-            margin={4}
-            size={7}
-            speedMultiplier={0.5}
-          />
-          <p>Team. 너 E팀이야</p>
-        </div>
-      </IntroWrap>
-    </Wrap>
+    <IntroWrap className={loding ? "active" : ""}>
+      <div>
+        <img src="./images/intro_logo.png" alt="logo" />
+      </div>
+      <div>
+        <SyncLoader
+          color={mainColor.colorGreenRegular}
+          margin={4}
+          size={7}
+          speedMultiplier={0.5}
+        />
+        <p>Team. 너 E팀이야</p>
+      </div>
+    </IntroWrap>
   );
 };
 

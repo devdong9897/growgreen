@@ -3,7 +3,6 @@
 @import url("./style/reset.css");
 @import url("./style/font.css");
 
-
 /* CSS 기본 설정 */
 * {
   outline: none;
@@ -51,4 +50,18 @@ button {
 
 .ant-select-arrow {
   margin: 0 0 20px 0;
+}
+
+/* 스크롤바 영역에 대한 설정 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* 스크롤바 막대에 대한 설정 */
+::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: rgba(139, 168, 137, 0.7);
+}
+/* 스크롤바 뒷 배경에 대한 설정 */
+::-webkit-scrollbar-track {
+  background: transparent;
 }

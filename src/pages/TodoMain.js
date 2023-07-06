@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
+import Intro from "./Intro";
 import TodoCalendar from "../components/TodoCalendar";
 import TodoMainList from "../components/TodoMainList";
 import { getSelectTodoList } from "../api/patchtodo";
 
 const TodoMain = () => {
+  // 인트로 로딩화면 state
+  const [loding, setLoding] = useState(true);
   const navigate = useNavigate();
   // deadline state에 오늘 날짜를 YYYY-MM-DD 형식으로 보관
   const [deadline, setDeadline] = useState(
@@ -37,18 +40,27 @@ const TodoMain = () => {
   // useEffect
   useEffect(() => {
     getSelectTodoData(deadline);
+
+    // 2초 뒤에 인트로 화면 사라짐
+    const introTimeout = setTimeout(() => {
+      setLoding(false);
+    }, 2000);
+    return () => clearTimeout(introTimeout);
   }, []);
   return (
-    <div>
-      {/* 투두 캘린더 */}
-      <TodoCalendar
-        handleDateChange={handleDateChange}
-        selectDate={selectDate}
-        selectTodoData={selectTodoData}
-      />
-      {/* 오늘의 투두 리스트 */}
-      <TodoMainList selectTodoData={selectTodoData} />
-    </div>
+    <>
+      <Intro loding={loding} />
+      <div>
+        {/* 투두 캘린더 */}
+        <TodoCalendar
+          handleDateChange={handleDateChange}
+          selectDate={selectDate}
+          selectTodoData={selectTodoData}
+        />
+        {/* 오늘의 투두 리스트 */}
+        <TodoMainList selectTodoData={selectTodoData} />
+      </div>
+    </>
   );
 };
 
