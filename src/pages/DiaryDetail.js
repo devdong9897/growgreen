@@ -57,7 +57,7 @@ const DiaryDetail = () => {
   return (
     <>
       {/* swiper 슬라이드 */}
-      <DiarySwiper diaryPhotoData={diaryPhotoData} />
+      <DiarySwiper diaryPhotoData={diaryPhotoData} paramIdiary={paramIdiary} />
       <DiaryDetailInner>
         <DiaryDetailTitle>
           {diaryDetailData && <span>{diaryDetailData.data.createdAt}</span>}

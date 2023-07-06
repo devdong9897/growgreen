@@ -21,8 +21,14 @@ const DiaryListItem = ({ item }) => {
       <DiaryLiItem>
         {/* index 추후 pk값으로 변경 필요 */}
         <Link to={`../diarydetail/${item.idiary}`}>
+          {console.log(item.pic)}
           <DiaryLiItemLeft>
-            <img src={item.pic} alt={item.title} onError={onImgError} />
+            {/* 이미지 경로 확인 필요 */}
+            <img
+              src={`http://192.168.0.144:5005/imgs/diaryPics/${item.idiary}/${item.pic}`}
+              alt={item.title}
+              onError={onImgError}
+            />
           </DiaryLiItemLeft>
           <DiaryLiItemRight>
             <DiaryLiItemName>

@@ -5,7 +5,10 @@ const NotFound = () => {
   return (
     <NotFoundWrap>
       <div>
-        <img src="./images/intro_logo.png" alt="로고" />
+        <img
+          src={`${process.env.PUBLIC_URL}/images/intro_logo.png`}
+          alt="로고"
+        />
         <p>
           <span>404</span>
           <span>Not Found...</span>

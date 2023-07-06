@@ -65,7 +65,7 @@ export const getTotalTodoList = async () => {
   try {
     const res = axios.get("/api/todo/list");
     const data = (await res).data;
-    console.log("전체 투두리스트 보기", data);
+    // console.log("전체 투두리스트 보기", data);
     return data;
   } catch (err) {
     console.log(err);

@@ -4,7 +4,7 @@ export const getDiary = async () => {
   try {
     const res = await axios.get("/api/diary");
     const data = res.data;
-    // console.log(data);
+    console.log("다이어리 전체 리스트 데이터", data);
     return data;
   } catch (err) {
     console.log(err);
