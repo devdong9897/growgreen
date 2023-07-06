@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const MyPlantDetailEdit = () => {
   const dateFormat = "YYYY/MM/DD";
+
   const navigate = useNavigate();
 
   // 사진 업로드
@@ -51,7 +52,7 @@ const MyPlantDetailEdit = () => {
   return (
     <>
       <ConfigProvider
-        theme={{  
+        theme={{
           token: {
             colorPrimary: mainColor.colorGreenRegular,
           },
@@ -138,7 +139,7 @@ const MyPlantDetailEdit = () => {
           <button onClick={() => navigate("/myplantlist")}>확인</button>
         </li>
         <li>
-          <button onClick={()  => navigate("/myplantdetail")}>취소</button>
+          <button onClick={() => navigate("/myplantdetail/1")}>취소</button>
         </li>
       </PageBtnWrap>
     </>

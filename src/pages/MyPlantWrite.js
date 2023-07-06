@@ -16,6 +16,7 @@ const MyPlantWrite = () => {
   // 데려온 날짜
   const dateFormat = "YYYY-MM-DD";
 
+  // 화면이동
   const navigate = useNavigate();
 
   // 이미지 업로드
@@ -56,23 +57,38 @@ const MyPlantWrite = () => {
   const { TextArea } = Input;
 
   const WritePut = {
-    nm: "string",
-    nickNm: "string",
-    onDate: "string",
-    ctnt: "string",
+    nm: "",
+    nickNm: "",
+    onDate: "",
+    ctnt: "",
   };
 
   // plant state
   const [writeData, setWriteData] = useState(WritePut);
 
+  const [formErrors, setFormErrors] = useState({});
+
   const handleConfirm = () => {
+    const errors = {};
+    if (!writeData.nm) {
+      errors.nm = "* 식물 종류를 작성해주세요.";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
     console.log("확인");
     postPlants(writeData);
     navigate("/myplantlist");
   };
 
-  
-  
+  const handleFormChange = (key, value) => {
+    setWriteData(prevData => ({
+      ...prevData,
+      [key]: value,
+    }));
+  };
 
   return (
     <>
@@ -89,7 +105,14 @@ const MyPlantWrite = () => {
           {/* 식물 종류 */}
           <MyPlantWriteFir>
             <MyPlantWriteTxt>식물 종류</MyPlantWriteTxt>
-            <Form.Item>
+            <Form.Item
+              validateStatus={formErrors.nm ? "error" : ""}
+              help={
+                formErrors.nm ? (
+                  <div style={{ color: "red" }}>{formErrors.nm}</div>
+                ) : null
+              }
+            >
               <Input placeholder="키우는 반려 식물 종류를 작성해주세요." />
             </Form.Item>
           </MyPlantWriteFir>
@@ -103,7 +126,12 @@ const MyPlantWrite = () => {
           {/* 데려온 날짜 */}
           <MyPlantWriteFir>
             <MyPlantWriteTxt>데려온 날짜</MyPlantWriteTxt>
-            <DatePicker defaultValue={dayjs(nowFormatDate, dateFormat)} />
+            <DatePicker
+              defaultValue={dayjs(nowFormatDate, dateFormat)}
+              onChange={(date, dateString) =>
+                handleFormChange("onDate", dateString)
+              }
+            />
           </MyPlantWriteFir>
           {/* 식물 사진 */}
           <MyPlantWriteFir>
@@ -144,7 +172,7 @@ const MyPlantWrite = () => {
           {/* 확인, 취소 버튼 section */}
           <PageBtnWrap>
             <li>
-              <button onClick={() => handleConfirm()}>확인</button>
+              <button onClick={handleConfirm}>확인</button>
             </li>
             <li>
               <button onClick={() => navigate("/myplantlist")}>취소</button>
