@@ -19,9 +19,7 @@ const DiaryListItem = ({ item }) => {
   return (
     <>
       <DiaryLiItem>
-        {/* index 추후 pk값으로 변경 필요 */}
         <Link to={`../diarydetail/${item.idiary}`}>
-          {console.log(item.pic)}
           <DiaryLiItemLeft>
             {/* 이미지 경로 확인 필요 */}
             <img

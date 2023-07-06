@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { postDiary } from "../api/patchdiary";
 import { DiaryWriteFir, DiaryWriteTxt } from "../style/WriteLayout";
 import { Input, Form, ConfigProvider, Upload, Modal } from "antd";
 import { mainColor } from "../style/GlobalStyle";
@@ -18,25 +19,33 @@ const DiaryWrite = () => {
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
     });
+  // 미리보기 이미지(사용하지 않음)
+  // const [previewOpen, setPreviewOpen] = useState(false);
+  // const [previewImage, setPreviewImage] = useState("");
+  // const [previewTitle, setPreviewTitle] = useState("");
 
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
+  // 사진하나첨부 state
+  const [pic, setPic] = useState("");
+  // 일기제목 state
+  const [title, setTitle] = useState("");
+  // 다중 이미지 업로드 state
   const [fileList, setFileList] = useState([]);
-
+  // 일기작성 state
+  const [ctnt, setCtnt] = useState("");
   // const handleCancel = () => setPreviewOpen(false);
-
-  const handleChange = ({ fileList }) => {
+  // 이미지 업로드 핸들러
+  const handleImgUpload = ({ fileList }) => {
     if (fileList.length > 5) {
       fileList = fileList.slice(0, 5); // 최대 5개의 파일만 유지
     }
     setFileList(fileList);
   };
-  const handleRemove = file => {
+  // 이미지 삭제 핸들러
+  const handleImgRemove = file => {
     const newFileList = fileList.filter(item => item.uid !== file.uid);
     setFileList(newFileList);
   };
-
+  // 이미지 업로드 버튼 디자인
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -44,11 +53,19 @@ const DiaryWrite = () => {
     </div>
   );
 
-  // 메모
-  const [value, setValue] = useState("");
-
   // 글 작성 후 확인 버튼 클릭(diary POST)
-  const handleConfirm = () => {};
+  const handleConfirm = async e => {
+    e.preventDefault();
+    try {
+      const postData = await postDiary(pic, title, ctnt);
+    } catch (err) {
+      console.log("다이어리글작성에러", err);
+    }
+    console.log("확인버튼 클릭했어요");
+  };
+  const onFinish = values => {
+    console.log("에휴");
+  };
   return (
     <>
       <ConfigProvider
@@ -60,12 +77,16 @@ const DiaryWrite = () => {
           },
         }}
       >
-        <Form>
+        <Form onFinish={onFinish}>
           {/* 일기 제목 section */}
           <DiaryWriteFir>
             <DiaryWriteTxt>일기 제목</DiaryWriteTxt>
             <Form.Item>
-              <Input placeholder="제목을 입력해 주세요." />
+              <Input
+                placeholder="제목을 입력해 주세요."
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+              />
             </Form.Item>
           </DiaryWriteFir>
           {/* 사진 첨부 section */}
@@ -79,12 +100,13 @@ const DiaryWrite = () => {
             </DiaryWriteTxt>
             <Form.Item>
               <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                // 이미지 업로드할 경로
+                action="http://localhost:3000/todo"
                 listType="picture-card"
                 fileList={fileList}
-                onChange={handleChange}
                 maxCount={5}
-                onRemove={handleRemove}
+                onChange={handleImgUpload}
+                onRemove={handleImgRemove}
                 onPreview={() => false} // 이미지 미리보기 비활성화
                 showPreviewIcon={false}
               >
@@ -106,8 +128,8 @@ const DiaryWrite = () => {
             <Form.Item>
               <TextArea
                 placeholder="일기 내용을 작성해 주세요."
-                value={value}
-                onChange={e => setValue(e.target.value)}
+                value={ctnt}
+                onChange={e => setCtnt(e.target.value)}
               />
             </Form.Item>
           </DiaryWriteFir>
@@ -115,7 +137,7 @@ const DiaryWrite = () => {
           <PageBtnWrap>
             <li>
               {/* 버튼 클릭 시 해당 detail 페이지로 이동 필요 */}
-              <button type="submit" onClick={() => handleConfirm()}>
+              <button type="submit" onClick={e => handleConfirm(e)}>
                 확인
               </button>
             </li>
