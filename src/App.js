@@ -29,7 +29,7 @@ function App() {
           {/* 투두 */}
           <Route path="/todolist" element={<TodoList />} />
           <Route path="/todowrite" element={<TodoWrite />} />
-          <Route path="/todoedit" element={<TodoWriteEdit />} />
+          <Route path="/todoedit/:itodo" element={<TodoWriteEdit />} />
           {/* 마이플랜트 */}
           <Route path="/myplantlist" element={<MyPlantList />} />
           <Route path="/myplantwrite" element={<MyPlantWrite />} />

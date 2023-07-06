@@ -35,7 +35,7 @@ export const getTodayTodoList = async () => {
   try {
     const res = await axios.get("/api/todo");
     const data = res.data;
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -63,10 +63,9 @@ export const getTodayTodoList = async () => {
 // todo 캘린더 데이터 GET (전체 Todo리스트 보기)
 export const getTotalTodoList = async () => {
   try {
-    // const res = axios.get("/api/todo/list");
-    const res = axios.get("");
+    const res = axios.get("/api/todo/list");
     const data = (await res).data;
-    // console.log(data);
+    console.log("전체 투두리스트 보기", data);
     return data;
   } catch (err) {
     console.log(err);
@@ -122,5 +121,15 @@ export const postTodo = async data => {
     console.log("투두 post", result);
   } catch (err) {
     console.log(err);
+  }
+};
+// todo PUT
+export const putTodo = async data => {
+  try {
+    const res = await axios.put("/api/todo", data);
+    const result = res.data;
+    console.log("투두 PUT", result);
+  } catch (err) {
+    console.log("투두 PUT 에러", err);
   }
 };

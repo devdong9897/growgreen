@@ -6,7 +6,7 @@ import { WriteBtn } from "../style/ListLayout";
 import TodoListItem from "../components/TodoListItem";
 
 const TodoList = () => {
-  // 전체 투두 리스트 정보를 stat로 관리
+  // 전체 투두 리스트 정보를 state로 관리
   const [todoList, setTodoList] = useState([]);
   const getTodoList = async () => {
     try {

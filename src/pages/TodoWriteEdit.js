@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postTodo } from "../api/patchtodo";
+import { getTodayTodoList, postTodo } from "../api/patchtodo";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import moment from "moment/moment";
@@ -51,8 +51,22 @@ const TodoWrite = () => {
       console.log("myplant get err", err);
     }
   };
+  // TodoList GET
+  // 전체 투두 리스트 정보를 state로 관리
+  const [todoList, setTodoList] = useState([]);
+  const getTodoList = async () => {
+    try {
+      const data = await getTodayTodoList();
+      setTodoList(data);
+      console.log("투두리스트 데이터", data);
+      // data를 map을 사용해 각각의 객체로 분리
+    } catch (err) {
+      console.log("전체 투두리스트 에러 : ", err);
+    }
+  };
   useEffect(() => {
     getMyPlantList();
+    getTodoList();
   }, []);
   // 식물 선택 onChange 이벤트
   const handleMyPlantChange = (value, e) => {
@@ -60,13 +74,22 @@ const TodoWrite = () => {
     setIplant(myPlant.iplant);
   };
   // 투두 전송데이터 기본값
+  // const todoForm = {
+  //   iplant: 0,
+  //   ctnt: "",
+  //   deadlineTime: "",
+  //   deadlineDate: "",
+  //   repeatYn: 0,
+  //   repeatDay: [0],
+  // };
   const todoForm = {
-    iplant: 0,
-    ctnt: "",
-    deadlineTime: "",
-    deadlineDate: "",
-    repeatYn: 0,
-    repeatDay: [0],
+    itodo: todoList.itodo,
+    iplant: myPlantList.iplant,
+    ctnt: todoList.ctnt,
+    deadlineTime: todoList.deadlineTime,
+    deadlineDate: todoList.deadlineDate,
+    repeatYn: todoList.repeatYn,
+    repeatDay: todoList.repeatDay,
   };
   // 투두 정보 state로 관리
   const [postTodoData, setPostTodoData] = useState(todoForm);
@@ -229,9 +252,9 @@ const TodoWrite = () => {
       setCtntError("* 할일을 입력해주세요.");
       return;
     }
-    // console.log("updatedPostTodoData", updatedPostTodoData);
-    postTodo(updatedPostTodoData);
-    navigate("/todolist");
+    console.log("updatedPostTodoData", updatedPostTodoData);
+    // postTodo(updatedPostTodoData);
+    // navigate("/todolist");
   };
   // 모달창 이벤트
   const [isModalOpen, setIsModalOpen] = useState(false);

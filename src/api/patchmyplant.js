@@ -5,7 +5,7 @@ export const getPlants = async () => {
   try {
     const res = await axios.get("/api/plant");
     const data = res.data;
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -88,13 +88,12 @@ export const postPlants = async () => {
     const res = await axios.post("http://localhost:3000/todos");
     const data = res.data;
     console.log(data);
-    return data; 
+    return data;
   } catch (err) {
     console.log(err);
     return {};
   }
 };
-
 
 // 식물수정
 export const putPlants = async () => {
@@ -102,7 +101,7 @@ export const putPlants = async () => {
     const res = await axios.put("/api/plant");
     const data = res.data;
     console.log(data);
-  } catch (err) { 
+  } catch (err) {
     console.log(err);
     return {};
   }
