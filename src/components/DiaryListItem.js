@@ -9,7 +9,7 @@ import {
   DiaryLiItemName,
   DiaryLiItemText,
 } from "../style/ListLayout";
-import NoImage from "../noimage.jpg";
+import NoImage from "../assets/noimage.jpg";
 
 const DiaryListItem = ({ item }) => {
   // 이미지 없을 때 error처리
