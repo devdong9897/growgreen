@@ -51,10 +51,8 @@ export const getDiaryDetail = async idiary => {
 export const postDiary = async (_pic, _title, _ctnt) => {
   const data = {
     pic: _pic,
-    dto: {
-      title: _title,
-      ctnt: _ctnt,
-    },
+    title: _title,
+    ctnt: _ctnt,
   };
   try {
     // const res = await axios.post("/api/diary", data);

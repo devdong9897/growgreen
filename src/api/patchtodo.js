@@ -114,12 +114,12 @@ export const getTotalTodoList = async () => {
   }
 };
 // todo 수정 데이터 GET
-export const getTodoEdit = async (itodo, repeatYn) => {
+export const getTodoEdit = async itodo => {
   try {
-    const res = await axios.get(`/api/todo/upd/${itodo}?repeatYn=${repeatYn}`);
-    const data = res.data;
-    console.log("투두 수정데이터", data);
-    return data;
+    const res = await axios.get(`/api/todo/detail/${itodo}`);
+    const result = res.data;
+    console.log("투두 수정데이터", result);
+    return result;
   } catch (err) {
     console.log(err);
   }
