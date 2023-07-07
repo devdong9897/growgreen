@@ -27,7 +27,9 @@ const TodoWrite = () => {
   // myPlantList를 저장할 state
   const [myPlantList, setMyPlantList] = useState([]);
   // 식물 선택 option에 들어갈 값 state
-  const [selectMyPlant, getSelectMyPlant] = useState([]);
+  const [selectMyPlant, setSelectMyPlant] = useState([]);
+  // 식물 선택 option값이 있는지 체크 state
+  const [isSelectOption, setIsSelectOption] = useState(null);
   // iplant(PK값) 보관할 state
   const [iplant, setIplant] = useState(0);
   // myPlant GET
@@ -45,7 +47,7 @@ const TodoWrite = () => {
         };
         return arrData;
       });
-      getSelectMyPlant(getPlantArr);
+      setSelectMyPlant(getPlantArr);
     } catch (err) {
       console.log("myplant get err", err);
     }
@@ -56,6 +58,7 @@ const TodoWrite = () => {
   // 식물 선택 onChange 이벤트
   const handleMyPlantChange = (value, e) => {
     const myPlant = selectMyPlant.find(item => item.value === value);
+    setIsSelectOption(value);
     setIplant(myPlant.iplant);
   };
   // 투두 전송데이터 기본값
@@ -69,125 +72,34 @@ const TodoWrite = () => {
   };
   // 투두 정보 state로 관리
   const [postTodoData, setPostTodoData] = useState(todoForm);
-  // 현재 postTodoData를 새로운 객체로 생성
-  const updatedPostTodoData = { ...postTodoData };
+  // console.log("포스트투두데이터스테이트", postTodoData);
   // 날짜 선택 state
   // 날짜 선택(날짜 포맷을 dateFormat 형식으로 변환)
   const handleDateChange = (value, dateString) => {
     // console.log("Formatted Selected Time: ", dateString);
     const selectedDate = moment(dateString).format("YYYY-MM-DD");
-    const updateDate = { ...updatedPostTodoData, deadlineDate: selectedDate };
+    const updateDate = { ...postTodoData, deadlineDate: selectedDate };
     setPostTodoData(updateDate);
   };
+  // 시간 00시 ~ 23시까지 출력
+  const deadlineTimeList = Array.from({ length: 24 }, (item, index) => {
+    const hour = index.toString().padStart(2, "0");
+    return {
+      value: `${hour}:00`,
+      label: `${hour}:00`,
+    };
+  });
   // 시간 선택 state
-  const deadlineTimeList = [
-    {
-      value: "00:00",
-      label: "00:00",
-    },
-    {
-      value: "01:00",
-      label: "01:00",
-    },
-    {
-      value: "02:00",
-      label: "02:00",
-    },
-    {
-      value: "03:00",
-      label: "03:00",
-    },
-    {
-      value: "04:00",
-      label: "04:00",
-    },
-    {
-      value: "05:00",
-      label: "05:00",
-    },
-    {
-      value: "06:00",
-      label: "06:00",
-    },
-    {
-      value: "07:00",
-      label: "07:00",
-    },
-    {
-      value: "08:00",
-      label: "08:00",
-    },
-    {
-      value: "09:00",
-      label: "09:00",
-    },
-    {
-      value: "10:00",
-      label: "10:00",
-    },
-    {
-      value: "11:00",
-      label: "11:00",
-    },
-    {
-      value: "12:00",
-      label: "12:00",
-    },
-    {
-      value: "13:00",
-      label: "13:00",
-    },
-    {
-      value: "14:00",
-      label: "14:00",
-    },
-    {
-      value: "15:00",
-      label: "15:00",
-    },
-    {
-      value: "16:00",
-      label: "16:00",
-    },
-    {
-      value: "17:00",
-      label: "17:00",
-    },
-    {
-      value: "18:00",
-      label: "18:00",
-    },
-    {
-      value: "19:00",
-      label: "19:00",
-    },
-    {
-      value: "20:00",
-      label: "20:00",
-    },
-    {
-      value: "21:00",
-      label: "21:00",
-    },
-    {
-      value: "22:00",
-      label: "22:00",
-    },
-    {
-      value: "23:00",
-      label: "23:00",
-    },
-  ];
   const [postDeadlineTime, setPostDeadlineTime] = useState(deadlineTimeList);
   const handleChange = value => {
     const selectTime = value.value;
     // console.log("시간 선택", selectTime);
-    const updateTime = { ...updatedPostTodoData, deadlineTime: selectTime };
+    const updateTime = { ...postTodoData, deadlineTime: selectTime };
     setPostTodoData(updateTime);
   };
   // 할 일 state
   const [value, setValue] = useState("");
-  updatedPostTodoData.ctnt = value;
+  postTodoData.ctnt = value;
   // 반복여부(checkbox) state
   const [checkedValues, setCheckedValues] = useState([]);
   const [isNoneChecked, setIsNoneChecked] = useState(true);
@@ -204,33 +116,46 @@ const TodoWrite = () => {
   // checkbox에 따라 repeatYn, repeatDay값 변화
   // 없음에 체크되어 있을 때 반복 여부 0, 반복 날짜 null
   if (isNoneChecked) {
-    updatedPostTodoData.repeatYn = 0;
-    updatedPostTodoData.repeatDay = [];
+    postTodoData.repeatYn = 0;
+    postTodoData.repeatDay = [];
   } else {
     // 아니면 반복 여부 1, 선택된 체크박스 value값 전달
-    updatedPostTodoData.repeatYn = 1;
-    updatedPostTodoData.repeatDay = checkedValues.map(Number).sort();
+    postTodoData.repeatYn = 1;
+    postTodoData.repeatDay = checkedValues.map(Number).sort();
   }
+  // 식물 미선택 시 출력되는 문장 state
+  const [selectError, setSelectError] = useState("");
   // 내용 미입력시 출력되는 문장 state
   const [dateError, setDateError] = useState("");
   const [ctntError, setCtntError] = useState("");
+  // 체크박스 미선택시 출력되는 문장 state
+  const [ischkError, setIschkError] = useState("");
   // 글 작성 후 확인 버튼 클릭(todo POST)
   const handleConfirm = e => {
     e.preventDefault();
-    updatedPostTodoData.iplant = iplant;
-    if (
-      !updatedPostTodoData.deadlineDate ||
-      !updatedPostTodoData.deadlineTime
-    ) {
+    postTodoData.iplant = iplant;
+    // 식물 미선택 시 retrun
+    if (isSelectOption === null) {
+      setSelectError("* 식물을 선택해주세요.");
+      return;
+    }
+    // 날짜, 시간 미입력 시 return
+    if (!postTodoData.deadlineDate || !postTodoData.deadlineTime) {
       setDateError("* 날짜와 시간을 선택해주세요.");
       return;
     }
-    if (!updatedPostTodoData.ctnt) {
-      setCtntError("* 할일을 입력해주세요.");
+    // 할일 미입력 시 retrun
+    if (!postTodoData.ctnt) {
+      setCtntError("* 할 일을 입력해주세요.");
       return;
     }
-    // console.log("updatedPostTodoData", updatedPostTodoData);
-    postTodo(updatedPostTodoData);
+    // 반복 여부 미선택 시 return
+    if (!isNoneChecked && (!checkedValues || checkedValues.length === 0)) {
+      setIschkError("* 반복여부를 선택해주세요.");
+      return;
+    }
+    // console.log("updatedPostTodoData", postTodoData);
+    postTodo(postTodoData);
     navigate("/todolist");
   };
   return (
@@ -247,7 +172,11 @@ const TodoWrite = () => {
         <Form.Item>
           {/* 식물 선택 section */}
           <TodoWriteFir>
-            <TodoWriteTxt>식물 선택</TodoWriteTxt>
+            <TodoWriteTxt>
+              식물 선택
+              {/* 식물 미선택 시 에러메세지 출력 */}
+              {selectError && <p>{selectError}</p>}
+            </TodoWriteTxt>
             <Select
               placeholder="원하는 반려 식물을 선택해 주세요."
               allowClear
@@ -301,7 +230,11 @@ const TodoWrite = () => {
         <Form.Item>
           {/* 반복여부 section */}
           <TodoWriteFir>
-            <TodoWriteTxt>반복여부</TodoWriteTxt>
+            <TodoWriteTxt>
+              반복여부
+              {/* 반복여부 미선택 시 에러메세지 출력 */}
+              {ischkError && <p>{ischkError}</p>}
+            </TodoWriteTxt>
             <Checkbox
               checked={isNoneChecked}
               onChange={handleNoneCheckboxChange}

@@ -64,7 +64,7 @@ const DiaryWrite = () => {
     console.log("확인버튼 클릭했어요");
   };
   const onFinish = values => {
-    console.log("에휴");
+    console.log("완료됐어요");
   };
   return (
     <>

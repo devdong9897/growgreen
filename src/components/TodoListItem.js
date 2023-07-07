@@ -22,13 +22,7 @@ const TodoListItem = ({ item, toggleItem }) => {
     <>
       <ListItem>
         {/* Todo 수정 버튼 */}
-        {/*
-				 문제 : 
-				 1. todolist에서 edit 페이지에 접근하기 위해서는 itodo와 repeatYn 값이 필요함 
-				 2. todolist에서 출력되는 데이터에는 repeatYn이 없기 때문에 undefinded가 나옴
-				 3. App.js의 라우터에는 path="/todoedit/:itodo"로 작성되어있음.
-				 */}
-        <Link to={`/todoedit/${item.itodo}?repeatYn=${item.repeatYn}`} />
+        <Link to={`/todoedit/${item.itodo}`} />
         <ItemLeft>
           {/* switch */}
           <ConfigProvider
