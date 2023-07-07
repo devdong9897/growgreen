@@ -85,8 +85,8 @@ const TodoWrite = () => {
   const deadlineTimeList = Array.from({ length: 24 }, (item, index) => {
     const hour = index.toString().padStart(2, "0");
     return {
-      value: `${hour}:00`,
-      label: `${hour}:00`,
+      value: `${hour}:00:00`,
+      label: `${hour}:00:00`,
     };
   });
   // 시간 선택 state
