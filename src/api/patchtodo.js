@@ -117,9 +117,9 @@ export const getTotalTodoList = async () => {
 export const getTodoEdit = async itodo => {
   try {
     const res = await axios.get(`/api/todo/detail/${itodo}`);
-    const data = res.data;
-    console.log("투두 수정데이터", data);
-    return data;
+    const result = res.data;
+    console.log("투두 수정데이터", result);
+    return result;
   } catch (err) {
     console.log(err);
   }
