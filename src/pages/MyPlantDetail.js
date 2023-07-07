@@ -26,8 +26,9 @@ const MyPlantDetail = () => {
     setIsModalOpen(false);
   };
 
-  // Detail리스트 state관리
+  // detailInfo 상태 초기값 추가
   const [detailInfo, setDetailInfo] = useState({});
+
   const getDetailData = async () => {
     try {
       const data = await getDetail(iplant);
@@ -42,40 +43,40 @@ const MyPlantDetail = () => {
     getDetailData();
   }, []);
 
-
+  const [plantPhotoData, setPlantPhotoData] = useState(null);
+  
   return (
     <>
       <MyPlantDetailWrap>
         <MyPlantDetailTop>
           <MyPlantDetailImage>
-            <img src="https://via.placeholder.com/500" alt="식물사진" />
+            <img
+              src={`http://192.168.0.144:5005/imgs/plant/${detailInfo.plantPic}`}
+              alt="식물사진"
+            />
           </MyPlantDetailImage>
           <MyPlantDetailTitle>
             <div>
-              <span>식물 종류{detailInfo.nm}</span>
+              <span>
+                식물종류
+                <br />
+                {detailInfo.nm}
+              </span>
 
-              <p>식물 별명{detailInfo.nickNm}</p>
+              <p>{detailInfo.nickNm}</p>
             </div>
             <div>
               <span>데려온 날짜</span>
-              <p>2023-06-18</p>
+              <p>{detailInfo.onDate}</p>
             </div>
           </MyPlantDetailTitle>
         </MyPlantDetailTop>
         <MyPlantDetailContents>
           <span>메모</span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          <p>{detailInfo.ctnt}</p>
           <PageBtnWrap>
             <li>
-              <Link to="/myplantedit">수정</Link>
+              <Link to={`/myplantedit/${iplant}`}>수정</Link>
             </li>
             <li>
               <button onClick={showModal}>삭제</button>

@@ -5,14 +5,14 @@ import MyPlantListItem from "../components/MyPlantListItem";
 import { getPlants, postPlants } from "../api/patchmyplant";
 
 const MyPlantList = () => {
+  // MyPlant 리스트 정보 state로 관리
   const [list, setList] = useState([]);
-
   const getList = async () => {
     try {
       const data = await getPlants();
       setList(data);
     } catch (err) {
-      console.log(err);
+      console.log("플랜트 리스트 에러 : ", err);
     }
   };
 
@@ -26,7 +26,6 @@ const MyPlantList = () => {
         {list.map((item, index) => (
           <React.Fragment key={index}>
             <MyPlantListItem item={item} />
-            <Link to={`/myplantedit/${item.id}`}>수정</Link>
           </React.Fragment>
         ))}
       </ul>
