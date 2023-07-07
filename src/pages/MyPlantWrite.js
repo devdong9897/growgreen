@@ -69,6 +69,7 @@ const MyPlantWrite = () => {
   const [formErrors, setFormErrors] = useState({});
 
   const handleConfirm = () => {
+    // 식물 종류가 입력되지 않았을 때 에러 처리
     const errors = {};
     if (!writeData.nm) {
       errors.nm = "* 식물 종류를 작성해주세요.";
@@ -90,6 +91,34 @@ const MyPlantWrite = () => {
     }));
   };
 
+  // 식물 이름
+  const onFinish = values => {
+    console.log(fileList);
+    values.onDate = moment(values.onDate).format("YYYY-MM-DD");
+    // dto 데이터
+    const dto = {
+      nm: values.nm,
+      nickNm: values.nickNm,
+      onDate: values.onDate,
+      ctnt: values.ctnt,
+    };
+
+    // 이미지 업로드
+    const formData = new FormData();
+    formData.append("img", fileList[0]?.originFileObj);
+    // formData.append("dto", JSON.stringify(dto));
+    formData.append(
+      "dto",  //data pk명
+      new Blob([JSON.stringify(dto)], {
+        type: "application/json",
+      }),
+    );
+
+    postPlants(formData);
+  };
+  const onFinishFailed = errorInfo => {
+    console.log("Failed:", errorInfo);
+  };
   return (
     <>
       <ConfigProvider
@@ -101,11 +130,16 @@ const MyPlantWrite = () => {
           },
         }}
       >
-        <Form>
+        <Form
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          initialValues={{ onDate: dayjs(nowFormatDate, dateFormat) }}
+        >
           {/* 식물 종류 */}
           <MyPlantWriteFir>
             <MyPlantWriteTxt>식물 종류</MyPlantWriteTxt>
             <Form.Item
+              name="nm"
               validateStatus={formErrors.nm ? "error" : ""}
               help={
                 formErrors.nm ? (
@@ -119,19 +153,21 @@ const MyPlantWrite = () => {
           {/* 식물 애칭 */}
           <MyPlantWriteFir>
             <MyPlantWriteTxt>식물 애칭</MyPlantWriteTxt>
-            <Form.Item>
+            <Form.Item name="nickNm">
               <Input placeholder="반려 식물의 애칭을 작성해 주세요." />
             </Form.Item>
           </MyPlantWriteFir>
           {/* 데려온 날짜 */}
           <MyPlantWriteFir>
             <MyPlantWriteTxt>데려온 날짜</MyPlantWriteTxt>
-            <DatePicker
-              defaultValue={dayjs(nowFormatDate, dateFormat)}
-              onChange={(date, dateString) =>
-                handleFormChange("onDate", dateString)
-              }
-            />
+            <Form.Item name="onDate">
+              <DatePicker
+              // defaultValue={dayjs(nowFormatDate, dateFormat)}
+              // onChange={(date, dateString) =>
+              //   handleFormChange("onDate", dateString)
+              // }
+              />
+            </Form.Item>
           </MyPlantWriteFir>
           {/* 식물 사진 */}
           <MyPlantWriteFir>
@@ -142,15 +178,17 @@ const MyPlantWrite = () => {
                 가능합니다.
               </p>
             </MyPlantWriteTxt>
-            <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              listType="picture-card"
-              fileList={fileList}
-              onPreview={handlePreview}
-              onChange={handleChange}
-            >
-              {fileList.length === 0 && uploadButton}
-            </Upload>
+            <Form.Item name="img">
+              <Upload
+                // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                listType="picture-card"
+                fileList={fileList}
+                onPreview={handlePreview}
+                onChange={handleChange}
+              >
+                {fileList.length === 0 && uploadButton}
+              </Upload>
+            </Form.Item>
             <Modal
               open={previewOpen}
               title={previewTitle}
@@ -163,11 +201,13 @@ const MyPlantWrite = () => {
           {/* 메모 */}
           <MyPlantWriteFir>
             <MyPlantWriteTxt>메모</MyPlantWriteTxt>
-            <TextArea
-              value={value}
-              onChange={e => setValue(e.target.value)}
-              placeholder="메모를 입력해주세요."
-            />
+            <Form.Item name="ctnt">
+              <TextArea
+                value={value}
+                onChange={e => setValue(e.target.value)}
+                placeholder="메모를 입력해주세요."
+              />
+            </Form.Item>
           </MyPlantWriteFir>
           {/* 확인, 취소 버튼 section */}
           <PageBtnWrap>
