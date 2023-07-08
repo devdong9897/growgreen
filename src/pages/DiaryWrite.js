@@ -67,6 +67,9 @@ const DiaryWrite = () => {
     if (!writeData.title) {
       errors.title = "* 일기 제목을 작성해주세요.";
     }
+    if (!writeData.title) {
+      errors.title = "* 일기 제목을 작성해주세요.";
+    }
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
@@ -75,16 +78,17 @@ const DiaryWrite = () => {
     // postDiary(writeData);
   };
   const onFinish = values => {
+    console.log("values : ", values);
     console.log(fileList);
-    // values.onDate = moment(values.onDate).format("YYYY-MM-DD");
     // dto 데이터
     const dto = {
       title: values.title,
       ctnt: values.ctnt,
     };
+    console.log("dto", dto);
     // 이미지 업로드
     const formData = new FormData();
-    formData.append("img", fileList[0]?.originFileObj);
+    formData.append("pic", fileList[0]?.originFileObj);
     // formData.append("dto", JSON.stringify(dto));
     formData.append(
       "dto", //data pk명
@@ -93,8 +97,9 @@ const DiaryWrite = () => {
       }),
     );
 
-    console.log(writeData);
-    // postDiary(writeData);
+    console.log("전송", formData);
+    // postDiary(formData);
+    // navigate("/diarylist");
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -137,6 +142,7 @@ const DiaryWrite = () => {
             </DiaryWriteTxt>
             <Form.Item>
               <Upload
+                name="photos"
                 // 이미지 업로드할 경로
                 // action="http://localhost:3000/todo"
                 listType="picture-card"
@@ -162,7 +168,7 @@ const DiaryWrite = () => {
           <DiaryWriteFir>
             {/* 일기 작성 section */}
             <DiaryWriteTxt>일기 작성</DiaryWriteTxt>
-            <Form.Item>
+            <Form.Item name="ctnt">
               <TextArea
                 placeholder="일기 내용을 작성해 주세요."
                 value={ctnt}
@@ -174,9 +180,8 @@ const DiaryWrite = () => {
           <PageBtnWrap>
             <li>
               {/* 버튼 클릭 시 해당 detail 페이지로 이동 필요 */}
-              <button type="submit" onClick={e => handleConfirm(e)}>
-                확인
-              </button>
+              {/* <button type="submit" onClick={e => handleConfirm(e)}> */}
+              <button type="submit">확인</button>
             </li>
             <li>
               <button type="submit" onClick={() => navigate("/diarylist")}>
