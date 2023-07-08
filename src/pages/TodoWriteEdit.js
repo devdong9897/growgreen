@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getTodayTodoList, getTodoEdit, putTodo } from "../api/patchtodo";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { getTodoEdit, putTodo, deleteTodo } from "../api/patchtodo";
 import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import moment from "moment/moment";
 import {
   Form,
   Select,
@@ -22,6 +20,7 @@ import { PageBtnWrap } from "../style/Components";
 // dayjs.extend(customParseFormat);
 
 const TodoWrite = () => {
+  // 쿼리스트링 get
   const [form] = Form.useForm();
   // 화면이동
   const navigate = useNavigate();
@@ -220,9 +219,14 @@ const TodoWrite = () => {
   const showModal = () => {
     setIsModalOpen(true);
   };
+  // 삭제 버튼 클릭
   const handleOk = () => {
-    setIsModalOpen(false);
+    // console.log(itodo);
+    deleteTodo(itodo);
+    navigate("/todolist");
+    // setIsModalOpen(false);
   };
+  // 취소 버튼 클릭
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -311,15 +315,6 @@ const TodoWrite = () => {
             />
           </TodoWriteFir>
         </Form.Item>
-
-        {/* {
-          <span>
-            isNoneChecked :{" "}
-            {isNoneChecked ? <span>true</span> : <span>false</span>} <br />
-          </span>
-        }
-        {checkedValues ? <span>{checkedValues} true</span> : <span>false</span>} */}
-
         {/* 반복여부 section */}
         <TodoWriteFir>
           <TodoWriteTxt>

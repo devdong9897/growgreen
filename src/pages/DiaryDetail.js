@@ -31,8 +31,8 @@ const DiaryDetail = () => {
       setDiaryPhotoData(dataParse);
       // 다이어리 디테일 원본 데이터
       setDiaryDetailData(idiaryData);
-      console.log("다이어리 디테일 데이터", idiaryData);
-      console.log("다이어리 사진 데이터", dataParse);
+      // console.log("다이어리 디테일 데이터", idiaryData);
+      // console.log("다이어리 사진 데이터", dataParse);
     } catch (err) {
       console.log("다이어리 디테일 에러 : ", err);
     }
