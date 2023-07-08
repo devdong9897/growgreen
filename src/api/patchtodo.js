@@ -144,3 +144,13 @@ export const putTodo = async data => {
     console.log("투두 PUT 에러", err);
   }
 };
+// todo DELETE
+export const deleteTodo = async itodo => {
+  try {
+    const res = await axios.delete(`/api/todo?itodo=${itodo}`);
+    const result = res.data;
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
