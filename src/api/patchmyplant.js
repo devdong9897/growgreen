@@ -123,9 +123,9 @@ export const deletePlants = async iplant => {
       data: iplant,
     });
     const data = res.data;
-    return data; 
+    return data;
   } catch (err) {
     console.log(err);
-    return {}; 
+    return {};
   }
 };

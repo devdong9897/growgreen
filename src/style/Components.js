@@ -153,7 +153,11 @@ export const Wrap = styled.div`
   /* 배경 색 동적으로 변경 */
   background: ${({ theme }) => theme.backgroundColor};
 `;
-export const Contents = styled.div``;
+export const Contents = styled.div`
+  & > div {
+    overflow-y: scroll;
+  }
+`;
 // 퀵메뉴
 export const QuickMenuWrap = styled.ul`
   display: flex;

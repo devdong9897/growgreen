@@ -95,6 +95,9 @@ export const TodoWriteFir = styled.div`
       &:last-of-type {
         margin-right: 0;
       }
+      .ant-form-item {
+        margin-bottom: 0;
+      }
       .ant-picker {
         height: ${height.inputHeight};
         padding: 0 15px;
@@ -132,6 +135,14 @@ export const TodoWriteFir = styled.div`
       &:last-of-type {
         margin-right: 0;
       }
+    }
+  }
+`;
+export const TodoEditChkWrap = styled.div`
+  & > .ant-form-item {
+    margin-bottom: 0;
+    .ant-form-item-control-input {
+      min-height: auto;
     }
   }
 `;

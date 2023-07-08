@@ -55,7 +55,6 @@ export const postDiary = async _data => {
         "Content-Type": "multipart/form-data",
       },
     });
-    // const res = await axios.post("http://localhost:3000/todo", data);
     const data = res.data;
     console.log("다이어리 post", data);
     return data;

@@ -13,7 +13,11 @@ import {
 } from "antd";
 import { getPlants } from "../api/patchmyplant";
 
-import { TodoWriteFir, TodoWriteTxt } from "../style/WriteLayout";
+import {
+  TodoEditChkWrap,
+  TodoWriteFir,
+  TodoWriteTxt,
+} from "../style/WriteLayout";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
 
@@ -253,14 +257,14 @@ const TodoWrite = () => {
           }
         }
       >
-        <Form.Item>
-          {/* 식물 선택 section */}
-          <TodoWriteFir>
-            <TodoWriteTxt>
-              식물 선택
-              {/* 식물 미선택 시 에러메세지 출력 */}
-              {selectError && <p>{selectError}</p>}
-            </TodoWriteTxt>
+        {/* 식물 선택 section */}
+        <TodoWriteFir>
+          <TodoWriteTxt>
+            식물 선택
+            {/* 식물 미선택 시 에러메세지 출력 */}
+            {selectError && <p>{selectError}</p>}
+          </TodoWriteTxt>
+          <Form.Item>
             <Select
               placeholder="원하는 반려 식물을 선택해 주세요."
               allowClear
@@ -268,8 +272,8 @@ const TodoWrite = () => {
               value={iplant}
               disabled
             />
-          </TodoWriteFir>
-        </Form.Item>
+          </Form.Item>
+        </TodoWriteFir>
         {/* 날짜 선택 section */}
         <TodoWriteFir>
           <TodoWriteTxt>
@@ -304,17 +308,21 @@ const TodoWrite = () => {
             </li>
           </ul>
         </TodoWriteFir>
-        <Form.Item>
-          {/* 할 일 section */}
-          <TodoWriteFir>
-            <TodoWriteTxt>할 일{ctntError && <p>{ctntError}</p>}</TodoWriteTxt>
-            <TextArea
-              value={ctnt}
-              onChange={handleInputChange}
-              placeholder="할 일을 입력해주세요."
-            />
-          </TodoWriteFir>
-        </Form.Item>
+        <TodoWriteFir>
+          <Form.Item>
+            {/* 할 일 section */}
+            <TodoWriteFir>
+              <TodoWriteTxt>
+                할 일{ctntError && <p>{ctntError}</p>}
+              </TodoWriteTxt>
+              <TextArea
+                value={ctnt}
+                onChange={handleInputChange}
+                placeholder="할 일을 입력해주세요."
+              />
+            </TodoWriteFir>
+          </Form.Item>
+        </TodoWriteFir>
         {/* 반복여부 section */}
         <TodoWriteFir>
           <TodoWriteTxt>
@@ -322,21 +330,23 @@ const TodoWrite = () => {
             {/* 반복여부 미선택 시 에러메세지 출력 */}
             {ischkError && <p>{ischkError}</p>}
           </TodoWriteTxt>
-          <Form.Item name="isnonechecked">
-            <Checkbox
-              checked={isNoneChecked}
-              onChange={handleNoneCheckboxChange}
-            >
-              없음
-            </Checkbox>
-          </Form.Item>
-          <Form.Item>
-            <Checkbox.Group
-              value={checkedValues}
-              options={dayChekOptions}
-              onChange={handleCheckboxChange}
-            />
-          </Form.Item>
+          <TodoEditChkWrap>
+            <Form.Item name="isnonechecked">
+              <Checkbox
+                checked={isNoneChecked}
+                onChange={handleNoneCheckboxChange}
+              >
+                없음
+              </Checkbox>
+            </Form.Item>
+            <Form.Item>
+              <Checkbox.Group
+                value={checkedValues}
+                options={dayChekOptions}
+                onChange={handleCheckboxChange}
+              />
+            </Form.Item>
+          </TodoEditChkWrap>
         </TodoWriteFir>
         {/* 수정, 삭제 버튼 section */}
         <PageBtnWrap>
