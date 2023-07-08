@@ -11,7 +11,7 @@ const DiaryWrite = () => {
   const { TextArea } = Input;
   // 화면이동
   const navigate = useNavigate();
-  // 이미지 첨부
+  // 이미지 업로드
   const getBase64 = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -19,20 +19,11 @@ const DiaryWrite = () => {
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
     });
-  // 미리보기 이미지(사용하지 않음)
-  // const [previewOpen, setPreviewOpen] = useState(false);
-  // const [previewImage, setPreviewImage] = useState("");
-  // const [previewTitle, setPreviewTitle] = useState("");
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [previewTitle, setPreviewTitle] = useState("");
 
-  // 사진하나첨부 state
-  const [pic, setPic] = useState("");
-  // 일기제목 state
-  const [title, setTitle] = useState("");
-  // 다중 이미지 업로드 state
-  const [fileList, setFileList] = useState([]);
-  // 일기작성 state
-  const [ctnt, setCtnt] = useState("");
-  // const handleCancel = () => setPreviewOpen(false);
+  const handleCancel = () => setPreviewOpen(false);
   // 이미지 업로드 핸들러
   const handleImgUpload = ({ fileList }) => {
     if (fileList.length > 5) {
@@ -52,19 +43,66 @@ const DiaryWrite = () => {
       <div>사진 업로드</div>
     </div>
   );
+  const WritePut = {
+    title: "",
+    ctnt: "",
+  };
+
+  const [writeData, setWriteData] = useState(WritePut);
+  // 내용 미 작성시 에러 처리
+  const [formErrors, setFormErrors] = useState({});
+  // 사진하나첨부 state
+  const [pic, setPic] = useState("");
+  // 다중 이미지 업로드 state
+  const [fileList, setFileList] = useState([]);
+  // 일기제목 state
+  // const [title, setTitle] = useState("");
+  // 일기작성 state
+  const [ctnt, setCtnt] = useState("");
 
   // 글 작성 후 확인 버튼 클릭(diary POST)
-  const handleConfirm = async e => {
-    e.preventDefault();
-    try {
-      const postData = await postDiary(pic, title, ctnt);
-    } catch (err) {
-      console.log("다이어리글작성에러", err);
+  const handleConfirm = () => {
+    // 일기에 대한 내용이 입력되지 않았을 때 에러 처리
+    const errors = {};
+    if (!writeData.title) {
+      errors.title = "* 일기 제목을 작성해주세요.";
     }
-    console.log("확인버튼 클릭했어요");
+    if (!writeData.title) {
+      errors.title = "* 일기 제목을 작성해주세요.";
+    }
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+    console.log(writeData);
+    // postDiary(writeData);
   };
   const onFinish = values => {
-    console.log("완료됐어요");
+    console.log("values : ", values);
+    console.log(fileList);
+    // dto 데이터
+    const dto = {
+      title: values.title,
+      ctnt: values.ctnt,
+    };
+    console.log("dto", dto);
+    // 이미지 업로드
+    const formData = new FormData();
+    formData.append("pic", fileList[0]?.originFileObj);
+    // formData.append("dto", JSON.stringify(dto));
+    formData.append(
+      "dto", //data pk명
+      new Blob([JSON.stringify(dto)], {
+        type: "application/json",
+      }),
+    );
+
+    console.log("전송", formData);
+    // postDiary(formData);
+    // navigate("/diarylist");
+  };
+  const onFinishFailed = errorInfo => {
+    console.log("Failed:", errorInfo);
   };
   return (
     <>
@@ -77,16 +115,20 @@ const DiaryWrite = () => {
           },
         }}
       >
-        <Form onFinish={onFinish}>
+        <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
           {/* 일기 제목 section */}
           <DiaryWriteFir>
             <DiaryWriteTxt>일기 제목</DiaryWriteTxt>
-            <Form.Item>
-              <Input
-                placeholder="제목을 입력해 주세요."
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-              />
+            <Form.Item
+              name="title"
+              validateStatus={formErrors.title ? "error" : ""}
+              help={
+                formErrors.title ? (
+                  <div style={{ color: "red" }}>{formErrors.title}</div>
+                ) : null
+              }
+            >
+              <Input placeholder="제목을 입력해 주세요." />
             </Form.Item>
           </DiaryWriteFir>
           {/* 사진 첨부 section */}
@@ -100,8 +142,9 @@ const DiaryWrite = () => {
             </DiaryWriteTxt>
             <Form.Item>
               <Upload
+                name="photos"
                 // 이미지 업로드할 경로
-                action="http://localhost:3000/todo"
+                // action="http://localhost:3000/todo"
                 listType="picture-card"
                 fileList={fileList}
                 maxCount={5}
@@ -113,19 +156,19 @@ const DiaryWrite = () => {
                 {fileList.length < 5 && uploadButton}
               </Upload>
             </Form.Item>
-            {/* <Modal
+            <Modal
               open={previewOpen}
               title={previewTitle}
               footer={null}
               onCancel={handleCancel}
             >
               <img alt="example" style={{ width: "100%" }} src={previewImage} />
-            </Modal> */}
+            </Modal>
           </DiaryWriteFir>
           <DiaryWriteFir>
             {/* 일기 작성 section */}
             <DiaryWriteTxt>일기 작성</DiaryWriteTxt>
-            <Form.Item>
+            <Form.Item name="ctnt">
               <TextArea
                 placeholder="일기 내용을 작성해 주세요."
                 value={ctnt}
@@ -137,9 +180,8 @@ const DiaryWrite = () => {
           <PageBtnWrap>
             <li>
               {/* 버튼 클릭 시 해당 detail 페이지로 이동 필요 */}
-              <button type="submit" onClick={e => handleConfirm(e)}>
-                확인
-              </button>
+              {/* <button type="submit" onClick={e => handleConfirm(e)}> */}
+              <button type="submit">확인</button>
             </li>
             <li>
               <button type="submit" onClick={() => navigate("/diarylist")}>

@@ -118,7 +118,7 @@ export const getTodoEdit = async itodo => {
   try {
     const res = await axios.get(`/api/todo/detail/${itodo}`);
     const result = res.data;
-    console.log("투두 수정데이터", result);
+    // console.log("투두 수정데이터", result);
     return result;
   } catch (err) {
     console.log(err);
@@ -129,7 +129,7 @@ export const postTodo = async data => {
   try {
     const res = await axios.post("/api/todo", data);
     const result = res.data;
-    console.log("투두 post", result);
+    // console.log("투두 post", result);
   } catch (err) {
     console.log(err);
   }
@@ -139,7 +139,7 @@ export const putTodo = async data => {
   try {
     const res = await axios.put("/api/todo", data);
     const result = res.data;
-    console.log("투두 PUT", result);
+    // console.log("투두 PUT", result);
   } catch (err) {
     console.log("투두 PUT 에러", err);
   }

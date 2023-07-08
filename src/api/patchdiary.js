@@ -48,19 +48,35 @@ export const getDiaryDetail = async idiary => {
   }
 };
 // diary POST
-export const postDiary = async (_pic, _title, _ctnt) => {
-  const data = {
-    pic: _pic,
-    title: _title,
-    ctnt: _ctnt,
-  };
+export const postDiary = async _data => {
   try {
-    // const res = await axios.post("/api/diary", data);
-    const res = await axios.post("http://localhost:3000/todo", data);
-    const result = res.data;
-    console.log("다이어리 post", result);
+    const res = await axios.post("/api/diary", _data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    // const res = await axios.post("http://localhost:3000/todo", data);
+    const data = res.data;
+    console.log("다이어리 post", data);
+    return data;
+  } catch (err) {
+    console.log(err);
+    return {
+      title: "에러발생 타이틀",
+      ctnt: "에러발생 내용",
+    };
+  }
+};
+// diary 다중 이미지 POST
+
+// diary PUT
+export const putDiary = async () => {
+  try {
+    const res = await axios.put("/api/diary");
+    const data = res.data;
+    console.log("다이어리 수정데이터");
+    return data;
   } catch (err) {
     console.log(err);
   }
 };
-// diary 다중 이미지 POST
