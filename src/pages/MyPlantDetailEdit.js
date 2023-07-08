@@ -13,7 +13,7 @@ const MyPlantDetailEdit = () => {
   const navigate = useNavigate();
 
   // 사진 업로드
-  const getBase64 = file =>
+  const getEditImg = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -29,7 +29,7 @@ const MyPlantDetailEdit = () => {
   const handleCancel = () => setPreviewOpen(false);
   const handlePreview = async file => {
     if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
+      file.preview = await getEditImg(file.originFileObj);
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
@@ -37,6 +37,7 @@ const MyPlantDetailEdit = () => {
       file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
     );
   };
+  // 파일 선택 변경에 대한 핸들러 함수
   const handleChange = ({ fileList }) => setFileList(fileList.slice(-1));
   const uploadButton = (
     <div>
@@ -48,6 +49,7 @@ const MyPlantDetailEdit = () => {
   // 메모
   const [value, setValue] = useState("");
   const { TextArea } = Input;
+
 
   return (
     <>

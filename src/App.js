@@ -35,7 +35,7 @@ function App() {
           <Route path="/myplantlist" element={<MyPlantList />} />
           <Route path="/myplantwrite" element={<MyPlantWrite />} />
           <Route path="/myplantdetail/:iplant" element={<MyPlantDetail />} />
-          <Route path="/myplantedit" element={<MyPlantDetailEdit />} />
+          <Route path="/myplantedit/:iplant" element={<MyPlantDetailEdit />} />
           {/* 다이어리 */}
           <Route path="/diary" element={<Navigate to="/diarylist" replace />} />
           <Route path="/diarylist" element={<DiaryList />} />

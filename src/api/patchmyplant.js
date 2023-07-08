@@ -70,7 +70,7 @@ export const getPlants = async () => {
 };
 
 // 특정 식물 가져오기
-export const getDetail = async (iplant) => {
+export const getDetail = async iplant => {
   try {
     const res = await axios.get(`/api/plant/${iplant}`);
     const data = res.data;
@@ -80,7 +80,6 @@ export const getDetail = async (iplant) => {
     return {};
   }
 };
-
 
 // 식물등록
 export const postPlants = async _data => {
@@ -108,11 +107,25 @@ export const postPlants = async _data => {
 // 식물수정
 export const putPlants = async () => {
   try {
-    const res = await axios.get("/api/plant");
+    const res = await axios.put("/api/plant");
     const data = res.data;
     return data;
   } catch (err) {
     console.log(err);
     return {};
+  }
+};
+
+// 식물삭제
+export const deletePlants = async iplant => {
+  try {
+    const res = await axios.delete("/api/plant", {
+      data: iplant,
+    });
+    const data = res.data;
+    return data; 
+  } catch (err) {
+    console.log(err);
+    return {}; 
   }
 };

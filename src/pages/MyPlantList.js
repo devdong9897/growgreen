@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { WriteBtn } from "../style/ListLayout";
 import MyPlantListItem from "../components/MyPlantListItem";
-import { getPlants, postPlants } from "../api/patchmyplant";
+import { getPlants } from "../api/patchmyplant";
 
 const MyPlantList = () => {
   // MyPlant 리스트 정보 state로 관리
   const [list, setList] = useState([]);
+
+  // list페이지 에러시 콘솔창 에러 출력
   const getList = async () => {
     try {
       const data = await getPlants();
@@ -24,9 +26,7 @@ const MyPlantList = () => {
     <>
       <ul>
         {list.map((item, index) => (
-          <React.Fragment key={index}>
-            <MyPlantListItem item={item} />
-          </React.Fragment>
+          <MyPlantListItem key={index} item={item} />
         ))}
       </ul>
       <WriteBtn>

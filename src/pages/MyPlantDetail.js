@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { ConfigProvider, Modal } from "antd";
 import "../style/modalstyle.css";
 import { mainColor } from "../style/GlobalStyle";
@@ -11,24 +11,32 @@ import {
   MyPlantDetailContents,
   MyPlantDetailImage,
 } from "../style/DetailLayout";
-import { getDetail } from "../api/patchmyplant";
+import { getDetail, deletePlants } from "../api/patchmyplant";
 
 const MyPlantDetail = () => {
   let { iplant } = useParams();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
+
+  const handleOk = async () => {
     setIsModalOpen(false);
+    try {
+      await deletePlants({ iplant });
+      navigate("/myplantlist");
+    } catch (err) {
+      console.log(err);
+    }
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  // detailInfo 상태 초기값 추가
   const [detailInfo, setDetailInfo] = useState({});
 
+  // 상세정보 화면에 표시
   const getDetailData = async () => {
     try {
       const data = await getDetail(iplant);
@@ -43,15 +51,13 @@ const MyPlantDetail = () => {
     getDetailData();
   }, []);
 
-  const [plantPhotoData, setPlantPhotoData] = useState(null);
-  
   return (
     <>
       <MyPlantDetailWrap>
         <MyPlantDetailTop>
           <MyPlantDetailImage>
             <img
-              src={`http://192.168.0.144:5005/imgs/plant/${detailInfo.plantPic}`}
+              src={`http://192.168.0.144:5005/imgs/plant/${iplant}/${detailInfo.plantPic}`}
               alt="식물사진"
             />
           </MyPlantDetailImage>
@@ -62,7 +68,6 @@ const MyPlantDetail = () => {
                 <br />
                 {detailInfo.nm}
               </span>
-
               <p>{detailInfo.nickNm}</p>
             </div>
             <div>
