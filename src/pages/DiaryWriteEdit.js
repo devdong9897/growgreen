@@ -16,7 +16,7 @@ const DiaryWriteEdit = () => {
   
 
   // 이미지 첨부
-  const getBase64 = file =>
+  const getWriteImg = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);

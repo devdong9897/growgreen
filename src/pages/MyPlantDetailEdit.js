@@ -6,11 +6,13 @@ import { PlusOutlined } from "@ant-design/icons";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
 import { useNavigate } from "react-router-dom";
+import { putPlants } from "../api/patchmyplant";
 
 const MyPlantDetailEdit = () => {
   const dateFormat = "YYYY/MM/DD";
 
   const navigate = useNavigate();
+  putPlants();
 
   // 사진 업로드
   const getEditImg = file =>
@@ -49,7 +51,6 @@ const MyPlantDetailEdit = () => {
   // 메모
   const [value, setValue] = useState("");
   const { TextArea } = Input;
-
 
   return (
     <>
@@ -130,7 +131,6 @@ const MyPlantDetailEdit = () => {
             placeholder="메모를 수정해주세요."
             value={value}
             onChange={e => setValue(e.target.value)}
-            autoSize={{ minRows: 3, maxRows: 5 }}
             style={{ width: "100%", paddingBottom: "148px" }}
           />
         </TodoWriteFir>
