@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import { PlusOutlined } from "@ant-design/icons";
@@ -40,9 +40,7 @@ const MyPlantWrite = () => {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
-    );
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
   };
   const handleChange = ({ fileList }) => setFileList(fileList.slice(-1));
   const uploadButton = (
@@ -84,13 +82,6 @@ const MyPlantWrite = () => {
     navigate("/myplantlist");
   };
 
-  const handleFormChange = (key, value) => {
-    setWriteData(prevData => ({
-      ...prevData,
-      [key]: value,
-    }));
-  };
-
   // 식물 이름
   const onFinish = values => {
     console.log(fileList);
@@ -108,7 +99,7 @@ const MyPlantWrite = () => {
     formData.append("img", fileList[0]?.originFileObj);
     // formData.append("dto", JSON.stringify(dto));
     formData.append(
-      "dto",  //data pk명
+      "dto", //data pk명
       new Blob([JSON.stringify(dto)], {
         type: "application/json",
       }),
@@ -119,6 +110,8 @@ const MyPlantWrite = () => {
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
+
+  
   return (
     <>
       <ConfigProvider
@@ -141,11 +134,7 @@ const MyPlantWrite = () => {
             <Form.Item
               name="nm"
               validateStatus={formErrors.nm ? "error" : ""}
-              help={
-                formErrors.nm ? (
-                  <div style={{ color: "red" }}>{formErrors.nm}</div>
-                ) : null
-              }
+              help={formErrors.nm && <div style={{ color: "red" }}>{formErrors.nm}</div>}
             >
               <Input placeholder="키우는 반려 식물 종류를 작성해주세요." />
             </Form.Item>
@@ -161,26 +150,17 @@ const MyPlantWrite = () => {
           <MyPlantWriteFir>
             <MyPlantWriteTxt>데려온 날짜</MyPlantWriteTxt>
             <Form.Item name="onDate">
-              <DatePicker
-              // defaultValue={dayjs(nowFormatDate, dateFormat)}
-              // onChange={(date, dateString) =>
-              //   handleFormChange("onDate", dateString)
-              // }
-              />
+              <DatePicker />
             </Form.Item>
           </MyPlantWriteFir>
           {/* 식물 사진 */}
           <MyPlantWriteFir>
             <MyPlantWriteTxt>
               식물 사진
-              <p>
-                * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드
-                가능합니다.
-              </p>
+              <p>* 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드 가능합니다.</p>
             </MyPlantWriteTxt>
             <Form.Item name="img">
               <Upload
-                // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                 listType="picture-card"
                 fileList={fileList}
                 onPreview={handlePreview}
