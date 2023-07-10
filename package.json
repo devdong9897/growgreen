@@ -55,5 +55,6 @@
     "eslint-plugin-react": "^7.32.2",
     "prettier": "^2.8.8",
     "sass": "^1.63.6"
-  }
+  },
+  "proxy": "http://192.168.0.144:5005"
 }

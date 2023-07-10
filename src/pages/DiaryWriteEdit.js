@@ -42,9 +42,8 @@ const DiaryWrite = () => {
 				5. 이미지 수정하지 않고 전송 시 fileList[0]?.originFileObj에 undefinded 출력됨
 				6. 이미지 수정하지 않고 전송 시 에러메세지 출력 안됨
 			*/
-      // let uploadForm = dataParse.map(item => ({
-      //   url: `http://192.168.0.144:5005/imgs/diaryPics/${paramIdiary}/${item}`,
-      // }));
+      //
+
       // 강제로 form 필드의 내용을 변경
       form.setFieldsValue({
         title: idiaryData.data.title,
@@ -56,11 +55,11 @@ const DiaryWrite = () => {
       setDiaryPhotoData(dataParse);
       // 사진 데이터를 다시 객체로 변환하여 fileList에 담는다
       // setFileList(uploadForm);
-      setFileList(dataParse);
+      // setFileList(dataParse);
       // 일기 작성
       setCtnt(idiaryData.data.ctnt);
       console.log("다이어리 디테일 데이터", idiaryData);
-      console.log("다이어리 사진 데이터", dataParse);
+      // console.log("다이어리 사진 데이터", dataParse);
       // console.log("객체로 변환", uploadForm);
     } catch (err) {
       console.log("다이어리 디테일 에러 : ", err);
@@ -185,7 +184,7 @@ const DiaryWrite = () => {
             <Form.Item>
               <Upload
                 // 이미지 업로드할 경로
-                action={`http://192.168.0.144:5005/imgs/diaryPics/${paramIdiary}`}
+                action={`/imgs/diaryPics/${paramIdiary}`}
                 listType="picture-card"
                 fileList={fileList}
                 maxCount={5}
