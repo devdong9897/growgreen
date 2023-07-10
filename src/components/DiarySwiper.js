@@ -23,7 +23,7 @@ const DiarySwiper = ({ diaryPhotoData }) => {
           diaryPhotoData.map((item, index) => (
             <SwiperSlide key={index}>
               <img
-                src={`http://192.168.0.144:5005/imgs/diaryPics/${paramIdiary}/${item}`}
+                src={`/imgs/diaryPics/${paramIdiary}/${item}`}
                 alt="사진"
                 onError={onImgError}
               />

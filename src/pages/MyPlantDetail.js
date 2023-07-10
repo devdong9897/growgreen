@@ -62,7 +62,7 @@ const MyPlantDetail = () => {
         <MyPlantDetailTop>
           <MyPlantDetailImage>
             <img
-              src={`http://192.168.0.144:5005/imgs/plant/${iplant}/${detailInfo.plantPic}`}
+              src={`/imgs/plant/${iplant}/${detailInfo.plantPic}`}
               alt={detailInfo.nickNm}
               onError={onImgError}
             />
