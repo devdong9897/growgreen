@@ -66,8 +66,6 @@ export const postDiary = async _data => {
     };
   }
 };
-// diary 다중 이미지 POST
-
 // diary PUT
 export const putDiary = async _data => {
   try {
@@ -81,5 +79,15 @@ export const putDiary = async _data => {
     return data;
   } catch (err) {
     console.log("다이어리 PUT", err);
+  }
+};
+// diary DELETE
+export const deleteDiary = async idiary => {
+  try {
+    const res = await axios.delete(`/api/diary?idiary=${idiary}`);
+    const result = res.data;
+    return result;
+  } catch (err) {
+    console.log(err);
   }
 };

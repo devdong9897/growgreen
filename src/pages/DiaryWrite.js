@@ -51,7 +51,7 @@ const DiaryWrite = () => {
   // 일기 제목 미작성시 에러 처리
   const [titleErrors, setTitleErrors] = useState("");
   // 이미지 미첨부시 에러 처리
-  const [picErrors, setPicErrors] = useState("");
+  // const [picErrors, setPicErrors] = useState("");
   // 일기 내용 미작성시 에러 처리
   const [ctntErrors, setCtntErrors] = useState("");
   // 글 작성 후 확인 버튼 클릭(diary POST)
@@ -62,9 +62,9 @@ const DiaryWrite = () => {
       return;
     }
     // 이미지 미첨부 시 에러 처리
-    if (fileList.length === 0) {
-      setPicErrors("* 사진을 첨부해주세요.");
-    }
+    // if (fileList.length === 0) {
+    //   setPicErrors("* 사진을 첨부해주세요.");
+    // }
     // 일기 내용 미작성 시 에러 처리
     if (values.ctnt === undefined || values.ctnt === "") {
       setCtntErrors("* 일기 내용을 입력해주세요.");
@@ -83,8 +83,6 @@ const DiaryWrite = () => {
     fileList.map(item => {
       formData.append("pics", item?.originFileObj);
     });
-    // formData.append("pics", fileList?.originFileObj);
-    // formData.append("dto", JSON.stringify(dto));
     formData.append(
       "dto", //data pk명
       new Blob([JSON.stringify(dto)], {
@@ -125,7 +123,7 @@ const DiaryWrite = () => {
             <DiaryWriteTxt>
               사진 첨부
               {/* 일기 제목 미입력 시 에러메세지 출력 */}
-              {picErrors && <p>{picErrors}</p>}
+              {/* {picErrors && <p>{picErrors}</p>} */}
               <p>
                 * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드
                 가능합니다.

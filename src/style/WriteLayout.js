@@ -1,5 +1,30 @@
 import styled from "@emotion/styled";
-import { subColor, height } from "./GlobalStyle";
+import { subColor, height, borderColor } from "./GlobalStyle";
+
+// 수정 페이지에서 이미지 업로드 불가능
+export const UploadDisabled = styled.div`
+  .ant-upload-list {
+    .ant-upload-list-item-container {
+      .ant-upload-list-item {
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          background: ${borderColor.borderGray};
+          width: 100%;
+          height: 100%;
+          border-radius: 6px;
+          cursor: no-drop;
+        }
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+`;
 
 // MyPlant
 export const MyPlantWriteFir = styled.div`
