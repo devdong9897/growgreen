@@ -27,7 +27,6 @@ const DiaryDetail = () => {
       const idiaryData = await getDiaryDetail(idiary);
       // 사진 데이터 (-> 전달되는 값 {}로 묶었을 때 undefinded 발생하는 이유 확인)
       let dataParse = idiaryData.pics.map(item => item);
-      dataParse.unshift(idiaryData.data.pic);
       setDiaryPhotoData(dataParse);
       // 다이어리 디테일 원본 데이터
       setDiaryDetailData(idiaryData);

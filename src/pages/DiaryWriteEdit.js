@@ -31,7 +31,6 @@ const DiaryWrite = () => {
       const idiaryData = await getDiaryDetail(idiary);
       // 사진 데이터 (-> 전달되는 값 {}로 묶었을 때 undefinded 발생하는 이유 확인)
       let dataParse = idiaryData.pics.map(item => item);
-      dataParse.unshift(idiaryData.data.pic);
       // Ant design Upload 컴포넌트 미리보기 화면 출력
       /*
 				0. 글 작성 시 이미지 첨부하지 않고 글 작성 하면 POST가 안됨

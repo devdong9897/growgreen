@@ -43,13 +43,6 @@ const DiaryWrite = () => {
       <div>사진 업로드</div>
     </div>
   );
-  // const WritePut = {
-  //   title: "",
-  //   ctnt: "",
-  // };
-  // const [writeData, setWriteData] = useState(WritePut);
-  // 사진하나첨부 state
-  // const [pic, setPic] = useState("");
   // 다중 이미지 업로드 state
   const [fileList, setFileList] = useState([]);
   // 일기작성 state
@@ -87,7 +80,10 @@ const DiaryWrite = () => {
     // console.log("dto", dto);
     // 이미지 업로드
     const formData = new FormData();
-    formData.append("pic", fileList[0]?.originFileObj);
+    fileList.map(item => {
+      formData.append("pics", item?.originFileObj);
+    });
+    // formData.append("pics", fileList?.originFileObj);
     // formData.append("dto", JSON.stringify(dto));
     formData.append(
       "dto", //data pk명
@@ -95,7 +91,6 @@ const DiaryWrite = () => {
         type: "application/json",
       }),
     );
-    // console.log("전송", formData);
     postDiary(formData);
     navigate("/diarylist");
   };
