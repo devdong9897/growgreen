@@ -9,20 +9,28 @@ import {
   MyPlantLiItemDate,
   ItemText,
 } from "../style/ListLayout";
+import NoImage from "../assets/noimage.jpg";
 
 const MyPlantListItem = ({ item }) => {
+  // 이미지 없을 때 error처리
+  const onImgError = e => {
+    e.target.src = NoImage;
+  };
   return (
     <>
-      
       <MyPlantLiItem>
         <Link to={`/myplantdetail/${item.iplant}`}>
           <MyPlantLiItemLeft>
-            <img src={`http://192.168.0.144:5005/imgs/plant/${item.iplant}/${item.plantPic}`} alt="" />
+            <img
+              src={`http://192.168.0.144:5005/imgs/plant/${item.iplant}/${item.plantPic}`}
+              alt={item.nm}
+              onError={onImgError}
+            />
           </MyPlantLiItemLeft>
           <MyPlantLiItemRight>
             <MyPlantLiItemName>
               <span>{item.nm}</span>
-              {item.nickNm} 
+              {item.nickNm}
             </MyPlantLiItemName>
             <MyPlantLiItemDate>{item.onDate}</MyPlantLiItemDate>
           </MyPlantLiItemRight>

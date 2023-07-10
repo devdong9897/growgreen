@@ -41,7 +41,7 @@ function App() {
           <Route path="/diarylist" element={<DiaryList />} />
           <Route path="/diarywrite" element={<DiaryWrite />} />
           <Route path="/diarydetail/:idiary" element={<DiaryDetail />} />
-          <Route path="/diaryedit" element={<DiaryWriteEdit />} />
+          <Route path="/diaryedit/:idiary" element={<DiaryWriteEdit />} />
           {/* 잘못된 경로 페이지 처리 */}
           <Route path="/*" element={<NotFound />} />
         </Route>

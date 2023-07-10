@@ -169,40 +169,42 @@ const TodoWrite = () => {
       }}
     >
       <Form>
-        <Form.Item>
-          {/* 식물 선택 section */}
-          <TodoWriteFir>
-            <TodoWriteTxt>
-              식물 선택
-              {/* 식물 미선택 시 에러메세지 출력 */}
-              {selectError && <p>{selectError}</p>}
-            </TodoWriteTxt>
+        {/* 식물 선택 section */}
+        <TodoWriteFir>
+          <TodoWriteTxt>
+            식물 선택
+            {/* 식물 미선택 시 에러메세지 출력 */}
+            {selectError && <p>{selectError}</p>}
+          </TodoWriteTxt>
+          <Form.Item>
             <Select
               placeholder="원하는 반려 식물을 선택해 주세요."
               allowClear
               options={selectMyPlant}
               onChange={handleMyPlantChange}
             />
-          </TodoWriteFir>
-        </Form.Item>
-        <Form.Item>
-          {/* 날짜 선택 section */}
-          <TodoWriteFir>
-            <TodoWriteTxt>
-              날짜 및 시간 선택
-              {/* 날짜, 시간 미입력 시 에러메세지 출력 */}
-              {dateError && <p>{dateError}</p>}
-            </TodoWriteTxt>
-            <ul className="plant-dete">
-              {/* 날짜 선택 */}
-              <li>
+          </Form.Item>
+        </TodoWriteFir>
+        {/* 날짜 선택 section */}
+        <TodoWriteFir>
+          <TodoWriteTxt>
+            날짜 및 시간 선택
+            {/* 날짜, 시간 미입력 시 에러메세지 출력 */}
+            {dateError && <p>{dateError}</p>}
+          </TodoWriteTxt>
+          <ul className="plant-dete">
+            {/* 날짜 선택 */}
+            <li>
+              <Form.Item>
                 <DatePicker
                   placeholder="날짜 선택"
                   onChange={handleDateChange}
                 />
-              </li>
-              {/* 시간 선택 */}
-              <li>
+              </Form.Item>
+            </li>
+            {/* 시간 선택 */}
+            <li>
+              <Form.Item>
                 <Select
                   labelInValue
                   defaultValue={{
@@ -212,21 +214,21 @@ const TodoWrite = () => {
                   onChange={handleChange}
                   options={postDeadlineTime}
                 />
-              </li>
-            </ul>
-          </TodoWriteFir>
-        </Form.Item>
-        <Form.Item>
-          {/* 할 일 section */}
-          <TodoWriteFir>
+              </Form.Item>
+            </li>
+          </ul>
+        </TodoWriteFir>
+        <TodoWriteFir>
+          <Form.Item>
+            {/* 할 일 section */}
             <TodoWriteTxt>할 일{ctntError && <p>{ctntError}</p>}</TodoWriteTxt>
             <TextArea
               value={value}
               onChange={e => setValue(e.target.value)}
               placeholder="할 일을 입력해주세요."
             />
-          </TodoWriteFir>
-        </Form.Item>
+          </Form.Item>
+        </TodoWriteFir>
         <Form.Item>
           {/* 반복여부 section */}
           <TodoWriteFir>

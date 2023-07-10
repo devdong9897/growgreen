@@ -12,8 +12,13 @@ import {
   MyPlantDetailImage,
 } from "../style/DetailLayout";
 import { getDetail, deletePlants } from "../api/patchmyplant";
+import NoImage from "../assets/noimageslide.jpg";
 
 const MyPlantDetail = () => {
+  // 이미지 없을 때 error처리
+  const onImgError = e => {
+    e.target.src = NoImage;
+  };
   let { iplant } = useParams();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +63,8 @@ const MyPlantDetail = () => {
           <MyPlantDetailImage>
             <img
               src={`http://192.168.0.144:5005/imgs/plant/${iplant}/${detailInfo.plantPic}`}
-              alt="식물사진"
+              alt={detailInfo.nickNm}
+              onError={onImgError}
             />
           </MyPlantDetailImage>
           <MyPlantDetailTitle>

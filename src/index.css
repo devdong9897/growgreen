@@ -17,9 +17,11 @@ body {
   font-size: 10px;
   letter-spacing: -0.6px;
   line-height: 1;
-  overflow-x: hidden;
   background: #f9f9f7;
   color: #253528;
+}
+body {
+  overflow: hidden;
 }
 a {
   color: #253528;
@@ -54,12 +56,12 @@ button {
 
 /* 스크롤바 영역에 대한 설정 */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 /* 스크롤바 막대에 대한 설정 */
 ::-webkit-scrollbar-thumb {
   border-radius: 15px;
-  background-color: rgba(139, 168, 137, 0.7);
+  background-color: rgba(139, 168, 137, 0.25);
 }
 /* 스크롤바 뒷 배경에 대한 설정 */
 ::-webkit-scrollbar-track {

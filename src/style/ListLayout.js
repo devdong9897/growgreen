@@ -20,7 +20,7 @@ export const WriteBtn = styled.div`
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     border-radius: 100%;
     float: right;
-    margin-right: 2%;
+    margin-right: 4%;
     transition: background 0.3s ease-in-out;
     &:hover {
       background: ${subColor.colorBlack};

@@ -67,7 +67,7 @@ const DiaryDetail = () => {
           {diaryDetailData && <p>{diaryDetailData.data.ctnt}</p>}
           <PageBtnWrap>
             <li>
-              <Link to="/diaryedit">수정</Link>
+              <Link to={`/diaryedit/${paramIdiary}`}>수정</Link>
             </li>
             <li>
               <button onClick={showModal}>삭제</button>
