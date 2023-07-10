@@ -89,7 +89,6 @@ export const postPlants = async _data => {
         "Content-Type": "multipart/form-data",
       },
     });
-    // const res = await axios.post("http://localhost:3000/todos");
     const data = res.data;
     console.log(data);
     return data;
@@ -107,7 +106,11 @@ export const postPlants = async _data => {
 // 식물수정
 export const putPlants = async _data => {
   try {
-    const res = await axios.put("/api/plant", _data);
+    const res = await axios.put("/api/plant", _data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     const data = res.data;
     return data;
   } catch (err) {

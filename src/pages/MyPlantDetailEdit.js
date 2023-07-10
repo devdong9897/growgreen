@@ -1,31 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { TodoWriteTxt, TodoWriteFir, MyPlantWtP } from "../style/WriteLayout";
-import { Input, Form, DatePicker, Upload, Modal, ConfigProvider } from "antd";
+import {
+  TodoWriteTxt,
+  TodoWriteFir,
+  MyPlantWtP,
+  UploadDisabled,
+} from "../style/WriteLayout";
+import {
+  Input,
+  Form,
+  DatePicker,
+  Upload,
+  Modal,
+  ConfigProvider,
+  message,
+} from "antd";
 import dayjs from "dayjs";
 import { PlusOutlined } from "@ant-design/icons";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { putPlants } from "../api/patchmyplant";
 
 const MyPlantDetailEdit = () => {
-  const dateFormat = "YYYY/MM/DD";
+  const dateFormat = "YYYY-MM-DD";
   const navigate = useNavigate();
   const { iplant } = useParams();
 
   // 미리 채워진 식물 데이터 저장
   const [preFilledData, setPreFilledData] = useState({});
-  //  식물 이름 값을 저장
+  // 식물 이름 값을 저장
   const [nm, setNm] = useState("");
-  //  식물 애칭 값을 저장
+  // 식물 애칭 값을 저장
   const [nickNm, setNickNm] = useState("");
-  //  메모 값을 저장
+  // 메모 값을 저장
   const [memo, setMemo] = useState("");
-  //  식물의 데려온 날짜 값을 저장
+  // 식물의 데려온 날짜 값을 저장
   const [onDate, setOnDate] = useState(null);
   // 식물의 이미지에 대한 업로드된 파일 목록을 저장
   const [fileList, setFileList] = useState([]);
-  //  이미지의 미리보기 모달의 표시 상태 저장
+  // 이미지의 미리보기 모달의 표시 상태 저장
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   // 이미지의 제목을 저장
@@ -71,16 +85,31 @@ const MyPlantDetailEdit = () => {
 
   const handleFormSubmit = async () => {
     try {
-      const updatedData = {
-        iplant: preFilledData.iplant,
+      const dto = {
+        iplant: iplant,
         nm: nm,
         nickNm: nickNm,
         ctnt: memo,
         onDate: onDate.format(dateFormat),
       };
 
-      await axios.put(`/api/plant`, updatedData);
-      navigate("/myplantdetail");
+      console.log(dto);
+
+      // 이미지 업로드
+      const formData = new FormData();
+
+
+      formData.append(
+        //data pk명
+        "dto",
+        new Blob([JSON.stringify(dto)], {
+          type: "application/json",
+        }),
+      );
+
+      putPlants(formData);
+      // MyPlantList 페이지로 이동
+      navigate("/myplantlist");
     } catch (error) {
       console.log(error);
     }
@@ -109,16 +138,14 @@ const MyPlantDetailEdit = () => {
     </div>
   );
 
-  // Ant design Upload 컴포넌트 미리보기 화면 출력
-  /*
-        0. 글 작성 시 이미지 첨부하지 않고 글 작성 하면 POST가 안됨
-        (-> 그래서 이미지 첨부하지 않으면 이미지 첨부해달라는 에러메세지 출력함)
-        1. 하지만 이미지를 수정하지 않고 그대로 수정 시 400에러 발생
-        2. 이미지를 삭제하고 다시 업로드하면 정상적으로 전송됨
-        3. 새로운 객체로 만들지 않고 그대로 사용했을 때도 마찬가지로 400에러 발생
-        4. 이미지 수정하지 않고 전송 시 fileList[0]?.originFileObj에 undefinded 출력됨
-        5. 이미지 수정하지 않고 전송 시 에러메세지 출력 안됨
-      */
+  const beforeUpload = file => {
+    // 이미지가 수정되었을 경우에만 업로드를 허용
+    if (fileList.length > 0) {
+      message.error("이미지는 수정할 수 없습니다.");
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
@@ -179,15 +206,21 @@ const MyPlantDetailEdit = () => {
             * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드
             가능합니다.
           </MyPlantWtP>
-          <Upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture-card"
-            fileList={fileList}
-            onPreview={handlePreview}
-            onChange={handleChange}
-          >
-            {fileList.length === 0 && uploadButton}
-          </Upload>
+          <UploadDisabled>
+            <Upload
+              // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChange}
+              // 이미지 업로드 disable 처리
+              beforeUpload={beforeUpload}
+              // 이미지 업로드 버튼 disable
+              disabled={fileList.length > 0}
+            >
+              {fileList.length === 0 && uploadButton}
+            </Upload>
+          </UploadDisabled>
           <Modal
             open={previewOpen}
             title={previewTitle}
