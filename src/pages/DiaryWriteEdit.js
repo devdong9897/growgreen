@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { postDiary } from "../api/patchdiary";
+import { getDiaryDetail, putDiary } from "../api/patchdiary";
 import { DiaryWriteFir, DiaryWriteTxt } from "../style/WriteLayout";
 import { Input, Form, ConfigProvider, Upload, Modal } from "antd";
 import { mainColor } from "../style/GlobalStyle";
@@ -9,23 +9,77 @@ import { PlusOutlined } from "@ant-design/icons";
 
 const DiaryWrite = () => {
   const { TextArea } = Input;
+  const [form] = Form.useForm();
   // idiary params 관리
-  const { idiary } = useParams();
+  const paramIdiary = useParams().idiary;
   // 화면이동
   const navigate = useNavigate();
-  // 이미지 업로드
-  const getBase64 = file =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
+  // 다이어리 내용 state 관리
+  // const [diaryDetailData, setDiaryDetailData] = useState(null);
+  // 일기 제목 state
+  const [diaryPutTitle, setDiaryPutTitle] = useState("");
+  // 일기 작성 state
+  const [ctnt, setCtnt] = useState("");
+  // 다이어리 사진 state 관리
+  const [diaryPhotoData, setDiaryPhotoData] = useState(null);
+  // 이미지 업로드 state
+  const [fileList, setFileList] = useState([]);
+  // 다이어리 디테일 데이터 GET
+  const getDiaryDetailData = async idiary => {
+    try {
+      // 다이어리 디테일 원본 데이터 전송
+      const idiaryData = await getDiaryDetail(idiary);
+      // 사진 데이터 (-> 전달되는 값 {}로 묶었을 때 undefinded 발생하는 이유 확인)
+      let dataParse = idiaryData.pics.map(item => item);
+      // Ant design Upload 컴포넌트 미리보기 화면 출력
+      /*
+				0. 글 작성 시 이미지 첨부하지 않고 글 작성 하면 POST가 안됨
+				(-> 그래서 이미지 첨부하지 않으면 이미지 첨부해달라는 에러메세지 출력함)
+				1. dataParse를 다시 map을 이용해서 새로운 객체로 반환하면 정상적으로 썸네일이 노출됨
+				2. 하지만 이미지를 수정하지 않고 그대로 수정 시 400에러 발생
+				3. 이미지를 삭제하고 다시 업로드하면 정상적으로 전송됨
+				4. 새로운 객체로 만들지 않고 그대로 사용했을 때도 마찬가지로 400에러 발생
+				5. 이미지 수정하지 않고 전송 시 fileList[0]?.originFileObj에 undefinded 출력됨
+				6. 이미지 수정하지 않고 전송 시 에러메세지 출력 안됨
+			*/
+      //
 
-  const handleCancel = () => setPreviewOpen(false);
+      // 강제로 form 필드의 내용을 변경
+      form.setFieldsValue({
+        title: idiaryData.data.title,
+        ctnt: idiaryData.data.ctnt,
+      });
+      // 일기 제목
+      setDiaryPutTitle(idiaryData.data.title);
+      // 사진 데이터
+      setDiaryPhotoData(dataParse);
+      // 사진 데이터를 다시 객체로 변환하여 fileList에 담는다
+      // setFileList(uploadForm);
+      // setFileList(dataParse);
+      // 일기 작성
+      setCtnt(idiaryData.data.ctnt);
+      console.log("다이어리 디테일 데이터", idiaryData);
+      // console.log("다이어리 사진 데이터", dataParse);
+      // console.log("객체로 변환", uploadForm);
+    } catch (err) {
+      console.log("다이어리 디테일 에러 : ", err);
+    }
+  };
+  const getEditData = async () => {
+    await getDiaryDetailData(paramIdiary);
+  };
+  // console.log("일기 제목", diaryPutTitle);
+  // console.log("일기 사진", diaryPhotoData);
+  // console.log("일기 사진", fileList);
+  // console.log("일기 내용", ctnt);
+  useEffect(() => {
+    const fetchData = async () => {
+      await getDiaryDetailData(paramIdiary);
+    };
+    getEditData();
+    fetchData();
+  }, [paramIdiary]);
+
   // 이미지 업로드 핸들러
   const handleImgUpload = ({ fileList }) => {
     if (fileList.length > 5) {
@@ -45,18 +99,6 @@ const DiaryWrite = () => {
       <div>사진 업로드</div>
     </div>
   );
-  // const WritePut = {
-  //   title: "",
-  //   ctnt: "",
-  // };
-  // const [writeData, setWriteData] = useState(WritePut);
-  // 사진하나첨부 state
-  // const [pic, setPic] = useState("");
-  // 다중 이미지 업로드 state
-  const [fileList, setFileList] = useState([]);
-  // 일기작성 state
-  const [ctnt, setCtnt] = useState("");
-
   // 일기 제목 미작성시 에러 처리
   const [titleErrors, setTitleErrors] = useState("");
   // 이미지 미첨부시 에러 처리
@@ -80,26 +122,27 @@ const DiaryWrite = () => {
       return;
     }
     // console.log("values : ", values);
-    // console.log("파일업로드", fileList);
+    console.log("파일업로드", fileList);
     // dto 데이터
     const dto = {
       title: values.title,
       ctnt: values.ctnt,
     };
-    // console.log("dto", dto);
+    console.log("dto", dto);
+
     // 이미지 업로드
     const formData = new FormData();
     formData.append("pic", fileList[0]?.originFileObj);
-    // formData.append("dto", JSON.stringify(dto));
     formData.append(
       "dto", //data pk명
       new Blob([JSON.stringify(dto)], {
         type: "application/json",
       }),
     );
-    // console.log("전송", formData);
-    postDiary(formData);
-    navigate("/diarylist");
+    console.log("전송할 이미지", fileList[0]?.originFileObj);
+    console.log("전송", formData);
+    putDiary(formData);
+    // navigate("/diarylist");
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -115,7 +158,7 @@ const DiaryWrite = () => {
           },
         }}
       >
-        <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+        <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
           {/* 일기 제목 section */}
           <DiaryWriteFir>
             <DiaryWriteTxt>
@@ -141,7 +184,7 @@ const DiaryWrite = () => {
             <Form.Item>
               <Upload
                 // 이미지 업로드할 경로
-                // action="http://localhost:3000/todo"
+                action={`/imgs/diaryPics/${paramIdiary}`}
                 listType="picture-card"
                 fileList={fileList}
                 maxCount={5}
@@ -153,14 +196,6 @@ const DiaryWrite = () => {
                 {fileList.length < 5 && uploadButton}
               </Upload>
             </Form.Item>
-            <Modal
-              open={previewOpen}
-              title={previewTitle}
-              footer={null}
-              onCancel={handleCancel}
-            >
-              <img alt="example" style={{ width: "100%" }} src={previewImage} />
-            </Modal>
           </DiaryWriteFir>
           <DiaryWriteFir>
             {/* 일기 작성 section */}
@@ -172,6 +207,7 @@ const DiaryWrite = () => {
             <Form.Item name="ctnt">
               <TextArea
                 placeholder="일기 내용을 작성해 주세요."
+                // value={ctnt}
                 value={ctnt}
                 onChange={e => setCtnt(e.target.value)}
               />

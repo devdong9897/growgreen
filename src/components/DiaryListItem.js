@@ -23,7 +23,7 @@ const DiaryListItem = ({ item }) => {
           <DiaryLiItemLeft>
             {/* 이미지 경로 확인 필요 */}
             <img
-              src={`http://192.168.0.144:5005/imgs/diaryPics/${item.idiary}/${item.pic}`}
+              src={`/imgs/diaryPics/${item.idiary}/${item.pic}`}
               alt={item.title}
               onError={onImgError}
             />

@@ -30,7 +30,7 @@ export const getDiaryDetail = async idiary => {
   try {
     const res = await axios.get(`/api/diary/${idiary}`);
     const data = res.data;
-    // console.log(data);
+    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
@@ -69,13 +69,17 @@ export const postDiary = async _data => {
 // diary 다중 이미지 POST
 
 // diary PUT
-export const putDiary = async () => {
+export const putDiary = async _data => {
   try {
-    const res = await axios.put("/api/diary");
+    const res = await axios.put("/api/diary", _data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     const data = res.data;
-    console.log("다이어리 수정데이터");
+    console.log("다이어리 수정데이터", data);
     return data;
   } catch (err) {
-    console.log(err);
+    console.log("다이어리 PUT", err);
   }
 };

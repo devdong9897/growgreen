@@ -19,7 +19,7 @@ export const borderColor = {
 // 높이
 export const height = {
   headerHeight: "6.5rem",
-  todoMainHeaderHeight: "9.4rem",
+  todoMainHeaderHeight: "9.8rem",
   inputHeight: "4.5rem",
 };
 // 말줄임

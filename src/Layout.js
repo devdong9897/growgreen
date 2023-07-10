@@ -36,7 +36,7 @@ const Layout = () => {
     location.pathname === `/myplantdetail/${iplant}` ||
     location.pathname === `/diarydetail/${paramIdiary}`
       ? { padding: "0 0 10rem" }
-      : { padding: "2.5rem 0 10rem" };
+      : { padding: "1.5rem 0 10rem" };
   /* pathname에 따라 Contents margin-top값 동적으로 설정 */
   const ContentsMarginTop =
     location.pathname === "/"
@@ -48,7 +48,7 @@ const Layout = () => {
     location.pathname === `/diarydetail/${paramIdiary}`
       ? { padding: "0", margin: "0" }
       : { padding: "0 1%", margin: "0 1%" };
-  const test =
+  const InnerHeight =
     location.pathname === "/"
       ? { height: "calc(100vh - 21rem)" }
       : { height: "calc(100vh - 18rem)" };
@@ -65,7 +65,7 @@ const Layout = () => {
         {/* 컨텐츠 시작 */}
         <Contents style={{ ...ContentsPadding, ...ContentsMarginTop }}>
           {/* pathname에 따라 Inner의 가로 padding값 동적으로 설정 */}
-          <Inner style={{ ...InnerPadding, ...test }}>
+          <Inner style={{ ...InnerPadding, ...InnerHeight }}>
             <Outlet />
           </Inner>
         </Contents>
