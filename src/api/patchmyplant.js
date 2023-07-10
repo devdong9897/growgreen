@@ -105,9 +105,9 @@ export const postPlants = async _data => {
 };
 
 // 식물수정
-export const putPlants = async () => {
+export const putPlants = async _data => {
   try {
-    const res = await axios.put("/api/plant");
+    const res = await axios.put("/api/plant", _data);
     const data = res.data;
     return data;
   } catch (err) {

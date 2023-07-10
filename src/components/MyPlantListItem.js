@@ -22,7 +22,7 @@ const MyPlantListItem = ({ item }) => {
         <Link to={`/myplantdetail/${item.iplant}`}>
           <MyPlantLiItemLeft>
             <img
-              src={`http://192.168.0.144:5005/imgs/plant/${item.iplant}/${item.plantPic}`}
+              src={`/imgs/plant/${item.iplant}/${item.plantPic}`}
               alt={item.nm}
               onError={onImgError}
             />

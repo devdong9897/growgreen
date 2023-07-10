@@ -1,20 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TodoWriteTxt, TodoWriteFir, MyPlantWtP } from "../style/WriteLayout";
 import { Input, Form, DatePicker, Upload, Modal, ConfigProvider } from "antd";
 import dayjs from "dayjs";
 import { PlusOutlined } from "@ant-design/icons";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
-import { useNavigate } from "react-router-dom";
-import { putPlants } from "../api/patchmyplant";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const MyPlantDetailEdit = () => {
   const dateFormat = "YYYY/MM/DD";
-
   const navigate = useNavigate();
-  putPlants();
+  const { iplant } = useParams();
 
-  // 사진 업로드
+  // 미리 채워진 식물 데이터 저장
+  const [preFilledData, setPreFilledData] = useState({});
+  //  식물 이름 값을 저장
+  const [nm, setNm] = useState("");
+  //  식물 애칭 값을 저장
+  const [nickNm, setNickNm] = useState("");
+  //  메모 값을 저장
+  const [memo, setMemo] = useState("");
+  //  식물의 데려온 날짜 값을 저장
+  const [onDate, setOnDate] = useState(null);
+  // 식물의 이미지에 대한 업로드된 파일 목록을 저장
+  const [fileList, setFileList] = useState([]);
+  //  이미지의 미리보기 모달의 표시 상태 저장
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  // 이미지의 제목을 저장
+  const [previewTitle, setPreviewTitle] = useState("");
+
+  useEffect(() => {
+    const fetchDetailData = async () => {
+      try {
+        const res = await axios.get(`/api/plant/${iplant}`);
+        const data = res.data;
+        setPreFilledData(data);
+        setNm(data.nm);
+        setNickNm(data.nickNm);
+        setMemo(data.ctnt);
+        setOnDate(dayjs(data.onDate, dateFormat));
+
+        // 이미지 미리 업로드
+        if (data.plantPic) {
+          setFileList([
+            {
+              uid: "-1",
+              name: "image.png",
+              status: "done",
+              url: `/imgs/plant/${iplant}/${data.plantPic}`,
+            },
+          ]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchDetailData();
+  }, [iplant]);
+
   const getEditImg = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -23,12 +69,27 @@ const MyPlantDetailEdit = () => {
       reader.onerror = error => reject(error);
     });
 
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState([]);
+  const handleFormSubmit = async () => {
+    try {
+      const updatedData = {
+        iplant: preFilledData.iplant,
+        nm: nm,
+        nickNm: nickNm,
+        ctnt: memo,
+        onDate: onDate.format(dateFormat),
+      };
 
-  const handleCancel = () => setPreviewOpen(false);
+      await axios.put(`/api/plant`, updatedData);
+      navigate("/myplantdetail");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCancel = () => {
+    setFileList([]);
+  };
+
   const handlePreview = async file => {
     if (!file.url && !file.preview) {
       file.preview = await getEditImg(file.originFileObj);
@@ -39,7 +100,7 @@ const MyPlantDetailEdit = () => {
       file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
     );
   };
-  // 파일 선택 변경에 대한 핸들러 함수
+
   const handleChange = ({ fileList }) => setFileList(fileList.slice(-1));
   const uploadButton = (
     <div>
@@ -48,9 +109,16 @@ const MyPlantDetailEdit = () => {
     </div>
   );
 
-  // 메모
-  const [value, setValue] = useState("");
-  const { TextArea } = Input;
+  // Ant design Upload 컴포넌트 미리보기 화면 출력
+  /*
+        0. 글 작성 시 이미지 첨부하지 않고 글 작성 하면 POST가 안됨
+        (-> 그래서 이미지 첨부하지 않으면 이미지 첨부해달라는 에러메세지 출력함)
+        1. 하지만 이미지를 수정하지 않고 그대로 수정 시 400에러 발생
+        2. 이미지를 삭제하고 다시 업로드하면 정상적으로 전송됨
+        3. 새로운 객체로 만들지 않고 그대로 사용했을 때도 마찬가지로 400에러 발생
+        4. 이미지 수정하지 않고 전송 시 fileList[0]?.originFileObj에 undefinded 출력됨
+        5. 이미지 수정하지 않고 전송 시 에러메세지 출력 안됨
+      */
 
   return (
     <>
@@ -73,6 +141,8 @@ const MyPlantDetailEdit = () => {
                 padding: "13px 0 13px 15px",
                 borderRadius: "10px",
               }}
+              value={nm}
+              onChange={e => setNm(e.target.value)}
             />
           </Form.Item>
         </TodoWriteFir>
@@ -88,6 +158,8 @@ const MyPlantDetailEdit = () => {
                 padding: "13px 0 13px 15px",
                 borderRadius: "10px",
               }}
+              value={nickNm}
+              onChange={e => setNickNm(e.target.value)}
             />
           </Form.Item>
         </TodoWriteFir>
@@ -95,8 +167,9 @@ const MyPlantDetailEdit = () => {
         <TodoWriteFir className="date">
           <TodoWriteTxt>데려온 날짜 수정</TodoWriteTxt>
           <DatePicker
-            defaultValue={dayjs("2023-06-28", dateFormat)}
+            value={onDate}
             style={{ padding: "13px 15px 13px 15px", borderRadius: "10px" }}
+            onChange={date => setOnDate(date)}
           />
         </TodoWriteFir>
 
@@ -127,10 +200,10 @@ const MyPlantDetailEdit = () => {
 
         <TodoWriteFir className="memo">
           <TodoWriteTxt>메모 수정</TodoWriteTxt>
-          <TextArea
+          <Input.TextArea
             placeholder="메모를 수정해주세요."
-            value={value}
-            onChange={e => setValue(e.target.value)}
+            value={memo}
+            onChange={e => setMemo(e.target.value)}
             style={{ width: "100%", paddingBottom: "148px" }}
           />
         </TodoWriteFir>
@@ -138,10 +211,12 @@ const MyPlantDetailEdit = () => {
 
       <PageBtnWrap>
         <li>
-          <button onClick={() => navigate("/myplantlist")}>확인</button>
+          <button onClick={handleFormSubmit}>확인</button>
         </li>
         <li>
-          <button onClick={() => navigate("/myplantdetail/1")}>취소</button>
+          <button onClick={() => navigate(`/myplantdetail/${iplant}`)}>
+            취소
+          </button>
         </li>
       </PageBtnWrap>
     </>
