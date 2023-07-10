@@ -78,7 +78,7 @@ const DiaryWrite = () => {
       return;
     }
     // console.log("values : ", values);
-    // console.log("파일업로드", fileList);
+    console.log("파일업로드", fileList);
     // dto 데이터
     const dto = {
       title: values.title,
