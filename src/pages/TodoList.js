@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getTodayTodoList } from "../api/patchtodo";
+import { getTodayTodoList, putTodoSwitch } from "../api/patchtodo";
 
 import { WriteBtn } from "../style/ListLayout";
 import TodoListItem from "../components/TodoListItem";
@@ -12,6 +12,7 @@ const TodoList = () => {
     try {
       const data = await getTodayTodoList();
       setTodoList(data);
+      console.log(data);
     } catch (err) {
       console.log("전체 투두리스트 에러 : ", err);
     }
@@ -23,12 +24,14 @@ const TodoList = () => {
   const toggleItem = id => {
     setTodoList(prevData =>
       prevData.map(item =>
-        item.id === id
+        item.itodo === id
           ? { ...item, finishYn: item.finishYn === 0 ? 0 : 1 }
           : item,
       ),
     );
   };
+  // putTodoSwitch(toggleItem);
+
   return (
     <>
       <ul>
