@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDiaryDetail, putDiary } from "../api/patchdiary";
-import { DiaryWriteFir, DiaryWriteTxt } from "../style/WriteLayout";
+import {
+  DiaryWriteFir,
+  DiaryWriteTxt,
+  UploadDisabled,
+} from "../style/WriteLayout";
 import { Input, Form, ConfigProvider, Upload, Modal } from "antd";
 import { mainColor } from "../style/GlobalStyle";
 import { PageBtnWrap } from "../style/Components";
@@ -43,6 +47,13 @@ const DiaryWrite = () => {
 				6. 이미지 수정하지 않고 전송 시 에러메세지 출력 안됨
 			*/
       //
+      let uploadForm = dataParse.map(item => ({
+        uid: `${paramIdiary}`,
+        name: `${item}`,
+        status: "done",
+        url: `/imgs/diaryPics/${paramIdiary}/${item}`,
+      }));
+      // console.log(uploadForm);
 
       // 강제로 form 필드의 내용을 변경
       form.setFieldsValue({
@@ -52,14 +63,14 @@ const DiaryWrite = () => {
       // 일기 제목
       setDiaryPutTitle(idiaryData.data.title);
       // 사진 데이터
-      setDiaryPhotoData(dataParse);
+      // setDiaryPhotoData(dataParse);
       // 사진 데이터를 다시 객체로 변환하여 fileList에 담는다
-      // setFileList(uploadForm);
       // setFileList(dataParse);
+      setFileList(uploadForm);
       // 일기 작성
       setCtnt(idiaryData.data.ctnt);
       console.log("다이어리 디테일 데이터", idiaryData);
-      // console.log("다이어리 사진 데이터", dataParse);
+      console.log("다이어리 사진 데이터", dataParse);
       // console.log("객체로 변환", uploadForm);
     } catch (err) {
       console.log("다이어리 디테일 에러 : ", err);
@@ -101,8 +112,6 @@ const DiaryWrite = () => {
   );
   // 일기 제목 미작성시 에러 처리
   const [titleErrors, setTitleErrors] = useState("");
-  // 이미지 미첨부시 에러 처리
-  const [picErrors, setPicErrors] = useState("");
   // 일기 내용 미작성시 에러 처리
   const [ctntErrors, setCtntErrors] = useState("");
   // 글 작성 후 확인 버튼 클릭(diary POST)
@@ -111,10 +120,6 @@ const DiaryWrite = () => {
     if (values.title === undefined || values.title === "") {
       setTitleErrors("* 일기 제목을 입력해주세요.");
       return;
-    }
-    // 이미지 미첨부 시 에러 처리
-    if (fileList.length === 0) {
-      setPicErrors("* 사진을 첨부해주세요.");
     }
     // 일기 내용 미작성 시 에러 처리
     if (values.ctnt === undefined || values.ctnt === "") {
@@ -125,24 +130,27 @@ const DiaryWrite = () => {
     console.log("파일업로드", fileList);
     // dto 데이터
     const dto = {
+      idiary: paramIdiary,
       title: values.title,
       ctnt: values.ctnt,
     };
-    console.log("dto", dto);
+    // console.log("dto", dto);
+    // console.log("idiary", paramIdiary);
 
     // 이미지 업로드
     const formData = new FormData();
-    formData.append("pic", fileList[0]?.originFileObj);
+    fileList.map(item => {
+      formData.append("pics", item?.originFileObj);
+    });
     formData.append(
       "dto", //data pk명
       new Blob([JSON.stringify(dto)], {
         type: "application/json",
       }),
     );
-    console.log("전송할 이미지", fileList[0]?.originFileObj);
-    console.log("전송", formData);
+    // console.log(formData);
     putDiary(formData);
-    // navigate("/diarylist");
+    navigate("/diarylist");
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -174,28 +182,29 @@ const DiaryWrite = () => {
           <DiaryWriteFir>
             <DiaryWriteTxt>
               사진 첨부
-              {/* 일기 제목 미입력 시 에러메세지 출력 */}
-              {picErrors && <p>{picErrors}</p>}
               <p>
                 * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드
                 가능합니다.
               </p>
             </DiaryWriteTxt>
-            <Form.Item>
-              <Upload
-                // 이미지 업로드할 경로
-                action={`/imgs/diaryPics/${paramIdiary}`}
-                listType="picture-card"
-                fileList={fileList}
-                maxCount={5}
-                onChange={handleImgUpload}
-                onRemove={handleImgRemove}
-                onPreview={() => false} // 이미지 미리보기 비활성화
-                showPreviewIcon={false}
-              >
-                {fileList.length < 5 && uploadButton}
-              </Upload>
-            </Form.Item>
+            <UploadDisabled>
+              <Form.Item>
+                <Upload
+                  // 이미지 업로드할 경로
+                  // action={`/imgs/diaryPics/${paramIdiary}`}
+                  disabled={true}
+                  listType="picture-card"
+                  fileList={fileList}
+                  maxCount={5}
+                  onChange={handleImgUpload}
+                  onRemove={handleImgRemove}
+                  onPreview={() => false} // 이미지 미리보기 비활성화
+                  showPreviewIcon={false}
+                >
+                  {fileList.length < 5 && uploadButton}
+                </Upload>
+              </Form.Item>
+            </UploadDisabled>
           </DiaryWriteFir>
           <DiaryWriteFir>
             {/* 일기 작성 section */}

@@ -144,6 +144,17 @@ export const putTodo = async data => {
     console.log("투두 PUT 에러", err);
   }
 };
+// todo 완료, 미완료 체크 PUT
+export const putTodoSwitch = async itodo => {
+  try {
+    const res = await axios.put(`/api/todo/${itodo}`);
+    const result = res.data;
+    console.log("스위치", result);
+    return result;
+  } catch (err) {
+    console.log("투두 스위치 에러", err);
+  }
+};
 // todo DELETE
 export const deleteTodo = async itodo => {
   try {

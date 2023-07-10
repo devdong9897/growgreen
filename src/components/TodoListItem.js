@@ -10,13 +10,16 @@ import {
   ItemName,
   ItemText,
 } from "../style/ListLayout";
+import { putTodoSwitch } from "../api/patchtodo";
 
 const TodoListItem = ({ item, toggleItem }) => {
   // finishYn의 값이 0인 경우 close 클래스 적용
   const [isClose, setIsClose] = useState(item.finishYn === 0);
   const handleToggle = () => {
     setIsClose(!isClose);
-    toggleItem(item.id);
+    toggleItem(item.itodo);
+    putTodoSwitch(item.itodo);
+    // console.log(item.itodo, item.finishYn);
   };
   return (
     <>

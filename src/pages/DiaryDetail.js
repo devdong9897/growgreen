@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DiarySwiper from "../components/DiarySwiper";
-import { Link, useParams } from "react-router-dom";
-import { getDiaryDetail } from "../api/patchdiary";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { deleteDiary, getDiaryDetail } from "../api/patchdiary";
 
 import "../style/modalstyle.css";
 import { mainColor } from "../style/GlobalStyle";
@@ -14,6 +14,8 @@ import {
 import { ConfigProvider, Modal } from "antd";
 
 const DiaryDetail = () => {
+  // 화면이동
+  const navigate = useNavigate();
   // 다이어리 디테일 페이지 state 관리
   const [diaryDetailData, setDiaryDetailData] = useState(null);
   // 다이어리 사진 state 관리
@@ -48,7 +50,9 @@ const DiaryDetail = () => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
-    setIsModalOpen(false);
+    deleteDiary(paramIdiary);
+    navigate("/diarylist");
+    // setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
