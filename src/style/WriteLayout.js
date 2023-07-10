@@ -26,6 +26,7 @@ export const UploadDisabled = styled.div`
   }
 `;
 
+
 // MyPlant
 export const MyPlantWriteFir = styled.div`
   margin-bottom: 30px;
