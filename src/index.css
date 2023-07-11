@@ -67,3 +67,12 @@ button {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+/* 마우스 드래그 색상 변경 */
+::-moz-selection {
+  background: #8ba889;
+  color: #fff;
+}
+::selection {
+  background: #8ba889;
+  color: #fff;
+}
