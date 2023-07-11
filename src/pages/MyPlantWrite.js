@@ -13,6 +13,7 @@ const MyPlantWrite = () => {
   // 날짜 선택에 오늘 날짜 표시
   const [nowDate, setNowDate] = useState(new Date());
   const nowFormatDate = moment(nowDate).format("YYYY-MM-DD");
+
   // 데려온 날짜
   const dateFormat = "YYYY-MM-DD";
 
@@ -40,7 +41,9 @@ const MyPlantWrite = () => {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
-    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
+    setPreviewTitle(
+      file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
+    );
   };
   const handleChange = ({ fileList }) => setFileList(fileList.slice(-1));
   const uploadButton = (
@@ -62,29 +65,51 @@ const MyPlantWrite = () => {
   };
 
   // plant state
-  const [writeData, setWriteData] = useState(WritePut);
-
+  const [writeData, setWriteData] = useState("");
   const [formErrors, setFormErrors] = useState({});
 
   const handleConfirm = () => {
     // 식물 종류가 입력되지 않았을 때 에러 처리
-    const errors = {};
-    if (!writeData.nm) {
-      errors.nm = "* 식물 종류를 작성해주세요.";
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-    console.log("확인");
-    postPlants(writeData);
-    navigate("/myplantlist");
+    // const errors = {};
+    // if (!writeData.nm) {
+    //   errors.nm = "";
+    // }
+    // if (Object.keys(errors).length > 0) {
+    //   setFormErrors(errors);
+    //   return;
+    // }
+    // postPlants(riteData);
+    // navigate("/myplantlist");
   };
-
+  // 식물 종류 미입력시 처리되는 error
+  const [plantSelectError, setPlantSelectError] = useState("");
+  // 식물 애칭 미입력시 처리되는 error
+  const [plantNm, setPlantNm] = useState("");
+  // 식물 데려온 날짜 미선택 error
+  const [plantData, setPlantData] = useState("");
+  // 메모 미입력시 error
+  const [plantCtnt, setPlantCtnt] = useState("");
   // 식물 이름
   const onFinish = values => {
-    console.log(fileList);
+    // console.log(values);
+    // console.log("식물 종류", values.nm);
+    if (values.nm === undefined || values.nm === "") {
+      setPlantSelectError("* 식물종류를 선택해주세요.");
+      return;
+    }
+    if (values.nickNm === undefined || values.nickNm === "") {
+      setPlantNm("* 식물애칭을 선택해주세요.");
+      return;
+    }
+    console.log(values.onDatae);
+    if (!values.onDate || !values.onDate) {
+      setPlantData("날짜를 선택해주세요.");
+      return;
+    }
+    if (values.ctnt === undefined || values.ctnt === "") {
+      setPlantCtnt("* 메모를 입력해 주세요.");
+    }
+
     values.onDate = moment(values.onDate).format("YYYY-MM-DD");
     // dto 데이터
     const dto = {
@@ -93,7 +118,7 @@ const MyPlantWrite = () => {
       onDate: values.onDate,
       ctnt: values.ctnt,
     };
-
+    // console.log(dto);
     // 이미지 업로드
     const formData = new FormData();
     formData.append("img", fileList[0]?.originFileObj);
@@ -106,12 +131,12 @@ const MyPlantWrite = () => {
     );
 
     postPlants(formData);
+    navigate("/myplantlist"); // MyPlanList 페이지로 이동
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
   };
 
-  
   return (
     <>
       <ConfigProvider
@@ -130,25 +155,38 @@ const MyPlantWrite = () => {
         >
           {/* 식물 종류 */}
           <MyPlantWriteFir>
-            <MyPlantWriteTxt>식물 종류</MyPlantWriteTxt>
+            <MyPlantWriteTxt>
+              식물 종류
+              {plantSelectError && <p>{plantSelectError}</p>}
+            </MyPlantWriteTxt>
             <Form.Item
               name="nm"
               validateStatus={formErrors.nm ? "error" : ""}
-              help={formErrors.nm && <div style={{ color: "red" }}>{formErrors.nm}</div>}
+              help={
+                formErrors.nm && (
+                  <div style={{ color: "red" }}>{formErrors.nm}</div>
+                )
+              }
             >
               <Input placeholder="키우는 반려 식물 종류를 작성해주세요." />
             </Form.Item>
           </MyPlantWriteFir>
           {/* 식물 애칭 */}
           <MyPlantWriteFir>
-            <MyPlantWriteTxt>식물 애칭</MyPlantWriteTxt>
+            <MyPlantWriteTxt>
+              식물 애칭
+              {plantNm && <p>{plantNm}</p>}
+            </MyPlantWriteTxt>
             <Form.Item name="nickNm">
               <Input placeholder="반려 식물의 애칭을 작성해 주세요." />
             </Form.Item>
           </MyPlantWriteFir>
           {/* 데려온 날짜 */}
           <MyPlantWriteFir>
-            <MyPlantWriteTxt>데려온 날짜</MyPlantWriteTxt>
+            <MyPlantWriteTxt>
+              데려온 날짜
+              {plantData && <p>{plantData}</p>}
+            </MyPlantWriteTxt>
             <Form.Item name="onDate">
               <DatePicker />
             </Form.Item>
@@ -157,7 +195,10 @@ const MyPlantWrite = () => {
           <MyPlantWriteFir>
             <MyPlantWriteTxt>
               식물 사진
-              <p>* 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드 가능합니다.</p>
+              <p>
+                * 최대 5MB의 이미지 확장자 파일(.jpeg, .png, .gif)만 업로드
+                가능합니다.
+              </p>
             </MyPlantWriteTxt>
             <Form.Item name="img">
               <Upload
@@ -180,7 +221,10 @@ const MyPlantWrite = () => {
           </MyPlantWriteFir>
           {/* 메모 */}
           <MyPlantWriteFir>
-            <MyPlantWriteTxt>메모</MyPlantWriteTxt>
+            <MyPlantWriteTxt>
+              메모
+              {plantCtnt && <p>{plantCtnt}</p>}
+            </MyPlantWriteTxt>
             <Form.Item name="ctnt">
               <TextArea
                 value={value}
@@ -192,7 +236,8 @@ const MyPlantWrite = () => {
           {/* 확인, 취소 버튼 section */}
           <PageBtnWrap>
             <li>
-              <button onClick={handleConfirm}>확인</button>
+              {/* <button onClick={handleConfirm}>확인</button> */}
+              <button type="submit">확인</button>
             </li>
             <li>
               <button onClick={() => navigate("/myplantlist")}>취소</button>
