@@ -34,7 +34,7 @@ const TodoMainList = ({ selectTodoData }) => {
       {/* todayListData 없을 때 아래 코드 출력 */}
       {selectTodoData.length === 0 && (
         <ListItem className="noTodayTodo">
-          <img src="./images/logo.svg" alt="로고" />
+          <img src={`${process.env.PUBLIC_URL}/images/logo.svg`} alt="로고" />
           <p>
             <span>NO TODO</span>
             오늘은 할 일이 없어요.

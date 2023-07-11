@@ -9,6 +9,7 @@ import { Wrap, Contents, Inner } from "./style/Components";
 import Header from "./components/Header";
 import TodoMainHeader from "./components/TodoMainHeader";
 import QuickMenu from "./components/QuickMenu";
+import Footer from "./components/Footer";
 
 const Layout = () => {
   const location = useLocation();
@@ -67,9 +68,11 @@ const Layout = () => {
           {/* pathname에 따라 Inner의 가로 padding값 동적으로 설정 */}
           <Inner style={{ ...InnerPadding, ...InnerHeight }}>
             <Outlet />
+            <Footer></Footer>
           </Inner>
         </Contents>
         {/* 컨텐츠 끝 */}
+        {/* 푸터 */}
         <QuickMenu paramToday={paramToday} />
       </Wrap>
     </ThemeProvider>
