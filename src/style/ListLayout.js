@@ -94,6 +94,15 @@ export const ListItem = styled.li`
       }
     }
   }
+  &.close {
+    color: #9d9d9d;
+    text-decoration: line-through;
+    opacity: 0.5;
+    cursor: context-menu;
+    div {
+      color: #9d9d9d;
+    }
+  }
 `;
 export const ItemLeft = styled.div`
   width: 100px;
