@@ -249,3 +249,54 @@ export const PageBtnWrap = styled.ul`
     }
   }
 `;
+
+// 푸터
+
+export const FooterWrap = styled.footer`
+  margin-top: 100px;
+  border-top: 0.05rem solid ${borderColor.borderGray};
+  padding: 30px 0 0;
+  text-align: center;
+  font-size: 1.2rem;
+  ul {
+    color: #999;
+    a {
+      color: #999;
+      &:hover {
+        color: #253528;
+      }
+    }
+    & > li {
+      margin-bottom: 10px;
+    }
+    & > li:nth-of-type(1) {
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      img {
+        display: block;
+        margin: 0 auto 5px;
+        width: 40px;
+      }
+    }
+    & > li:nth-of-type(2) {
+      ol {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+        li {
+          margin: 0 3px;
+        }
+      }
+    }
+    & > li:nth-of-type(3) {
+      ol {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+        li {
+          margin: 0 3px;
+        }
+      }
+    }
+  }
+`;

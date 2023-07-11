@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   TodoMainUl,
@@ -11,10 +11,11 @@ import {
 } from "../style/ListLayout";
 
 const TodoMainList = ({ selectTodoData }) => {
+  // finishYn의 값이 0인 경우 close 클래스 적용
   return (
     <TodoMainUl>
       {selectTodoData.map((item, index) => (
-        <ListItem key={index}>
+        <ListItem key={index} className={item.finishYn === 0 ? "" : "close"}>
           <ItemLeft>
             <ItemTime>
               <span>{item.deadlineDate}</span>
@@ -33,7 +34,7 @@ const TodoMainList = ({ selectTodoData }) => {
       {/* todayListData 없을 때 아래 코드 출력 */}
       {selectTodoData.length === 0 && (
         <ListItem className="noTodayTodo">
-          <img src="./images/logo.svg" alt="로고" />
+          <img src={`${process.env.PUBLIC_URL}/images/logo.svg`} alt="로고" />
           <p>
             <span>NO TODO</span>
             오늘은 할 일이 없어요.

@@ -9,7 +9,10 @@ const TodoMainHeader = ({ paramToday }) => {
         <TodoMainHeaderInner>
           <h1>
             <Link to="/">
-              <img src="/images/logo.svg" alt="로고" />
+              <img
+                src={`${process.env.PUBLIC_URL}/images/logo.svg`}
+                alt="로고"
+              />
             </Link>
           </h1>
           <nav>

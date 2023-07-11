@@ -8,7 +8,10 @@ const Intro = ({ loding }) => {
   return (
     <IntroWrap className={loding ? "active" : ""}>
       <div>
-        <img src="./images/intro_logo.png" alt="logo" />
+        <img
+          src={`${process.env.PUBLIC_URL}/images/intro_logo.png`}
+          alt="logo"
+        />
       </div>
       <div>
         <SyncLoader

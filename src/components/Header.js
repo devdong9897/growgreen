@@ -31,11 +31,17 @@ const Header = ({ paramToday }) => {
           <HeaderInnerWrap>
             <h1>
               <Link to="/">
-                <img src="/images/logo.svg" alt="로고" />
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/logo.svg`}
+                  alt="로고"
+                />
               </Link>
             </h1>
             <button onClick={toggleNav}>
-              <img src="/images/icon_navbtn.svg" alt="메뉴펼치기" />
+              <img
+                src={`${process.env.PUBLIC_URL}/images/icon_navbtn.svg`}
+                alt="메뉴펼치기"
+              />
             </button>
           </HeaderInnerWrap>
         </Inner>
