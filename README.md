@@ -9,6 +9,11 @@
     :herb:<br/>
     Introduce
   </h3>
+</div>
+<div align="center">
+ 1차 협업 프로젝트 GrowGreen입니다. <br/>
+  사용자가 식물을 키우면서 식물에 관한 내용을 작성하면서 <br/>관리를 할 수 있도록 제작하였습니다.
+</div>
 
 ## 1. 프로젝트 정보
 
