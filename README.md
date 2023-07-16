@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=First%20Project&fontSize=90&fontColor=fff" alt="d" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=First%20Project&fontSize=90&fontColor=fff" alt="" />
 # growgreen 식물키우기 TodoList 웹앱 개발
 
 ## 1. 프로젝트 정보
@@ -22,3 +22,4 @@
 - Prettier
 
 ## 3. 프로젝트 후기
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=footer&text=First%20Project&fontSize=90&fontColor=fff" alt="" />
