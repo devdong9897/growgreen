@@ -16,11 +16,11 @@
 </div>
 <br/>
 <br/>
-<div align="center">  
+
 <h3>
   :pencil2:&nbsp;&nbsp;&nbsp;프로젝트 정보&nbsp;&nbsp;&nbsp;:pencil2:
 </h3>
-</div>
+
 <div align="center">
   - [GitHub](https://github.com/devdong9897/growgreen) <br/>
   - [Notion](https://www.notion.so/1-TodoList-Grow-Green-d560a969307441a3a59024c019aba580) <br/>
