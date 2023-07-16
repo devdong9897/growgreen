@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=capsule%20render&fontSize=90&fontColor=fff" alt="d" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=First%20render&fontSize=90&fontColor=fff" alt="d" />
 # growgreen 식물키우기 TodoList 웹앱 개발
 
 ## 1. 프로젝트 정보
