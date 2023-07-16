@@ -34,6 +34,8 @@
     :computer:&nbsp;&nbsp;&nbsp;Skill&nbsp;&nbsp;&nbsp;:computer:
   </h3>
 </div>
+<br/>
+<br/>
 
 <div align="center">
     <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
@@ -44,12 +46,16 @@
     <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=React&logoColor=white"/>
      <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=React&logoColor=white"/>
 </div>
+<br/>
+<br/>
 
 <div align="center">  
   <h3>
     :wrench:&nbsp;&nbsp;&nbsp;Tools&nbsp;&nbsp;&nbsp;:wrench:
   </h3>
 </div>
+<br/>
+<br/>
 <div align="center">
   <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=visualstudiocode&logoColor=fff"/>
   <br/>
@@ -59,8 +65,7 @@
   <br/>
   <img src="https://img.shields.io/badge/Slack-4A154B?style=flat&logo=slack&logoColor=fff"/>
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=slack&logoColor=fff"/>
-  <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=slack&logoColor=fff"/>
-  
+  <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=slack&logoColor=fff"/> 
 </div>
 <br/>
 <br/>
