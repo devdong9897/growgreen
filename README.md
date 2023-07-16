@@ -37,8 +37,8 @@
 
 <div align="center">
     <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
- 
-#181717
+    <img src="https://img.shields.io/badge/React Router-CA4245?style=flat&logo=React&logoColor=white"/>
+
 </div>
 
 ## 1. 프로젝트 정보
