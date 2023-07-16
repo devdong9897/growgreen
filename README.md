@@ -69,7 +69,7 @@
 </div>
 <br/>
 <br/>
-<img width="100%" src="https://github.com/devdong9897/growgreen/assets/131754770/785a07f1-21bc-4af8-a5fd-5263cf5b8db8"/>
+<img src="https://github.com/devdong9897/growgreen/assets/131754770/785a07f1-21bc-4af8-a5fd-5263cf5b8db8"/>
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:badebc,100:009a3e&height=200&section=footer" />
