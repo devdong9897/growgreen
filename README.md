@@ -1,3 +1,4 @@
+<div align="center">
 # growgreen 식물키우기 TodoList 웹앱 개발
 ![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=200&section=header&text=capsule%20render&fontSize=50)
 ## 1. 프로젝트 정보
@@ -21,3 +22,4 @@
 - Prettier
 
 ## 3. 프로젝트 후기
+</div>
