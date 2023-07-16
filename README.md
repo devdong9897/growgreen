@@ -25,5 +25,5 @@
 
 ## 3. 프로젝트 후기
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer" />
 </div>
