@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=capsule%20render&fontSize=90&fontColor=fff" alt="First Mini Project")
+<img src="https://capsule-render.vercel.app/api?type=Waving&color=0:009a3e,100:badebc&height=200&section=header&text=First%20Mini%20Project&fontSize=60&fontColor=fff" alt="First Mini Project" />
 # growgreen 식물키우기 TodoList 웹앱 개발
 
 ## 1. 프로젝트 정보
