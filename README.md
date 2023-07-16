@@ -39,9 +39,10 @@
     <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
     <img src="https://img.shields.io/badge/React Router-CA4245?style=flat&logo=React&logoColor=white"/>
     <img src="https://img.shields.io/badge/FontAwesome-528DD7?style=flat&logo=React&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=React&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=React&logoColor=white"/> <br/>
     <img src="https://img.shields.io/badge/Ant Design-0170FE?style=flat&logo=React&logoColor=white"/>
     <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=React&logoColor=white"/>
+     <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat&logo=React&logoColor=white"/>
    
 
 </div>
