@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=Waving&color=0:009a3e,100:badebc&height=200&section=header&text=First%20Mini%20Project&fontSize=60&fontColor=fff" alt="First Project" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=First Project%20render&fontSize=90" />
 </div>
 # growgreen 식물키우기 TodoList 웹앱 개발
 
@@ -25,5 +25,5 @@
 
 ## 3. 프로젝트 후기
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:badebc,100:009a3e&height=150&section=footer" alt="" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer />
 </div>
