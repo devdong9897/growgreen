@@ -35,6 +35,12 @@
   </h3>
 </div>
 
+<div align="center">
+    <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
+ 
+#181717
+</div>
+
 ## 1. 프로젝트 정보
 
 - [GitHub](https://github.com/devdong9897/growgreen)
