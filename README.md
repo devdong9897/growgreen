@@ -22,4 +22,4 @@
 - Prettier
 
 ## 3. 프로젝트 후기
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=footer&text=First%20Project&fontSize=90&fontColor=fff" alt="" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=footer&fontSize=90&fontColor=fff" alt="" />
