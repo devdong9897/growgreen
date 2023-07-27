@@ -1,9 +1,10 @@
 import axios from "axios";
+import { axiosInstance } from "./patchdiary";
 
 // 모든 식물 리스트 가져오기
 export const getPlants = async () => {
   try {
-    const res = await axios.get("/api/plant");
+    const res = await axiosInstance.get("/api/plant");
     const data = res.data;
     // console.log(data);
     return data;
@@ -72,7 +73,7 @@ export const getPlants = async () => {
 // 특정 식물 가져오기
 export const getDetail = async iplant => {
   try {
-    const res = await axios.get(`/api/plant/${iplant}`);
+    const res = await axiosInstance.get(`/api/plant/${iplant}`);
     const data = res.data;
     return data;
   } catch (err) {
@@ -84,7 +85,7 @@ export const getDetail = async iplant => {
 // 식물등록
 export const postPlants = async _data => {
   try {
-    const res = await axios.post("/api/plant", _data, {
+    const res = await axiosInstance.post("/api/plant", _data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -106,7 +107,7 @@ export const postPlants = async _data => {
 // 식물수정
 export const putPlants = async _data => {
   try {
-    const res = await axios.put("/api/plant", _data, {
+    const res = await axiosInstance.put("/api/plant", _data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -122,7 +123,7 @@ export const putPlants = async _data => {
 // 식물삭제
 export const deletePlants = async iplant => {
   try {
-    const res = await axios.delete("/api/plant", {
+    const res = await axiosInstance.delete("/api/plant", {
       data: iplant,
     });
     const data = res.data;
