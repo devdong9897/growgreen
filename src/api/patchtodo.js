@@ -1,9 +1,10 @@
 import axios from "axios";
+import { axiosInstance } from "./patchdiary";
 
 // todomain 특정 날짜 todo GET (특정날짜의 todo목록 보기)
 export const getSelectTodoList = async deadline => {
   try {
-    const res = await axios.get(`/api/todo/${deadline}`);
+    const res = await axiosInstance.get(`/api/todo/${deadline}`);
     const data = res.data;
     // console.log(data);
     return data;
@@ -33,7 +34,7 @@ export const getSelectTodoList = async deadline => {
 // todolist 페이지 데이터 GET (deadline이 오늘날짜인 Todo리스트 보기)
 export const getTodayTodoList = async () => {
   try {
-    const res = await axios.get("/api/todo");
+    const res = await axiosInstance.get("/api/todo");
     const data = res.data;
     // console.log(data);
     return data;
@@ -63,7 +64,7 @@ export const getTodayTodoList = async () => {
 // todo 캘린더 데이터 GET (전체 Todo리스트 보기)
 export const getTotalTodoList = async () => {
   try {
-    const res = await axios.get("/api/todo/list");
+    const res = await axiosInstance.get("/api/todo/list");
     const data = res.data;
     // console.log("전체 투두리스트 보기", data);
     return data;
@@ -116,7 +117,7 @@ export const getTotalTodoList = async () => {
 // todo 수정 데이터 GET
 export const getTodoEdit = async itodo => {
   try {
-    const res = await axios.get(`/api/todo/detail/${itodo}`);
+    const res = await axiosInstance.get(`/api/todo/detail/${itodo}`);
     const result = res.data;
     // console.log("투두 수정데이터", result);
     return result;
@@ -127,7 +128,7 @@ export const getTodoEdit = async itodo => {
 // todo POST
 export const postTodo = async data => {
   try {
-    const res = await axios.post("/api/todo", data);
+    const res = await axiosInstance.post("/api/todo", data);
     const result = res.data;
     // console.log("투두 post", result);
   } catch (err) {
@@ -137,7 +138,7 @@ export const postTodo = async data => {
 // todo PUT
 export const putTodo = async data => {
   try {
-    const res = await axios.put("/api/todo", data);
+    const res = await axiosInstance.put("/api/todo", data);
     const result = res.data;
     // console.log("투두 PUT", result);
   } catch (err) {
@@ -147,7 +148,7 @@ export const putTodo = async data => {
 // todo 완료, 미완료 체크 PUT
 export const putTodoSwitch = async itodo => {
   try {
-    const res = await axios.put(`/api/todo/${itodo}`);
+    const res = await axiosInstance.put(`/api/todo/${itodo}`);
     const result = res.data;
     console.log("스위치", result);
     return result;
@@ -158,7 +159,7 @@ export const putTodoSwitch = async itodo => {
 // todo DELETE
 export const deleteTodo = async itodo => {
   try {
-    const res = await axios.delete(`/api/todo?itodo=${itodo}`);
+    const res = await axiosInstance.delete(`/api/todo?itodo=${itodo}`);
     const result = res.data;
     return result;
   } catch (err) {
