@@ -1,8 +1,12 @@
 import axios from "axios";
+
+export const axiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_NDW,
+});
 // diary 전체 리스트 데이터 GET
 export const getDiary = async () => {
   try {
-    const res = await axios.get("/api/diary");
+    const res = await axiosInstance.get("/api/diary");
     const data = res.data;
     // console.log("다이어리 전체 리스트 데이터", data);
     return data;
@@ -28,7 +32,7 @@ export const getDiary = async () => {
 // diary detail 데이터 GET
 export const getDiaryDetail = async idiary => {
   try {
-    const res = await axios.get(`/api/diary/${idiary}`);
+    const res = await axiosInstance.get(`/api/diary/${idiary}`);
     const data = res.data;
     console.log(data);
     return data;
@@ -50,7 +54,7 @@ export const getDiaryDetail = async idiary => {
 // diary POST
 export const postDiary = async _data => {
   try {
-    const res = await axios.post("/api/diary", _data, {
+    const res = await axiosInstance.post("/api/diary", _data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -69,7 +73,7 @@ export const postDiary = async _data => {
 // diary PUT
 export const putDiary = async _data => {
   try {
-    const res = await axios.put("/api/diary", _data, {
+    const res = await axiosInstance.put("/api/diary", _data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -84,7 +88,7 @@ export const putDiary = async _data => {
 // diary DELETE
 export const deleteDiary = async idiary => {
   try {
-    const res = await axios.delete(`/api/diary?idiary=${idiary}`);
+    const res = await axiosInstance.delete(`/api/diary?idiary=${idiary}`);
     const result = res.data;
     return result;
   } catch (err) {
