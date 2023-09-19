@@ -1,6 +1,8 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:badebc,100:009a3e&height=200&section=header&text=Team%20너%20E팀이야&fontSize=60&fontColor=fff" />
 </div>
+<br/>
+<br/>
 <div align="center">  
   <p>프론트엔드&백엔드 협업 프로젝트</p>
   <h4>
